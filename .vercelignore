@@ -1,0 +1,8 @@
+görüntü
+notlar.md
+README.md
+.claude
+ses/*.ogg
+!ses/vesvese-duasi.ogg
+!ses/uykusuzluk-duasi.ogg
+!ses/kerb-duasi.ogg
