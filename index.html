@@ -17,7 +17,7 @@
 <title>Tesbihat</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Amiri+Quran&family=Cormorant+Garamond:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Amiri+Quran&family=Scheherazade+New:wght@400;700&family=Noto+Naskh+Arabic:wght@400;600&family=Cormorant+Garamond:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#F6F1E6; --bg2:#EEE6D4; --surface:#FFFCF5; --surface2:#F7F0E1; --ink:#1B2824; --ink2:#4E5C57; --muted:#86908A;
@@ -224,6 +224,7 @@ a{color:inherit}
 .sh-top{display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top)) 16px 10px;border-bottom:1px solid var(--line2);background:var(--bg);max-width:560px;width:100%;margin:0 auto}
 .sh-top .ttl{flex:1;min-width:0;font-weight:700;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
 .sh-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.sh-in.swap{animation:fade .3s ease}
 .sh-in{max-width:560px;margin:0 auto;padding:18px 16px calc(140px + env(safe-area-inset-bottom))}
 .r-kick{font-size:11.5px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;color:var(--gold)}
 .r-title{font-family:"Cormorant Garamond",serif;font-size:34px;line-height:1.08;font-weight:700;margin:6px 0 12px}
@@ -269,13 +270,18 @@ body.tj-off .tjleg{display:none}
   border:1px solid var(--line2);outline:1.5px solid var(--goldSoft);outline-offset:-7px}
 .mpage-h{display:flex;justify-content:space-between;font-size:11.5px;font-weight:700;color:var(--gold);letter-spacing:.4px;padding:0 4px 8px;border-bottom:1px solid var(--line2);margin-bottom:8px}
 .mpage-f{text-align:center;font-size:12px;color:var(--muted);font-weight:600;margin-top:8px;font-variant-numeric:lining-nums}
-.mtext{font-family:"Amiri Quran","Amiri",serif;direction:rtl;text-align:justify;text-align-last:center;font-size:calc(var(--ar) + 2px);line-height:2.35;color:var(--ink)}
-.aend{font-family:"Amiri Quran","Amiri",serif;display:inline-grid;place-items:center;min-width:1.45em;height:1.45em;margin:0 .15em;border-radius:50%;
+:root{--qfont:"Scheherazade New","Amiri",serif}
+.qfonts{display:flex;align-items:center;gap:8px;margin-top:8px}
+.qfonts>span{font-size:12px;font-weight:700;color:var(--muted);flex:none}
+.qfonts .seg{flex:1}
+.qfonts .seg button{flex:1;padding:7px 6px;font-size:12.5px}
+.mtext{font-family:var(--qfont);direction:rtl;text-align:justify;text-align-last:center;font-size:calc(var(--ar) + 2px);line-height:2.35;color:var(--ink)}
+.aend{font-family:var(--qfont);display:inline-grid;place-items:center;min-width:1.45em;height:1.45em;margin:0 .15em;border-radius:50%;
   border:1.5px solid var(--gold2);color:var(--gold);font-size:.62em;line-height:1;vertical-align:.12em;background:var(--goldSoft)}
 .sbanner{margin:10px 0 6px;padding:10px 12px;border-radius:14px;text-align:center;background:linear-gradient(150deg,var(--hero1),var(--hero2));color:#EBCF8F;position:relative}
-.sbanner b{font-family:"Amiri Quran","Amiri",serif;font-size:26px;font-weight:400;display:block;line-height:1.6}
+.sbanner b{font-family:var(--qfont);font-size:26px;font-weight:400;display:block;line-height:1.6}
 .sbanner small{font-size:11.5px;opacity:.8;letter-spacing:.4px;color:var(--heroInk)}
-.besm{font-family:"Amiri Quran","Amiri",serif;text-align:center;font-size:calc(var(--ar) + 2px);color:var(--ink);margin:6px 0 2px;direction:rtl}
+.besm{font-family:var(--qfont);text-align:center;font-size:calc(var(--ar) + 2px);color:var(--ink);margin:6px 0 2px;direction:rtl}
 .mv{margin-top:12px;padding:14px 14px 12px;border-radius:16px;background:var(--surface);border:1px solid var(--line2);box-shadow:var(--shadow)}
 .mv .mtext{text-align:right;text-align-last:right}
 .mv .vtr{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:14.5px;line-height:1.65;color:var(--ink2)}
@@ -561,6 +567,7 @@ input[type=range]{width:100%;accent-color:var(--em)}
   <div class="set-g">Vakit ve tilavet</div>
   <div class="set-row"><div class="l">Namaz vakitleri<small id="setLoc">Şehir seçilmedi</small></div><button class="pill-btn" data-loc style="flex:none;padding:9px 14px">Seç</button></div>
   <div class="set-row"><div class="l">Kurra<small id="setRc"></small></div><button class="pill-btn" data-rpick style="flex:none;padding:9px 14px">Değiştir</button></div>
+  <div class="set-row" style="display:block"><div class="l">Kur'an yazısı<small>Kur'an sayfalarındaki yazı stili</small></div><div class="qfonts" id="setQf" style="margin-top:10px"></div></div>
   <div class="set-row"><div class="l">Tecvid renkleri<small>Gunne, ihfâ, idgâm, med, kalkale…</small></div><button class="sw" id="swTj" aria-label="Tecvid renkleri"></button></div>
   <div class="set-g">Uygulama</div>
   <div class="set-row"><div class="l">Titreşim<small>Zikir sayarken</small></div><button class="sw" id="swVib" aria-label="Titreşim"></button></div>
@@ -941,7 +948,7 @@ const DK = {}; DUAS.forEach(d=>DK[d.id]=d);
    DURUM
    ===================================================================== */
 const LS="tesbihat.v1";
-function defaults(){return {z:{}, zr:{}, zd:{}, day:{}, dc:{}, fetih:null, cuz:{n:1,done:null}, loc:null, vk:null, set:{theme:"auto", ar:28, ok:true, tr:true, vib:true, tj:true, rc:"abdulbasit_m", rate:1, awake:true}};}
+function defaults(){return {z:{}, zr:{}, zd:{}, day:{}, dc:{}, fetih:null, cuz:{n:1,done:null}, loc:null, vk:null, set:{theme:"auto", ar:28, ok:true, tr:true, vib:true, tj:true, rc:"abdulbasit_m", rate:1, awake:true, qfont:"pc", qmode:"mushaf"}};}
 let S=defaults();
 try{const raw=localStorage.getItem(LS); if(raw){const p=JSON.parse(raw); S=Object.assign(defaults(),p); S.set=Object.assign(defaults().set,p.set||{}); S.cuz=Object.assign({n:1,done:null},p.cuz||{});}}catch(e){}
 function save(){try{localStorage.setItem(LS,JSON.stringify(S))}catch(e){}}
@@ -988,11 +995,28 @@ function actionToast(msg,label,fn){
   b.onclick=()=>{ el.classList.remove("on"); clearTimeout(actT); fn(); };
   el.classList.add("on"); clearTimeout(actT); actT=setTimeout(()=>el.classList.remove("on"),5000);
 }
+/* --- Geri tuşu: her açılan katman (sekme, sayfa, pencere) tarayıcı geçmişine bir adım ekler --- */
+let ignorePop=0, askDone=null;
+function histBack(kind){ if(history.state&&history.state.s===kind){ ignorePop++; history.back(); } }
+function openM(id){
+  const m=$("#"+id), other=[...document.querySelectorAll(".modal.open")].find(x=>x!==m);
+  if(other){ other.classList.remove("open"); if(other.id==="rmodal") prevAudio.pause(); history.replaceState({s:"modal"},""); }
+  else if(!(history.state&&history.state.s==="modal")) history.pushState({s:"modal"},"");
+  m.classList.add("open");
+}
+function closeM(id,fromPop){
+  const m=$("#"+id); if(!m.classList.contains("open")) return; m.classList.remove("open");
+  if(id==="rmodal") prevAudio.pause();
+  if(id==="ask"&&askDone){ const d=askDone; askDone=null; d(false); }
+  if(!fromPop) histBack("modal");
+}
 function ask(msg,ok){
   return new Promise(res=>{
-    const m=$("#ask"); $("#askMsg").textContent=msg; $("#askOk").textContent=ok||"Evet"; m.classList.add("open");
-    const done=v=>{ m.classList.remove("open"); $("#askOk").onclick=null; $("#askNo").onclick=null; m.onclick=null; res(v); };
-    $("#askOk").onclick=()=>done(true); $("#askNo").onclick=()=>done(false); m.onclick=e=>{ if(e.target===m) done(false); };
+    const m=$("#ask"); $("#askMsg").textContent=msg; $("#askOk").textContent=ok||"Evet";
+    askDone=v=>{ $("#askOk").onclick=null; $("#askNo").onclick=null; m.onclick=null; res(v); };
+    const fin=v=>{ const d=askDone; askDone=null; closeM("ask"); if(d) d(v); };
+    $("#askOk").onclick=()=>fin(true); $("#askNo").onclick=()=>fin(false); m.onclick=e=>{ if(e.target===m) fin(false); };
+    openM("ask");
   });
 }
 function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("on");clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove("on"),2200)}
@@ -1151,19 +1175,21 @@ function qAyahHTML(src){
 }
 const qTr=s=>esc(String(s||"").replace(/<sup[^>]*>.*?<\/sup>/g,"").replace(/<[^>]+>/g,""));
 let qState=null;
-function openQuran(spec){
+function _openQuran(spec){
   // spec: {kind:"chapter"|"juz", n, from?, to?, title, mark}
-  qState={...spec, mode:(qState&&qState.mode)||"mushaf"};
+  qState={...spec, mode:S.set.qmode==="meal"?"meal":"mushaf"};
   const h=`<div class="r-kick">${spec.kick||""}</div><h1 class="r-title">${spec.title}</h1>
     <div class="qtabs"><div class="seg" id="qseg"><button data-qm="mushaf">Mushaf</button><button data-qm="meal">Mealli</button></div></div>
+    <div class="qfonts"><span>Yazı</span>${qFontSeg("qf")}</div>
     ${listenBtnHTML("Tilaveti dinle","data-qplay")}<div class="note" style="margin-top:8px;text-align:center">İpucu: Bir âyete dokunursanız tilavet oradan başlar.</div>
     ${legendHTML()}<div id="qbody"><div class="qload"><i></i><i style="width:85%"></i><i></i><i style="width:70%"></i><i></i><i style="width:90%"></i></div></div>`;
   $("#shTtl").textContent=spec.title; $("#shIn").innerHTML=h; $("#shBody").scrollTop=0;
   const sh=$("#sheet"); sh.classList.add("open"); sh.setAttribute("aria-hidden","false"); document.body.classList.add("sheet-open"); setupDock(null);
-  if(!history.state||history.state.s!=="sheet") history.pushState({s:"sheet"},"");
   qSeg(); loadQuran(); keepAwake(true);
 }
 function qSeg(){ document.querySelectorAll("#qseg button").forEach(b=>b.classList.toggle("on",b.dataset.qm===qState.mode)); }
+const QFONTS=[{id:"pc",t:"Bilgisayar",f:'"Scheherazade New","Amiri",serif'},{id:"sade",t:"Sade",f:'"Noto Naskh Arabic","Amiri",serif'},{id:"hat",t:"Klasik hat",f:'"Amiri Quran","Amiri",serif'}];
+function qFontSeg(){ return `<div class="seg">${QFONTS.map(x=>`<button data-qf="${x.id}" class="${(S.set.qfont||"pc")===x.id?"on":""}">${x.t}</button>`).join("")}</div>`; }
 async function loadQuran(){
   const st=qState;
   try{
@@ -1317,9 +1343,9 @@ const prevAudio=new Audio();
 function renderReciters(){
   $("#rcList").innerHTML=RECITERS.map(r=>`<button class="rc ${r.id===rec().id?"on":""}" data-rc="${r.id}"><span class="rc-av">${r.ab}</span><span style="min-width:0"><span class="n">${esc(r.n)}</span><span class="d">${esc(r.d)}</span></span><span class="tag ${r.s==="Murattal"?"m":""}">${r.s}</span></button>`).join("");
 }
-function openReciters(){ renderReciters(); $("#modal").classList.remove("open"); $("#rmodal").classList.add("open"); }
+function openReciters(){ renderReciters(); openM("rmodal"); }
 $("#rmodal").addEventListener("click",e=>{
-  if(e.target.id==="rmodal"){ $("#rmodal").classList.remove("open"); prevAudio.pause(); return; }
+  if(e.target.id==="rmodal"){ closeM("rmodal"); return; }
   const b=e.target.closest("[data-rc]"); if(!b) return;
   S.set.rc=b.dataset.rc; save(); renderReciters();
   document.querySelectorAll("[data-rcname]").forEach(x=>x.textContent=`${rec().n} · ${rec().s}`);
@@ -1375,7 +1401,7 @@ async function vkFetch(force){
 const locMem={};
 async function locGet(path){ if(locMem[path]) return locMem[path]; const r=await fetch(VKAPI+path); if(!r.ok) throw 0; return (locMem[path]=await r.json()); }
 async function openLoc(){
-  $("#modal").classList.remove("open"); $("#lmodal").classList.add("open");
+  openM("lmodal");
   const si=$("#selIl"), sc=$("#selIlce");
   try{
     const il=await locGet("/sehirler/2");
@@ -1645,15 +1671,38 @@ function openSheet(title,html,dockCfg){
   applyTajweed($("#shIn"));
   const sh=$("#sheet"); sh.classList.add("open"); sh.setAttribute("aria-hidden","false"); document.body.classList.add("sheet-open");
   bindPlayers(); setupDock(dockCfg); tpHL();
-  if(!history.state||history.state.s!=="sheet") history.pushState({s:"sheet"},"");
 }
 function closeSheet(fromPop){
   const sh=$("#sheet"); if(!sh.classList.contains("open")) return;
   sh.classList.remove("open"); sh.setAttribute("aria-hidden","true"); document.body.classList.remove("sheet-open","dock-on"); SHEET_PARTS=[];
   sh.querySelectorAll("audio").forEach(a=>a.pause());
   curDua=null; qState=null; refresh(); if(!needAwake()) keepAwake(false);
-  if(!fromPop && history.state&&history.state.s==="sheet") history.back();
+  const n=SHEET_STACK.length; SHEET_STACK=[];
+  if(!fromPop && n && history.state&&history.state.s==="sheet"){ ignorePop++; history.go(-n); }
 }
+
+/* --- Sayfa yığını: sayfalar arası geçişte geri tuşu bir önceki sayfaya döner --- */
+let SHEET_STACK=[];
+function renderEntry(e){
+  if(e.t==="dua") _openDua(e.a); else if(e.t==="sure") _openSure(e.a); else if(e.t==="quran") _openQuran(e.a); else if(e.t==="col") _openCollection(e.a);
+  const el=$("#shIn"); el.classList.remove("swap"); void el.offsetWidth; el.classList.add("swap");
+}
+function sheetGo(e){
+  const open=$("#sheet").classList.contains("open");
+  if(open && SHEET_STACK.length){ SHEET_STACK[SHEET_STACK.length-1].sc=$("#shBody").scrollTop; SHEET_STACK.push(e); history.pushState({s:"sheet"},""); }
+  else { SHEET_STACK=[e]; if(!(history.state&&history.state.s==="sheet")) history.pushState({s:"sheet"},""); }
+  renderEntry(e);
+}
+function sheetBack(){
+  if(SHEET_STACK.length<2) return false;
+  SHEET_STACK.pop(); const e=SHEET_STACK[SHEET_STACK.length-1]; renderEntry(e);
+  const sc=e.sc||0; requestAnimationFrame(()=>{ $("#shBody").scrollTop=sc; setTimeout(()=>{ if(e.t==="quran") $("#shBody").scrollTop=sc; },450); });
+  return true;
+}
+function openDua(id){ if(DK[id]) sheetGo({t:"dua",a:id}); }
+function openSure(id){ if(SK[id]) sheetGo({t:"sure",a:id}); }
+function openQuran(spec){ sheetGo({t:"quran",a:spec}); }
+function openCollection(kind){ sheetGo({t:"col",a:kind}); }
 function duaHTML(d){
   let h=`<div class="r-kick">${(CATS.find(c=>c.id===d.cats[0])||{}).t}${d.sub?" · "+d.sub:""}</div><h1 class="r-title">${d.t}</h1>
     <div class="callout">${ICON.info}<div>${d.fazilet}</div></div>
@@ -1667,11 +1716,12 @@ function duaHTML(d){
   if(d.id==="vakia") h+=`<button class="linkdua" data-go="sure:vakia"><div class="cuz-n" style="width:46px;height:46px;font-size:20px;border-radius:14px">56</div><div class="r-main"><div class="r-t">Vâkıa Sûresi'ni oku</div><div class="r-s">Önce sûre, ardından bu dua</div></div>${ICON.chev}</button>`;
   return h;
 }
-function openDua(id){
-  const d=DK[id]; if(!d) return; curDua=d;
+function _openDua(id){
+  const d=DK[id]; if(!d) return; curDua=d; qState=null;
   openSheet(d.t, duaHTML(d), d.count?{key:"d:"+id, target:d.count, daily:true}:{key:"d:"+id, target:0, daily:true, free:true});
 }
-function openCollection(kind){
+function _openCollection(kind){
+  qState=null;
   if(kind==="namaz"){
     const ids=["gina","einni","afiyet"];
     let h=`<div class="r-kick">Her Farz Namazdan Sonra</div><h1 class="r-title">Namaz Tesbihatı Duaları</h1>
@@ -1682,8 +1732,8 @@ function openCollection(kind){
     openSheet("Namaz Sonrası", h, null);
   }
 }
-function openSure(id){
-  const s=SK[id];
+function _openSure(id){
+  const s=SK[id]; qState=null;
   let h=`<div class="r-kick">${s.no}. Sûre · ${s.ayet} Âyet</div><h1 class="r-title">${s.t}</h1>
     <div class="prev-ar" style="font-size:44px;color:var(--gold);margin:-4px 0 8px">سُورَةُ ${s.ar}</div>
     <div class="callout">${ICON.info}<div>${s.fazilet}</div></div>
@@ -1749,7 +1799,7 @@ function openZikir(id){
 function closeZikir(fromPop){
   const c=$("#ctr"); if(!c.classList.contains("open")) return;
   c.classList.remove("open"); c.setAttribute("aria-hidden","true"); curZ=null; refresh(); if(!needAwake()) keepAwake(false);
-  if(!fromPop && history.state&&history.state.s==="ctr") history.back();
+  if(!fromPop) histBack("ctr");
 }
 function zRounds(){return ((S.zr[today()]||{})[curZ.id])||0}
 function updZ(hit){
@@ -1786,7 +1836,7 @@ $("#ctrReset").addEventListener("click",()=>{
 });
 $("#ctrClose").addEventListener("click",()=>closeZikir());
 $("#ctrVib").addEventListener("click",()=>{S.set.vib=!S.set.vib;save();toast(S.set.vib?"Titreşim açık":"Titreşim kapalı");applySettings()});
-document.addEventListener("keydown",e=>{ if(curZ && (e.code==="Space"||e.code==="Enter")){e.preventDefault();zInc()} if(e.key==="Escape"){ if(curZ) closeZikir(); else closeSheet(); }});
+document.addEventListener("keydown",e=>{ if(curZ && (e.code==="Space"||e.code==="Enter")){e.preventDefault();zInc()} if(e.key==="Escape"){ const mo=[...document.querySelectorAll(".modal.open")].pop(); if(mo) closeM(mo.id); else if(curZ) closeZikir(); else if($("#sheet").classList.contains("open")) $("#shBack").click(); else if(curView!=="bugun") show("bugun"); }});
 
 /* =====================================================================
    AYARLAR
@@ -1795,15 +1845,17 @@ function applySettings(){
   const r=document.documentElement;
   if(S.set.theme==="auto") r.removeAttribute("data-theme"); else r.setAttribute("data-theme",S.set.theme);
   r.style.setProperty("--ar",S.set.ar+"px");
+  r.style.setProperty("--qfont",(QFONTS.find(x=>x.id===S.set.qfont)||QFONTS[0]).f);
+  document.querySelectorAll("[data-qf]").forEach(b=>b.classList.toggle("on",b.dataset.qf===(S.set.qfont||"pc")));
   document.body.classList.toggle("hide-ok",!S.set.ok); document.body.classList.toggle("hide-tr",!S.set.tr);
   document.querySelectorAll("#segTheme button").forEach(b=>b.classList.toggle("on",b.dataset.t===S.set.theme));
   $("#arRange").value=S.set.ar; $("#arVal").textContent=S.set.ar+" px";
   $("#swOk").classList.toggle("on",S.set.ok); $("#swTr").classList.toggle("on",S.set.tr); $("#swVib").classList.toggle("on",S.set.vib); $("#setRc").textContent=rec().n; $("#swAwake").classList.toggle("on",S.set.awake!==false); $("#setLoc").textContent=S.loc?`${S.loc.ilce}${S.loc.ilce!==S.loc.sehir?", "+S.loc.sehir:""}`:"Şehir seçilmedi"; $("#swTj").classList.toggle("on",S.set.tj); document.body.classList.toggle("tj-off",!S.set.tj);
   $("#ctrVib").style.opacity=S.set.vib?1:.45;
 }
-function openModal(){$("#modal").classList.add("open")}
+function openModal(){ $("#setQf").innerHTML=qFontSeg(); openM("modal"); }
 $("#btnSet").addEventListener("click",openModal); $("#shAa").addEventListener("click",openModal);
-$("#modal").addEventListener("click",e=>{if(e.target.id==="modal")$("#modal").classList.remove("open")});
+$("#modal").addEventListener("click",e=>{ if(e.target.id==="modal") closeM("modal"); });
 $("#segTheme").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;S.set.theme=b.dataset.t;save();applySettings()});
 $("#arRange").addEventListener("input",e=>{S.set.ar=+e.target.value;save();applySettings()});
 $("#swOk").addEventListener("click",()=>{S.set.ok=!S.set.ok;save();applySettings()});
@@ -1816,16 +1868,18 @@ $("#bkFile").addEventListener("change",e=>{ const f=e.target.files[0]; if(f) bac
 $("#selIl").addEventListener("change",()=>locIlce().catch(()=>toast("İlçe listesi alınamadı")));
 $("#locSave").addEventListener("click",()=>{ const si=$("#selIl"), sc=$("#selIlce"); if(sc.disabled||!sc.value) return;
   S.loc={sehirId:si.value, sehir:si.options[si.selectedIndex].text, id:sc.value, ilce:sc.options[sc.selectedIndex].text}; S.vk=null; save();
-  $("#lmodal").classList.remove("open"); applySettings(); refresh(); vkFetch(true); });
-$("#locClear").addEventListener("click",()=>{ S.loc=null; S.vk=null; save(); $("#lmodal").classList.remove("open"); applySettings(); refresh(); });
-$("#lmodal").addEventListener("click",e=>{ if(e.target.id==="lmodal") $("#lmodal").classList.remove("open"); });
+  closeM("lmodal"); applySettings(); refresh(); vkFetch(true); });
+$("#locClear").addEventListener("click",()=>{ S.loc=null; S.vk=null; save(); closeM("lmodal"); applySettings(); refresh(); });
+$("#lmodal").addEventListener("click",e=>{ if(e.target.id==="lmodal") closeM("lmodal"); });
 $("#swTj").addEventListener("click",()=>{S.set.tj=!S.set.tj;save();applySettings()});
 
 /* =====================================================================
    OLAYLAR & YÖNLENDİRME
    ===================================================================== */
 let curView="bugun";
-function show(v){curView=v; document.querySelectorAll(".view").forEach(x=>x.classList.toggle("on",x.id==="v-"+v));
+function show(v,fromPop){
+  if(!fromPop){ if(v!=="bugun"){ if(!(history.state&&history.state.s==="tab")) history.pushState({s:"tab"},""); } else histBack("tab"); }
+  curView=v; document.querySelectorAll(".view").forEach(x=>x.classList.toggle("on",x.id==="v-"+v));
   document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.v===v)); refresh(); window.scrollTo({top:0,behavior:"instant"});
   try{sessionStorage.setItem("tb.view",v)}catch(e){} }
 function refresh(){ if(curView==="bugun") renderToday(); else if(curView==="zikir") renderZikir(); else if(curView==="kuran") renderKuran(); else if(curView==="dualar"&&!$("#dlist")) renderDualarShell(); }
@@ -1852,14 +1906,15 @@ document.addEventListener("click",e=>{
   if(chk){ const id=chk.dataset.chk; const v=!isDone(id); setDone(id,v); vib(v?[15]:5);
     if(v){ if(id==="p-cuz") toast("Bugünkü cüz tamam · Allah kabul etsin"); }
     if(chk.dataset.qmark){ const st=$("#shBody").scrollTop; renderQuran(); $("#shBody").scrollTop=st; refresh(); return; }
-    if(chk.dataset.reopen){ const [,sid]=chk.dataset.reopen.split(":"); const st=$("#shBody").scrollTop; openSure(sid); $("#shBody").scrollTop=st; }
+    if(chk.dataset.reopen){ const [,sid]=chk.dataset.reopen.split(":"); const st=$("#shBody").scrollTop; _openSure(sid); $("#shBody").scrollTop=st; }
     refresh(); return; }
   const vk=e.target.closest("[data-vk]");
   if(vk){ const id="v-"+vk.dataset.vk; const v=!isDone(id); setDone(id,v); vib(v?15:5); refresh(); return; }
   const z=e.target.closest("[data-z]"); if(z){ openZikir(z.dataset.z); return; }
   const g=e.target.closest("[data-go]"); if(g){ go(g.dataset.go); return; }
   const o=e.target.closest("[data-open]"); if(o){ openCollection(o.dataset.open); return; }
-  const qm=e.target.closest("[data-qm]"); if(qm){ if(qState){ qState.mode=qm.dataset.qm; qSeg(); renderQuran(); } return; }
+  const qm=e.target.closest("[data-qm]"); if(qm){ S.set.qmode=qm.dataset.qm; save(); if(qState){ qState.mode=qm.dataset.qm; qSeg(); renderQuran(); } return; }
+  const qf=e.target.closest("[data-qf]"); if(qf){ S.set.qfont=qf.dataset.qf; save(); applySettings(); return; }
   const qs=e.target.closest("[data-qsure]"); if(qs){ openSureReader(qs.dataset.qsure); return; }
   if(e.target.id==="qRetry"){ $("#qbody").innerHTML='<div class="qload"><i></i><i></i><i></i></div>'; loadQuran(); return; }
   const c=e.target.closest("[data-cat]"); if(c){ curCat=c.dataset.cat; document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("on",x===c)); renderDList(); return; }
@@ -1867,8 +1922,15 @@ document.addEventListener("click",e=>{
   if(e.target.id==="fetihStart"){ S.fetih={start:today(),days:{}}; save(); toast("Bismillah · 40 günlük okuma başladı"); refresh(); return; }
   if(e.target.id==="fetihReset"){ ask("40 günlük takip sıfırlansın ve bugünden yeniden başlansın mı?","Yeniden başla").then(ok=>{ if(ok){ S.fetih={start:today(),days:{}}; delete dayObj()["p-fetih"]; save(); refresh(); } }); return; }
 });
-$("#shBack").addEventListener("click",()=>closeSheet());
-window.addEventListener("popstate",()=>{ if($("#ctr").classList.contains("open")) closeZikir(true); else if($("#sheet").classList.contains("open")) closeSheet(true); });
+$("#shBack").addEventListener("click",()=>{ if(history.state&&history.state.s==="sheet") history.back(); else closeSheet(); });
+window.addEventListener("popstate",()=>{
+  if(ignorePop>0){ ignorePop--; return; }
+  const mo=[...document.querySelectorAll(".modal.open")];
+  if(mo.length){ mo.forEach(m=>closeM(m.id,true)); return; }
+  if($("#ctr").classList.contains("open")){ closeZikir(true); return; }
+  if($("#sheet").classList.contains("open")){ if(!sheetBack()) closeSheet(true); return; }
+  if(curView!=="bugun"){ show("bugun",true); return; }
+});
 
 /* eski günleri temizle (60 günden eski) */
 (function prune(){const lim=addD(today(),-60); ["day","dc","zr"].forEach(k=>{Object.keys(S[k]||{}).forEach(d=>{if(d<lim) delete S[k][d]})}); save();})();
@@ -1898,6 +1960,7 @@ if("serviceWorker" in navigator && location.protocol!=="file:"){
 }
 
 applySettings(); tpUI();
+if(history.state&&history.state.s&&history.state.s!=="tab") history.replaceState(null,"");
 let startView="bugun"; try{startView=sessionStorage.getItem("tb.view")||"bugun"}catch(e){}
 try{const v=new URLSearchParams(location.search).get("v"); if(["bugun","dualar","zikir","kuran"].includes(v)) startView=v;}catch(e){}
 show(startView);
