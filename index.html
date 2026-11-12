@@ -283,6 +283,65 @@ body.tj-off .tjleg{display:none}
 .qload{margin-top:16px}
 .qload i{display:block;height:22px;border-radius:8px;margin:12px 0;background:linear-gradient(90deg,var(--surface2) 25%,var(--surface) 50%,var(--surface2) 75%);background-size:200% 100%;animation:sh 1.2s infinite}
 @keyframes sh{to{background-position:-200% 0}}
+/* ---------- Tilavet oynatıcı ---------- */
+.tp{position:fixed;left:50%;transform:translate(-50%,calc(100% + 160px));z-index:58;width:calc(100% - 24px);max-width:520px;bottom:calc(88px + env(safe-area-inset-bottom));
+  border-radius:22px;padding:10px 12px 10px 10px;color:var(--heroInk);border:1px solid rgba(235,207,143,.22);
+  background:radial-gradient(120% 140% at 100% 0%,rgba(217,182,108,.20),transparent 55%),linear-gradient(150deg,var(--hero1),var(--hero2));
+  box-shadow:var(--shadow2);visibility:hidden;transition:transform .42s cubic-bezier(.2,.9,.25,1),bottom .3s ease,visibility 0s linear .42s}
+.tp.on{transform:translate(-50%,0);visibility:visible;transition-delay:0s}
+body.sheet-open .tp{bottom:calc(14px + env(safe-area-inset-bottom))}
+body.sheet-open.dock-on .tp{bottom:calc(100px + env(safe-area-inset-bottom))}
+body.tp-on .app{padding-bottom:calc(230px + env(safe-area-inset-bottom))}
+body.tp-on .sh-in{padding-bottom:calc(270px + env(safe-area-inset-bottom))}
+.tp-row{display:flex;align-items:center;gap:8px}
+.tp-art{width:44px;height:44px;border-radius:13px;flex:none;background:rgba(235,207,143,.13);position:relative;overflow:hidden}
+.tp-art i{position:absolute;bottom:10px;width:3px;border-radius:2px;background:#EBCF8F;opacity:.85;height:6px}
+.tp-art i:nth-child(1){left:13px}.tp-art i:nth-child(2){left:19px}.tp-art i:nth-child(3){left:25px}.tp-art i:nth-child(4){left:31px}
+.tp.playing .tp-art i{animation:eq 1s ease-in-out infinite}
+.tp.playing .tp-art i:nth-child(2){animation-delay:.2s}.tp.playing .tp-art i:nth-child(3){animation-delay:.45s}.tp.playing .tp-art i:nth-child(4){animation-delay:.1s}
+@keyframes eq{0%,100%{height:6px}50%{height:22px}}
+.tp-meta{flex:1;min-width:0;padding-left:2px}
+.tp-t{font-weight:700;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tp-s{font-size:11.5px;opacity:.72;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tp-b{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;flex:none;color:var(--heroInk)}
+.tp-b:active{transform:scale(.9)}
+.tp-b.main{background:#EBCF8F;color:#0B2A22;width:46px;height:46px;box-shadow:0 6px 18px -6px rgba(235,207,143,.6)}
+.tp.load .tp-b.main svg{animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tp-bar{height:3px;border-radius:3px;background:rgba(243,235,216,.15);margin:9px 2px 0;overflow:hidden;cursor:pointer}
+.tp-bar i{display:block;height:100%;width:0;background:#EBCF8F;border-radius:3px}
+.tp-x{display:flex;gap:6px;margin-top:9px;overflow-x:auto;scrollbar-width:none}
+.tp-x::-webkit-scrollbar{display:none}
+.tp-close{position:absolute;top:-9px;right:-6px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--hero2);color:var(--heroInk);border:1px solid rgba(235,207,143,.35);box-shadow:var(--shadow)}
+.tp-chip{flex:none;font-size:11.5px;font-weight:700;padding:6px 10px;border-radius:999px;background:rgba(243,235,216,.09);border:1px solid rgba(243,235,216,.13);color:var(--heroInk);white-space:nowrap}
+.tp-chip.act{background:rgba(235,207,143,.22);border-color:rgba(235,207,143,.45);color:#EBCF8F}
+.playing-hl{background:var(--goldSoft)!important}
+.part.playing-hl,.mv.playing-hl{box-shadow:0 0 0 2px var(--gold2),var(--shadow)}
+.ayah{cursor:pointer;border-radius:8px;transition:background .35s ease;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.part-l::after{order:1}
+.listen{order:2;margin-left:4px;display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;letter-spacing:0;padding:5px 11px 5px 8px;border-radius:999px;background:var(--emSoft);color:var(--em);flex:none}
+.listen svg{width:13px;height:13px}
+.part-l span{white-space:nowrap}
+.lbtn{display:flex;align-items:center;gap:12px;width:100%;margin-top:14px;padding:11px 12px 11px 11px;border-radius:18px;text-align:left;color:var(--heroInk);
+  background:radial-gradient(120% 140% at 100% 0%,rgba(217,182,108,.2),transparent 55%),linear-gradient(150deg,var(--hero1),var(--hero2));box-shadow:var(--shadow)}
+.lbtn:active{transform:scale(.99)}
+.lbtn .ic2{width:42px;height:42px;border-radius:50%;background:#EBCF8F;color:#0B2A22;display:grid;place-items:center;flex:none}
+.lbtn b{display:block;font-size:14.5px}
+.lbtn small{display:block;opacity:.75;font-size:12px}
+.lbtn .chg{margin-left:auto;flex:none;font-size:11.5px;font-weight:700;padding:7px 11px;border-radius:999px;background:rgba(243,235,216,.12);border:1px solid rgba(243,235,216,.16)}
+.rc-h{display:flex;align-items:baseline;justify-content:space-between;margin:2px 4px 10px}
+.rc-h b{font-family:"Cormorant Garamond",serif;font-size:24px}
+.rc-h small{color:var(--muted);font-size:12px}
+.rc-list{max-height:60vh;overflow:auto;margin:0 -6px;padding:0 2px}
+.rc{display:flex;align-items:center;gap:12px;padding:11px 8px;border-radius:14px;width:100%;text-align:left}
+.rc+.rc{margin-top:2px}
+.rc.on{background:var(--emSoft)}
+.rc-av{width:42px;height:42px;border-radius:50%;flex:none;display:grid;place-items:center;font-family:"Cormorant Garamond",serif;font-weight:700;font-size:16px;color:#EBCF8F;background:linear-gradient(150deg,var(--hero1),var(--hero2))}
+.rc.on .rc-av{box-shadow:0 0 0 2px var(--em)}
+.rc .n{display:block;font-weight:700;font-size:14.5px;line-height:1.25}
+.rc .d{display:block;font-size:12px;color:var(--muted);line-height:1.35}
+.rc .tag{margin-left:auto;flex:none;font-size:10px;font-weight:800;letter-spacing:.5px;padding:4px 8px;border-radius:8px;background:var(--goldSoft);color:var(--gold);text-transform:uppercase}
+.rc .tag.m{background:var(--surface2);color:var(--ink2)}
 .qerr{margin-top:18px;padding:16px;border-radius:16px;border:1px dashed var(--danger);color:var(--ink2);font-size:14px}
 .ok{margin-top:12px;font-size:14.5px;line-height:1.65;color:var(--ink2);font-style:italic;padding-top:12px;border-top:1px dashed var(--line)}
 .tr{margin-top:12px;font-size:15px;line-height:1.7;color:var(--ink)}
@@ -450,8 +509,30 @@ input[type=range]{width:100%;accent-color:var(--em)}
     <input type="range" id="arRange" min="20" max="44" step="1"></div>
   <div class="set-row"><div class="l">Okunuşu göster<small>Latin harfli okunuş</small></div><button class="sw" id="swOk" aria-label="Okunuş"></button></div>
   <div class="set-row"><div class="l">Anlamı göster<small>Türkçe meal</small></div><button class="sw" id="swTr" aria-label="Anlam"></button></div>
+  <div class="set-row"><div class="l">Kurra<small id="setRc"></small></div><button class="pill-btn" data-rpick style="flex:none;padding:9px 14px">Değiştir</button></div>
   <div class="set-row"><div class="l">Tecvid renkleri<small>Gunne, ihfâ, idgâm, med, kalkale…</small></div><button class="sw" id="swTj" aria-label="Tecvid renkleri"></button></div>
   <div class="set-row"><div class="l">Titreşim<small>Zikir sayarken</small></div><button class="sw" id="swVib" aria-label="Titreşim"></button></div>
+</div></div>
+
+<!-- Tilavet oynatıcı -->
+<div class="tp" id="tp" aria-live="polite">
+  <div class="tp-row">
+    <div class="tp-art" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div class="tp-meta"><div class="tp-t" id="tpT">Tilavet</div><div class="tp-s" id="tpS"></div></div>
+    <button class="tp-b" id="tpPrev" aria-label="Önceki âyet"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M7 6h2v12H7zM19 6.5v11L10.5 12z"/></svg></button>
+    <button class="tp-b main" id="tpPlay" aria-label="Oynat/Duraklat"></button>
+    <button class="tp-b" id="tpNext" aria-label="Sonraki âyet"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M15 6h2v12h-2zM5 6.5v11l8.5-5.5z"/></svg></button>
+  </div>
+  <div class="tp-bar" id="tpBarW"><i id="tpBar"></i></div>
+  <div class="tp-x"><button class="tp-chip" data-rpick id="tpRc"></button><button class="tp-chip" id="tpRep"></button><button class="tp-chip" id="tpRate"></button></div>
+  <button class="tp-close" id="tpClose" aria-label="Oynatıcıyı kapat"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</div>
+
+<!-- Kurra seçici -->
+<div class="modal" id="rmodal"><div class="modal-c">
+  <div class="grab"></div>
+  <div class="rc-h"><b>Kurra seçin</b><small>Mücevved: makamlı tilavet</small></div>
+  <div class="rc-list" id="rcList"></div>
 </div></div>
 
 <div class="toast" id="toast"></div>
@@ -481,19 +562,19 @@ const CATS = [
 ];
 
 const SUR = {
-  kafirun:{label:"Kâfirûn Sûresi", ref:"Kâfirûn 109/1-6",
+  kafirun:{label:"Kâfirûn Sûresi", ref:"Kâfirûn 109/1-6", ay:["109:1","109:2","109:3","109:4","109:5","109:6"],
     ar:"قُلْ يَا أَيُّهَا الْكَافِرُونَ ۝ لَا أَعْبُدُ مَا تَعْبُدُونَ ۝ وَلَا أَنْتُمْ عَابِدُونَ مَا أَعْبُدُ ۝ وَلَا أَنَا عَابِدٌ مَا عَبَدْتُمْ ۝ وَلَا أَنْتُمْ عَابِدُونَ مَا أَعْبُدُ ۝ لَكُمْ دِينُكُمْ وَلِيَ دِينِ",
     ok:"Kul yâ eyyühe'l-kâfirûn. Lâ a'büdü mâ ta'büdûn. Ve lâ entüm âbidûne mâ a'büd. Ve lâ ene âbidün mâ abedtüm. Ve lâ entüm âbidûne mâ a'büd. Leküm dînüküm ve liye dîn.",
     tr:"De ki: Ey kâfirler! Ben sizin taptıklarınıza tapmam. Siz de benim taptığıma tapacak değilsiniz. Ben de sizin taptıklarınıza tapacak değilim. Siz de benim taptığıma tapacak değilsiniz. Sizin dininiz size, benim dinim banadır."},
-  ihlas:{label:"İhlâs Sûresi", ref:"İhlâs 112/1-4",
+  ihlas:{label:"İhlâs Sûresi", ref:"İhlâs 112/1-4", ay:["112:1","112:2","112:3","112:4"],
     ar:"قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ",
     ok:"Kul hüvallâhü ehad. Allâhü's-samed. Lem yelid ve lem yûled. Ve lem yekün lehû küfüven ehad.",
     tr:"De ki: O Allah birdir. Allah sameddir; her şey O'na muhtaçtır, O hiçbir şeye muhtaç değildir. O doğurmamış ve doğurulmamıştır. Hiçbir şey O'na denk değildir."},
-  felak:{label:"Felak Sûresi", ref:"Felak 113/1-5",
+  felak:{label:"Felak Sûresi", ref:"Felak 113/1-5", ay:["113:1","113:2","113:3","113:4","113:5"],
     ar:"قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ۝ مِنْ شَرِّ مَا خَلَقَ ۝ وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝ وَمِنْ شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ۝ وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ",
     ok:"Kul e'ûzü bi-rabbi'l-felak. Min şerri mâ halak. Ve min şerri ğâsikın izâ vekab. Ve min şerri'n-neffâsâti fi'l-ukad. Ve min şerri hâsidin izâ hased.",
     tr:"De ki: Yarattığı şeylerin şerrinden, karanlığı çöktüğü zaman gecenin şerrinden, düğümlere üfleyenlerin şerrinden ve haset ettiği zaman hasetçinin şerrinden, sabahın Rabbine sığınırım."},
-  nas:{label:"Nâs Sûresi", ref:"Nâs 114/1-6",
+  nas:{label:"Nâs Sûresi", ref:"Nâs 114/1-6", ay:["114:1","114:2","114:3","114:4","114:5","114:6"],
     ar:"قُلْ أَعُوذُ بِرَبِّ النَّاسِ ۝ مَلِكِ النَّاسِ ۝ إِلَٰهِ النَّاسِ ۝ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ۝ مِنَ الْجِنَّةِ وَالنَّاسِ",
     ok:"Kul e'ûzü bi-rabbi'n-nâs. Meliki'n-nâs. İlâhi'n-nâs. Min şerri'l-vesvâsi'l-hannâs. Ellezî yüvesvisü fî sudûri'n-nâs. Mine'l-cinneti ve'n-nâs.",
     tr:"De ki: Cinlerden ve insanlardan; insanların kalplerine vesvese veren o sinsi vesvesecinin şerrinden, insanların Rabbine, insanların Melikine, insanların İlâhına sığınırım."}
@@ -502,21 +583,21 @@ const SUR = {
 const DUAS = [
  {id:"radiytu", t:"Radîtü Billâhi", cats:["sabah","hidayet"], count:3, when:"Sabah ve akşam · 3 defa",
   fazilet:"Peygamberimiz (s.a.v.) buyurdu: “Kim sabah akşam içten gelerek bunu söylerse imanın tadını alır, cennet kendisine vâcip olur.”",
-  parts:[{ar:"رَضِيتُ بِاللَّهِ رَبًّا، وَبِالْإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ ﷺ رَسُولًا",
-    ok:"Radîtü billâhi rabben, ve bi'l-İslâmi dînen, ve bi-Muhammedin (sallallâhu aleyhi ve sellem) rasûlâ.",
+  parts:[{ar:"رَضِيتُ بِاللَّهِ رَبًّا، وَبِالْإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ رَسُولًا",
+    ok:"Radîtü billâhi rabben, ve bi'l-İslâmi dînen, ve bi-Muhammedin rasûlâ.",
     tr:"Rab olarak Allah'ı, din olarak İslâm'ı ve Rasûl olarak Hz. Muhammed'i (s.a.v.) kabul ettim, razı oldum."}],
   kaynak:"Müslim, Tirmizî, Ahmed b. Hanbel. Sabah-akşam üç defa okunması Ebû Dâvûd, Edeb 101'de geçer."},
 
  {id:"seyyid", t:"Seyyidü'l-İstiğfâr", cats:["sabah","hidayet"], count:1, when:"Sabah ve akşam",
   fazilet:"“İstiğfârın en üstünü” olarak bildirilmiştir. Kim gündüz inanarak söyler de akşam olmadan vefat ederse cennet ehlindendir; gece söyler de sabaha çıkmadan vefat ederse yine cennet ehlindendir.",
-  parts:[{ar:"اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَٰهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَىٰ عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي، فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ",
-    ok:"Allâhümme ente rabbî lâ ilâhe illâ ente halaktenî ve ene abdüke ve ene alâ ahdike ve va'dike mesteta'tü. E'ûzü bike min şerri mâ sana'tü. Ebû'ü leke bi-ni'metike aleyye ve ebû'ü bi-zenbî, fağfir lî fe innehû lâ yağfiru'z-zünûbe illâ ente.",
-    tr:"Allah'ım! Sen benim Rabbimsin. Senden başka ibâdete lâyık ilâh yoktur. Beni Sen yarattın, ben Senin kulunum. Ezelde Sana verdiğim sözde ve vaadimde hâlâ gücüm yettiğince durmaktayım. İşlediğim kusurların şerrinden Sana sığınırım. Bana lütfettiğin nimetleri yüce huzurunda minnetle anar, günahımı itiraf ederim. Beni affet; şüphe yok ki günahları Senden başka affedecek yoktur."}],
-  kaynak:"Buhârî, Daavât 2, 16 (Şeddâd b. Evs r.a.)."},
+  parts:[{ar:"اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَٰهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَىٰ عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ لَكَ بِذَنْبِي، فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ",
+    ok:"Allâhümme ente rabbî lâ ilâhe illâ ente halaktenî ve ene abdüke ve ene alâ ahdike ve va'dike mesteta'tü. E'ûzü bike min şerri mâ sana'tü. Ebû'ü leke bi-ni'metike aleyye ve ebû'ü leke bi-zenbî, fağfir lî fe innehû lâ yağfiru'z-zünûbe illâ ente.",
+    tr:"Allah'ım! Sen benim Rabbimsin. Senden başka ibâdete lâyık ilâh yoktur. Beni Sen yarattın, ben Senin kulunum. Ezelde Sana verdiğim sözde ve vaadimde hâlâ gücüm yettiğince durmaktayım. İşlediğim kusurların şerrinden Sana sığınırım. Bana lütfettiğin nimetleri yüce huzurunda minnetle anar, günahımı da Sana itiraf ederim. Beni affet; şüphe yok ki günahları Senden başka affedecek yoktur."}],
+  kaynak:"Buhârî, Daavât 2, 16 (No: 6306, 6323 — Şeddâd b. Evs r.a.)."},
 
  {id:"gunluk", t:"Günlük Dua", sub:"Mekhûl (rh.) rivayeti", cats:["sabah","koruma"], count:1, when:"Her gün · 1 defa",
   fazilet:"Mekhûl (rahimehullah) nakleder: Bunu söyleyen kimseyi Allah dost edinir, işlerini üzerine alır ve onu muhafaza eder.",
-  parts:[{ar:"اللَّهُمَّ لَا شَيْءَ إِلَّا أَنْتَ، وَلَا شَيْءَ إِلَّا مَا شِئْتَ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِكَ، <span class='ay'>﴿قُلْ لَنْ يُصِيبَنَا إِلَّا مَا كَتَبَ اللَّهُ لَنَا هُوَ مَوْلَانَا وَعَلَى اللَّهِ فَلْيَتَوَكَّلِ الْمُؤْمِنُونَ﴾</span>",
+  parts:[{label:"Dua ve âyet", ay:["9:51"], ayNote:"Yalnızca âyet kısmı", ar:"اللَّهُمَّ لَا شَيْءَ إِلَّا أَنْتَ، وَلَا شَيْءَ إِلَّا مَا شِئْتَ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِكَ، <span class='ay'>﴿قُلْ لَنْ يُصِيبَنَا إِلَّا مَا كَتَبَ اللَّهُ لَنَا هُوَ مَوْلَانَا وَعَلَى اللَّهِ فَلْيَتَوَكَّلِ الْمُؤْمِنُونَ﴾</span>",
     ok:"Allâhümme lâ şey'e illâ ent, ve lâ şey'e illâ mâ şi't, ve lâ havle ve lâ kuvvete illâ bik. Kul len yusîbenâ illâ mâ ketebellâhu lenâ, hüve mevlânâ, ve alallâhi felyetevekkeli'l-mü'minûn.",
     tr:"Allah'ım! Senden başka (gerçek) hiçbir şey yoktur; Senin dilediğinden başka hiçbir şey olmaz; güç ve kuvvet ancak Seninledir. De ki: Allah'ın bizim için yazdığından başkası bize asla erişmez. O bizim Mevlâmızdır. Mü'minler yalnız Allah'a tevekkül etsinler.",
     ref:"Âyet: Tevbe 9/51"}],
@@ -525,25 +606,25 @@ const DUAS = [
  {id:"kifaye", t:"Âyât-ı Kifâye", sub:"Yedi Kifâyet Âyeti", cats:["sabah","koruma"], count:1, when:"Her gün · 1 defa",
   fazilet:"Bütün belâ, kaza ve sıkıntılardan uzak kalmak için okunur. Ka'bü'l-Ahbâr şöyle der: “Allah'ın kitabında yedi âyet vardır; onları okuduğumda gök yere kapansa aldırmam, mutlaka kurtuluruz.” Rivayete göre yer yarılsa bile bunları okuyana, Allah'ın izniyle zarar gelmez.",
   parts:[
-   {label:"1", ar:"<span class='ay'>﴿قُلْ لَنْ يُصِيبَنَا إِلَّا مَا كَتَبَ اللَّهُ لَنَا هُوَ مَوْلَانَا وَعَلَى اللَّهِ فَلْيَتَوَكَّلِ الْمُؤْمِنُونَ﴾</span>",
+   {label:"1", ay:["9:51"], ar:"<span class='ay'>﴿قُلْ لَنْ يُصِيبَنَا إِلَّا مَا كَتَبَ اللَّهُ لَنَا هُوَ مَوْلَانَا وَعَلَى اللَّهِ فَلْيَتَوَكَّلِ الْمُؤْمِنُونَ﴾</span>",
     ok:"Kul len yusîbenâ illâ mâ ketebellâhu lenâ, hüve mevlânâ, ve alallâhi felyetevekkeli'l-mü'minûn.",
     tr:"De ki: Allah'ın bizim için yazdığından başkası bize asla erişmez. O bizim Mevlâmızdır. Mü'minler yalnız Allah'a tevekkül etsinler.", ref:"Tevbe 9/51"},
-   {label:"2", ar:"<span class='ay'>﴿وَإِنْ يَمْسَسْكَ اللَّهُ بِضُرٍّ فَلَا كَاشِفَ لَهُ إِلَّا هُوَ وَإِنْ يُرِدْكَ بِخَيْرٍ فَلَا رَادَّ لِفَضْلِهِ يُصِيبُ بِهِ مَنْ يَشَاءُ مِنْ عِبَادِهِ وَهُوَ الْغَفُورُ الرَّحِيمُ﴾</span>",
+   {label:"2", ay:["10:107"], ar:"<span class='ay'>﴿وَإِنْ يَمْسَسْكَ اللَّهُ بِضُرٍّ فَلَا كَاشِفَ لَهُ إِلَّا هُوَ وَإِنْ يُرِدْكَ بِخَيْرٍ فَلَا رَادَّ لِفَضْلِهِ يُصِيبُ بِهِ مَنْ يَشَاءُ مِنْ عِبَادِهِ وَهُوَ الْغَفُورُ الرَّحِيمُ﴾</span>",
     ok:"Ve in yemseskellâhu bi-durrin felâ kâşife lehû illâ hû, ve in yuridke bi-hayrin felâ râdde li-fadlih, yusîbü bihî men yeşâü min ıbâdih, ve hüve'l-ğafûru'r-rahîm.",
     tr:"Eğer Allah sana bir zarar dokundurursa, onu O'ndan başka giderecek yoktur. Eğer sana bir hayır dilerse, O'nun lütfunu geri çevirecek de yoktur. O, bunu kullarından dilediğine eriştirir. O çok bağışlayan, çok merhamet edendir.", ref:"Yûnus 10/107"},
-   {label:"3", ar:"<span class='ay'>﴿وَمَا مِنْ دَابَّةٍ فِي الْأَرْضِ إِلَّا عَلَى اللَّهِ رِزْقُهَا وَيَعْلَمُ مُسْتَقَرَّهَا وَمُسْتَوْدَعَهَا كُلٌّ فِي كِتَابٍ مُبِينٍ﴾</span>",
+   {label:"3", ay:["11:6"], ar:"<span class='ay'>﴿وَمَا مِنْ دَابَّةٍ فِي الْأَرْضِ إِلَّا عَلَى اللَّهِ رِزْقُهَا وَيَعْلَمُ مُسْتَقَرَّهَا وَمُسْتَوْدَعَهَا كُلٌّ فِي كِتَابٍ مُبِينٍ﴾</span>",
     ok:"Ve mâ min dâbbetin fi'l-ardı illâ alallâhi rızkuhâ, ve ya'lemü müstekarrahâ ve müstevde'ahâ, küllün fî kitâbin mübîn.",
     tr:"Yeryüzünde yürüyen hiçbir canlı yoktur ki rızkı Allah'a ait olmasın. O, onların durduğu yeri de emanet bırakıldıkları yeri de bilir. Bunların hepsi apaçık bir kitaptadır.", ref:"Hûd 11/6"},
-   {label:"4", ar:"<span class='ay'>﴿إِنِّي تَوَكَّلْتُ عَلَى اللَّهِ رَبِّي وَرَبِّكُمْ مَا مِنْ دَابَّةٍ إِلَّا هُوَ آخِذٌ بِنَاصِيَتِهَا إِنَّ رَبِّي عَلَىٰ صِرَاطٍ مُسْتَقِيمٍ﴾</span>",
+   {label:"4", ay:["11:56"], ar:"<span class='ay'>﴿إِنِّي تَوَكَّلْتُ عَلَى اللَّهِ رَبِّي وَرَبِّكُمْ مَا مِنْ دَابَّةٍ إِلَّا هُوَ آخِذٌ بِنَاصِيَتِهَا إِنَّ رَبِّي عَلَىٰ صِرَاطٍ مُسْتَقِيمٍ﴾</span>",
     ok:"İnnî tevekkeltü alallâhi rabbî ve rabbiküm, mâ min dâbbetin illâ hüve âhizün bi-nâsiyetihâ, inne rabbî alâ sırâtın müstekîm.",
     tr:"Şüphesiz ben, benim de Rabbim sizin de Rabbiniz olan Allah'a tevekkül ettim. O'nun perçeminden tutmadığı (kudreti altında olmayan) hiçbir canlı yoktur. Şüphesiz Rabbim dosdoğru yol üzerindedir.", ref:"Hûd 11/56"},
-   {label:"5", ar:"<span class='ay'>﴿وَكَأَيِّنْ مِنْ دَابَّةٍ لَا تَحْمِلُ رِزْقَهَا اللَّهُ يَرْزُقُهَا وَإِيَّاكُمْ وَهُوَ السَّمِيعُ الْعَلِيمُ﴾</span>",
+   {label:"5", ay:["29:60"], ar:"<span class='ay'>﴿وَكَأَيِّنْ مِنْ دَابَّةٍ لَا تَحْمِلُ رِزْقَهَا اللَّهُ يَرْزُقُهَا وَإِيَّاكُمْ وَهُوَ السَّمِيعُ الْعَلِيمُ﴾</span>",
     ok:"Ve ke-eyyin min dâbbetin lâ tahmilü rızkahâ, allâhu yerzükuhâ ve iyyâküm, ve hüve's-semîu'l-alîm.",
     tr:"Nice canlı vardır ki rızkını (yanında) taşımaz. Onları da sizi de Allah rızıklandırır. O hakkıyla işitendir, hakkıyla bilendir.", ref:"Ankebût 29/60"},
-   {label:"6", ar:"<span class='ay'>﴿مَا يَفْتَحِ اللَّهُ لِلنَّاسِ مِنْ رَحْمَةٍ فَلَا مُمْسِكَ لَهَا وَمَا يُمْسِكْ فَلَا مُرْسِلَ لَهُ مِنْ بَعْدِهِ وَهُوَ الْعَزِيزُ الْحَكِيمُ﴾</span>",
+   {label:"6", ay:["35:2"], ar:"<span class='ay'>﴿مَا يَفْتَحِ اللَّهُ لِلنَّاسِ مِنْ رَحْمَةٍ فَلَا مُمْسِكَ لَهَا وَمَا يُمْسِكْ فَلَا مُرْسِلَ لَهُ مِنْ بَعْدِهِ وَهُوَ الْعَزِيزُ الْحَكِيمُ﴾</span>",
     ok:"Mâ yeftehillâhu li'n-nâsi min rahmetin felâ mümsike lehâ, ve mâ yümsik felâ mürsile lehû min ba'dih, ve hüve'l-azîzü'l-hakîm.",
     tr:"Allah'ın insanlara açtığı herhangi bir rahmeti tutacak yoktur. O'nun tuttuğunu da ondan sonra salıverecek yoktur. O mutlak güç sahibidir, hüküm ve hikmet sahibidir.", ref:"Fâtır 35/2"},
-   {label:"7", ar:"<span class='ay'>﴿وَلَئِنْ سَأَلْتَهُمْ مَنْ خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ لَيَقُولُنَّ اللَّهُ قُلْ أَفَرَأَيْتُمْ مَا تَدْعُونَ مِنْ دُونِ اللَّهِ إِنْ أَرَادَنِيَ اللَّهُ بِضُرٍّ هَلْ هُنَّ كَاشِفَاتُ ضُرِّهِ أَوْ أَرَادَنِي بِرَحْمَةٍ هَلْ هُنَّ مُمْسِكَاتُ رَحْمَتِهِ قُلْ حَسْبِيَ اللَّهُ عَلَيْهِ يَتَوَكَّلُ الْمُتَوَكِّلُونَ﴾</span>",
+   {label:"7", ay:["39:38"], ar:"<span class='ay'>﴿وَلَئِنْ سَأَلْتَهُمْ مَنْ خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ لَيَقُولُنَّ اللَّهُ قُلْ أَفَرَأَيْتُمْ مَا تَدْعُونَ مِنْ دُونِ اللَّهِ إِنْ أَرَادَنِيَ اللَّهُ بِضُرٍّ هَلْ هُنَّ كَاشِفَاتُ ضُرِّهِ أَوْ أَرَادَنِي بِرَحْمَةٍ هَلْ هُنَّ مُمْسِكَاتُ رَحْمَتِهِ قُلْ حَسْبِيَ اللَّهُ عَلَيْهِ يَتَوَكَّلُ الْمُتَوَكِّلُونَ﴾</span>",
     ok:"Ve le-in seeltehüm men halaka's-semâvâti ve'l-arda le-yekûlünnallâh. Kul e-fe-raeytüm mâ ted'ûne min dûnillâhi in erâdeniyallâhu bi-durrin hel hünne kâşifâtü durrih, ev erâdenî bi-rahmetin hel hünne mümsikâtü rahmetih. Kul hasbiyallâh, aleyhi yetevekkelü'l-mütevekkilûn.",
     tr:"Andolsun, onlara “Gökleri ve yeri kim yarattı?” diye sorsan, elbette “Allah” diyecekler. De ki: “Söyleyin bakalım; Allah'ı bırakıp taptıklarınız, Allah bana bir zarar dilerse O'nun zararını giderebilirler mi? Yahut bana bir rahmet dilerse O'nun rahmetini önleyebilirler mi?” De ki: “Allah bana yeter. Tevekkül edenler yalnız O'na tevekkül ederler.”", ref:"Zümer 39/38"}],
   kaynak:"Durûu'l-Vikâye bi-Ahzâbi'l-Himâye, s.16 (Ka'bü'l-Ahbâr'dan nakil). Âyetler Kur'ân-ı Kerîm'den."},
@@ -560,7 +641,7 @@ const DUAS = [
    {label:"Dua", ar:"اللَّهُمَّ يَا غَنِيُّ، يَا حَمِيدُ، يَا مُبْدِئُ، يَا مُعِيدُ، يَا وَدُودُ، يَا ذَا الْعَرْشِ الْمَجِيدِ، يَا فَعَّالًا لِمَا يُرِيدُ، اِكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ، وَأَغْنِنِي بِفَضْلِكَ عَمَّنْ سِوَاكَ، وَاحْفَظْنِي بِمَا حَفِظْتَ بِهِ الذِّكْرَ، وَانْصُرْنِي بِمَا نَصَرْتَ بِهِ الرُّسُلَ، إِنَّكَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ",
     ok:"Allâhümme yâ Ğaniyy, yâ Hamîd, yâ Mübdi', yâ Muîd, yâ Vedûd, yâ ze'l-arşi'l-mecîd, yâ fe''âlen limâ yürîd, ikfinî bi-helâlike an harâmik, ve ağninî bi-fadlike ammen sivâk, vahfaznî bimâ hafizte bihi'z-zikr, vensurnî bimâ nasarte bihi'r-rusül, inneke alâ külli şey'in kadîr.",
     tr:"Allah'ım! Ey zengin, ey övülmeye lâyık olan, ey ilk defa yaratan, ey tekrar dirilten, ey çok seven, ey şerefli Arş'ın sahibi, ey dilediğini mutlaka yapan! Helâlinle beni haramından koruyup yetindir, lütfunla beni Senden başkasına muhtaç etme. Zikri (Kur'an'ı) neyle koruduysan beni de onunla koru; peygamberlere neyle yardım ettiysen bana da onunla yardım et. Şüphesiz Sen her şeye kadirsin."}],
-  kaynak:"Halk arasında “rızık ve gınâ duası” olarak yaygın; içindeki âyetler Kur'ân-ı Kerîm'den."},
+  kaynak:"Ebû Abdullah el-Kureşî'ye (k.s.) hocası Ebü'r-Rebî'in öğrettiği dua olarak nakledilir; özellikle cuma namazından sonra okunması tavsiye edilir. Nüshalar arasında esmâ sırasında küçük farklar vardır. İçindeki âyetler Kur'ân-ı Kerîm'den."},
 
  {id:"einni", t:"Zikir, Şükür ve İbadet Duası", cats:["namaz","hidayet"], count:1, when:"Her namazın sonunda",
   fazilet:"Peygamberimiz (s.a.v.) Muâz b. Cebel'in (r.a.) elinden tutup “Ey Muâz! Vallahi seni seviyorum. Her namazın sonunda şu duayı okumayı asla bırakma” buyurmuştur.",
@@ -578,17 +659,17 @@ const DUAS = [
 
  {id:"vakia", t:"Vâkıa Sûresi Duası", sub:"İmâm Ahmed er-Rifâî (k.s.)", cats:["rizik"], count:1, when:"Vâkıa Sûresi'nden sonra · akşam",
   fazilet:"İmâm-ı Ahmed er-Rifâî (kuddise sirruhû)'nun Vâkıa Sûresi'nden sonra bu duayı okuduğu nakledilir. Rızıkların celbi için bu duayı okumak çok faydalıdır.",
-  parts:[{ar:"اللَّهُمَّ صَلِّ عَلَىٰ سَيِّدِنَا مُحَمَّدٍ وَعَلَىٰ آلِهِ وَصَحْبِهِ وَسَلِّمْ، اللَّهُمَّ إِنِّي أَسْأَلُكَ بِمَعَاقِدِ الْعِزِّ مِنْ عَرْشِكَ، وَبِمُنْتَهَى الرَّحْمَةِ مِنْ كِتَابِكَ، وَبِاسْمِكَ الْعَظِيمِ، وَبِاسْمِكَ الْأَعْلَىٰ، وَبِكَلِمَاتِكَ التَّامَّاتِ الَّتِي لَا يُجَاوِزُهُنَّ بَرٌّ وَلَا فَاجِرٌ، وَبِإِشْرَاقِ وَجْهِكَ، أَنْ تُصَلِّيَ عَلَىٰ سَيِّدِنَا مُحَمَّدٍ وَآلِهِ وَصَحْبِهِ وَتُسَلِّمَ، وَأَنْ تُعْطِيَنِي رِزْقًا حَلَالًا طَيِّبًا، يَا طَالِبًا غَيْرَ مَطْلُوبٍ، وَيَا غَالِبًا غَيْرَ مَغْلُوبٍ، يَا وَاسِعَ الْمَغْفِرَةِ، يَا رَازِقَ الثَّقَلَيْنِ، وَيَا خَيْرَ النَّاصِرِينَ. اللَّهُمَّ إِنْ كَانَ رِزْقِي فِي السَّمَاءِ فَأَنْزِلْهُ، وَإِنْ كَانَ فِي الْأَرْضِ فَأَخْرِجْهُ، وَإِنْ كَانَ بَعِيدًا فَقَرِّبْهُ، وَإِنْ كَانَ عَسِيرًا فَيَسِّرْهُ، وَإِنْ كَانَ قَلِيلًا فَكَثِّرْهُ، وَإِنْ كَانَ كَثِيرًا فَبَارِكْ لِي فِيهِ. اللَّهُمَّ اجْعَلْ يَدِيَ الْعُلْيَا بِالْإِعْطَاءِ، وَلَا تَجْعَلْ يَدِيَ السُّفْلَىٰ بِالِاسْتِعْطَاءِ، يَا فَتَّاحُ يَا رَزَّاقُ يَا كَرِيمُ يَا عَلِيمُ. اللَّهُمَّ سَخِّرْ لِي رِزْقِي، وَاعْصِمْنِي مِنَ الْحِرْصِ وَالتَّعَبِ فِي طَلَبِهِ، وَمِنَ التَّدْبِيرِ وَالْحِيلَةِ فِي تَحْصِيلِهِ، وَمِنَ الشُّحِّ وَالْبُخْلِ بَعْدَ حُصُولِهِ. اللَّهُمَّ تَوَلَّ أَمْرِي بِذَاتِكَ، وَلَا تَكِلْنِي إِلَىٰ نَفْسِي طَرْفَةَ عَيْنٍ وَلَا أَقَلَّ مِنْ ذَٰلِكَ، وَاهْدِنِي إِلَىٰ صِرَاطِكَ الْمُسْتَقِيمِ، صِرَاطِ اللَّهِ الَّذِي لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ، أَلَا إِلَى اللَّهِ تَصِيرُ الْأُمُورُ، وَصَلَّى اللَّهُ عَلَىٰ سَيِّدِنَا مُحَمَّدٍ وَعَلَىٰ آلِهِ وَصَحْبِهِ أَجْمَعِينَ، وَسَلَامٌ عَلَى الْمُرْسَلِينَ، وَالْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
-    ok:"Allâhümme salli alâ seyyidinâ Muhammedin ve alâ âlihî ve sahbihî ve sellim. Allâhümme innî es'elüke bi-meâkıdi'l-ızzi min arşik, ve bi-müntehe'r-rahmeti min kitâbik, ve bi'smike'l-azîm, ve bi'smike'l-a'lâ, ve bi-kelimâtike't-tâmmâti'lletî lâ yücâvizühünne berrun ve lâ fâcir, ve bi-işrâkı vechik, en tusalliye alâ seyyidinâ Muhammedin ve âlihî ve sahbihî ve tüsellim, ve en tu'tıyenî rızkan halâlen tayyibâ, yâ tâliben ğayra matlûb, ve yâ ğâliben ğayra mağlûb, yâ vâsia'l-mağfirah, yâ râzika's-sekaleyn, ve yâ hayra'n-nâsırîn. Allâhümme in kâne rızkî fi's-semâi fe-enzilh, ve in kâne fi'l-ardı fe-ahricü, ve in kâne baîden fe-karribh, ve in kâne asîran fe-yessirh, ve in kâne kalîlen fe-kessirh, ve in kâne kesîran fe-bârik lî fîh. Allâhümme'c'al yediye'l-ulyâ bi'l-i'tâ, ve lâ tec'al yediye's-suflâ bi'l-isti'tâ, yâ Fettâhu yâ Rezzâku yâ Kerîmu yâ Alîm. Allâhümme sahhir lî rızkî, va'sımnî mine'l-hırsı ve't-teabi fî talebih, ve mine't-tedbîri ve'l-hîleti fî tahsîlih, ve mine'ş-şuhhı ve'l-buhli ba'de husûlih. Allâhümme tevella emrî bi-zâtik, ve lâ tekilnî ilâ nefsî tarfete aynin ve lâ ekalle min zâlik, vehdinî ilâ sırâtıke'l-müstekîm, sırâtıllâhi'llezî lehû mâ fi's-semâvâti ve mâ fi'l-ard, elâ ilallâhi tasîru'l-umûr. Ve sallallâhu alâ seyyidinâ Muhammedin ve alâ âlihî ve sahbihî ecmaîn, ve selâmün ale'l-murselîn, ve'l-hamdü lillâhi rabbi'l-âlemîn.",
-    tr:"Ey Allah! Efendimiz Muhammed'e, Ehl-i Beyti'ne ve sahâbesine salât ü selâm eyle. Ey Allah! Arşını aziz kılan (ve onu “Büyük Arş”, “Kerîm Arş” diye vasfetmene vesile olan) üstün sebepler hürmetine, Kitabındaki rahmetin nihâyeti (olan en ümitli âyetler) hakkı için, büyük ismin, en yüce adın, iyi ya da kötü kimsenin aşamayacağı o eksiksiz kelimelerin hürmetine ve Zâtının nûru hakkı için Senden; Efendimiz Muhammed'e, Ehl-i Beyti'ne ve sahâbesine salât ü selâm eylemeni ve bana helâl ve tertemiz rızık ihsân etmeni dilerim. Ey her şeye erişen fakat kendisine erişilemeyen! Ey galip olan, asla mağlup olmayan! Ey mağfireti geniş olan, ey insanların ve cinlerin rızkını veren, ey yardım edenlerin en hayırlısı! Allah'ım! Rızkım gökte ise indir, yerde ise çıkar, uzakta ise yaklaştır, zor ise kolaylaştır, az ise çoğalt, çok ise onu bana bereketli kıl. Allah'ım! Elimi veren üstün el kıl, dilenen alt el kılma. Ey Fettâh, ey Rezzâk, ey Kerîm, ey Alîm! Allah'ım! Rızkımı bana müyesser kıl; onu ararken hırstan ve yorgunluktan, elde ederken kendi tedbirime ve hileye dayanmaktan, elde ettikten sonra da cimrilik ve hasislikten beni koru. Allah'ım! İşimi bizzat Sen üstlen; beni göz açıp kapayıncaya kadar, hatta daha az bir süre bile nefsime bırakma. Beni dosdoğru yoluna, göklerde ve yerde ne varsa kendisine ait olan Allah'ın yoluna ilet. İyi bilin ki bütün işler Allah'a döner. Allah, Efendimiz Muhammed'e, âline ve bütün ashâbına salât etsin. Selâm gönderilen peygamberlere olsun. Hamd, âlemlerin Rabbi Allah'adır."}],
+  parts:[{ar:"اللَّهُمَّ صَلِّ عَلَىٰ سَيِّدِنَا مُحَمَّدٍ وَعَلَىٰ آلِهِ وَصَحْبِهِ وَسَلِّمْ، اللَّهُمَّ إِنِّي أَسْأَلُكَ بِمَعَاقِدِ الْعِزِّ مِنْ عَرْشِكَ، وَبِمُنْتَهَى الرَّحْمَةِ مِنْ كِتَابِكَ، وَبِاسْمِكَ الْعَظِيمِ، وَبِاسْمِكَ الْأَعْلَىٰ، وَبِكَلِمَاتِكَ التَّامَّاتِ الَّتِي لَا يُجَاوِزُهُنَّ بَرٌّ وَلَا فَاجِرٌ، وَبِإِشْرَاقِ وَجْهِكَ، أَنْ تُصَلِّيَ عَلَىٰ سَيِّدِنَا مُحَمَّدٍ وَآلِهِ وَصَحْبِهِ وَتُسَلِّمَ، وَأَنْ تُعْطِيَنِي رِزْقًا حَلَالًا طَيِّبًا، يَا طَالِبًا غَيْرَ مَطْلُوبٍ، وَيَا غَالِبًا غَيْرَ مَغْلُوبٍ، يَا وَاسِعَ الْمَغْفِرَةِ، يَا رَازِقَ الثَّقَلَيْنِ، وَيَا خَيْرَ النَّاصِرِينَ. اللَّهُمَّ إِنْ كَانَ رِزْقِي فِي السَّمَاءِ فَأَنْزِلْهُ، وَإِنْ كَانَ فِي الْأَرْضِ فَأَخْرِجْهُ، وَإِنْ كَانَ بَعِيدًا فَقَرِّبْهُ، وَإِنْ كَانَ عَسِيرًا فَيَسِّرْهُ، وَإِنْ كَانَ قَلِيلًا فَكَثِّرْهُ، وَإِنْ كَانَ كَثِيرًا فَبَارِكْ لِي فِيهِ. اللَّهُمَّ اجْعَلْ يَدَيَّ الْعُلْيَا بِالْإِعْطَاءِ، وَلَا تَجْعَلْ يَدَيَّ السُّفْلَىٰ بِالِاسْتِعْطَاءِ، يَا فَتَّاحُ يَا رَزَّاقُ يَا كَرِيمُ يَا عَلِيمُ. اللَّهُمَّ سَخِّرْ لِي رِزْقِي، وَاعْصِمْنِي مِنَ الْحِرْصِ وَالتَّعَبِ فِي طَلَبِهِ، وَمِنَ التَّدْبِيرِ وَالْحِيلَةِ فِي تَحْصِيلِهِ، وَمِنَ الشُّحِّ وَالْبُخْلِ بَعْدَ حُصُولِهِ. اللَّهُمَّ تَوَلَّ أَمْرِي بِذَاتِكَ، وَلَا تَكِلْنِي إِلَىٰ نَفْسِي طَرْفَةَ عَيْنٍ وَلَا أَقَلَّ مِنْ ذَٰلِكَ، وَاهْدِنِي إِلَىٰ صِرَاطِكَ الْمُسْتَقِيمِ، صِرَاطِ اللَّهِ الَّذِي لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ، أَلَا إِلَى اللَّهِ تَصِيرُ الْأُمُورُ، وَصَلَّى اللَّهُ عَلَىٰ سَيِّدِنَا مُحَمَّدٍ وَعَلَىٰ آلِهِ وَصَحْبِهِ أَجْمَعِينَ، وَسَلَامٌ عَلَى الْمُرْسَلِينَ، وَالْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+    ok:"Allâhümme salli alâ seyyidinâ Muhammedin ve alâ âlihî ve sahbihî ve sellim. Allâhümme innî es'elüke bi-meâkıdi'l-ızzi min arşik, ve bi-müntehe'r-rahmeti min kitâbik, ve bi'smike'l-azîm, ve bi'smike'l-a'lâ, ve bi-kelimâtike't-tâmmâti'lletî lâ yücâvizühünne berrun ve lâ fâcir, ve bi-işrâkı vechik, en tusalliye alâ seyyidinâ Muhammedin ve âlihî ve sahbihî ve tüsellim, ve en tu'tıyenî rızkan halâlen tayyibâ, yâ tâliben ğayra matlûb, ve yâ ğâliben ğayra mağlûb, yâ vâsia'l-mağfirah, yâ râzika's-sekaleyn, ve yâ hayra'n-nâsırîn. Allâhümme in kâne rızkî fi's-semâi fe-enzilh, ve in kâne fi'l-ardı fe-ahricü, ve in kâne baîden fe-karribh, ve in kâne asîran fe-yessirh, ve in kâne kalîlen fe-kessirh, ve in kâne kesîran fe-bârik lî fîh. Allâhümme'c'al yedeyye'l-ulyâ bi'l-i'tâ, ve lâ tec'al yedeyye's-suflâ bi'l-isti'tâ, yâ Fettâhu yâ Rezzâku yâ Kerîmu yâ Alîm. Allâhümme sahhir lî rızkî, va'sımnî mine'l-hırsı ve't-teabi fî talebih, ve mine't-tedbîri ve'l-hîleti fî tahsîlih, ve mine'ş-şuhhı ve'l-buhli ba'de husûlih. Allâhümme tevella emrî bi-zâtik, ve lâ tekilnî ilâ nefsî tarfete aynin ve lâ ekalle min zâlik, vehdinî ilâ sırâtıke'l-müstekîm, sırâtıllâhi'llezî lehû mâ fi's-semâvâti ve mâ fi'l-ard, elâ ilallâhi tasîru'l-umûr. Ve sallallâhu alâ seyyidinâ Muhammedin ve alâ âlihî ve sahbihî ecmaîn, ve selâmün ale'l-murselîn, ve'l-hamdü lillâhi rabbi'l-âlemîn.",
+    tr:"Ey Allah! Efendimiz Muhammed'e, Ehl-i Beyti'ne ve sahâbesine salât ü selâm eyle. Ey Allah! Arşını aziz kılan (ve onu “Büyük Arş”, “Kerîm Arş” diye vasfetmene vesile olan) üstün sebepler hürmetine, Kitabındaki rahmetin nihâyeti (olan en ümitli âyetler) hakkı için, büyük ismin, en yüce adın, iyi ya da kötü kimsenin aşamayacağı o eksiksiz kelimelerin hürmetine ve Zâtının nûru hakkı için Senden; Efendimiz Muhammed'e, Ehl-i Beyti'ne ve sahâbesine salât ü selâm eylemeni ve bana helâl ve tertemiz rızık ihsân etmeni dilerim. Ey her şeye erişen fakat kendisine erişilemeyen! Ey galip olan, asla mağlup olmayan! Ey mağfireti geniş olan, ey insanların ve cinlerin rızkını veren, ey yardım edenlerin en hayırlısı! Allah'ım! Rızkım gökte ise indir, yerde ise çıkar, uzakta ise yaklaştır, zor ise kolaylaştır, az ise çoğalt, çok ise onu bana bereketli kıl. Allah'ım! Ellerimi veren üstün el kıl, dilenen alt el kılma. Ey Fettâh, ey Rezzâk, ey Kerîm, ey Alîm! Allah'ım! Rızkımı bana müyesser kıl; onu ararken hırstan ve yorgunluktan, elde ederken kendi tedbirime ve hileye dayanmaktan, elde ettikten sonra da cimrilik ve hasislikten beni koru. Allah'ım! İşimi bizzat Sen üstlen; beni göz açıp kapayıncaya kadar, hatta daha az bir süre bile nefsime bırakma. Beni dosdoğru yoluna, göklerde ve yerde ne varsa kendisine ait olan Allah'ın yoluna ilet. İyi bilin ki bütün işler Allah'a döner. Allah, Efendimiz Muhammed'e, âline ve bütün ashâbına salât etsin. Selâm gönderilen peygamberlere olsun. Hamd, âlemlerin Rabbi Allah'adır."}],
   kaynak:"Hazînetü'l-Esrâr çevresindeki dua mecmuası, s.151-152 (Muhammed Hakkı en-Nâzıllî'den nakil)."},
 
  {id:"fetih", t:"Fetih Sûresi Duası", sub:"Murad için 40 gün", cats:["ozel","rizik"], count:1, when:"Fetih Sûresi'nden sonra · 40 gün ara vermeden",
   fazilet:"Meşru bir murad için 40 gün ara vermeden her gün bir defa Fetih Sûresi okunur, ardından bu dua okunur. Başlamadan önce abdest alınıp iki rekât namaz kılınması, istiğfar ve salavat getirilip niyet edilmesi tavsiye edilir.",
   forty:true,
-  parts:[{ar:"بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. اللَّهُمَّ يَا أَوَّلَ الْأَوَّلِينَ، وَيَا آخِرَ الْآخِرِينَ، بِحَقِّ <span class='ay'>﴿إِنَّا فَتَحْنَا لَكَ فَتْحًا مُبِينًا﴾</span>، وَيَا خَالِقَ الْأَرَضِينَ، بِحَقِّ <span class='ay'>﴿إِنَّا فَتَحْنَا لَكَ فَتْحًا مُبِينًا﴾</span>، <span class='ay'>﴿وَيَنْصُرَكَ اللَّهُ نَصْرًا عَزِيزًا﴾</span> بِحَقِّ <span class='ay'>﴿إِنَّا فَتَحْنَا لَكَ فَتْحًا مُبِينًا﴾</span>. اللَّهُمَّ يَا مُغِيثَ الْمُسْتَغِيثِينَ أَغِثْنِي، وَيَا مُجِيرَ الْمُسْتَجِيرِينَ، بِحَقِّ <span class='ay'>﴿إِنَّا فَتَحْنَا لَكَ فَتْحًا مُبِينًا﴾</span> حَصِّلْ مُرَادِي وَمَقْصُودِي، بِحَقِّ <span class='ay'>﴿إِنَّا فَتَحْنَا لَكَ فَتْحًا مُبِينًا﴾</span> أَجِرْنِي، يَا أَمَانَ الْخَائِفِينَ، وَيَا دَلِيلَ الْمُتَطَهِّرِينَ، بِحَقِّ مُحَمَّدٍ وَآلِهِ أَجْمَعِينَ، وَيَا قَاضِيَ الْحَاجَاتِ، وَيَا مُجِيبَ الدَّعَوَاتِ، وَيَا رَافِعَ الدَّرَجَاتِ، رَبِّ <span class='ay'>﴿لَا تُؤَاخِذْنِي بِمَا نَسِيتُ وَلَا تُرْهِقْنِي مِنْ أَمْرِي عُسْرًا﴾</span>، وَصَلَّى اللَّهُ عَلَىٰ سَيِّدِنَا مُحَمَّدٍ وَآلِهِ وَصَحْبِهِ أَجْمَعِينَ، وَالْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
-    ok:"Bismillâhirrahmânirrahîm. Allâhümme yâ evvele'l-evvelîn, ve yâ âhire'l-âhirîn, bi-hakkı innâ fetahnâ leke fethan mübînâ. Ve yâ hâlika'l-aradîn, bi-hakkı innâ fetahnâ leke fethan mübînâ. Ve yensurakellâhu nasran azîzâ, bi-hakkı innâ fetahnâ leke fethan mübînâ. Allâhümme yâ muğîse'l-müsteğîsîn ağisnî, ve yâ mucîre'l-müstecîrîn, bi-hakkı innâ fetahnâ leke fethan mübînâ, hassıl murâdî ve maksûdî, bi-hakkı innâ fetahnâ leke fethan mübînâ, ecirnî. Yâ emâne'l-hâifîn, ve yâ delîle'l-mutetahhirîn, bi-hakkı Muhammedin ve âlihî ecmaîn. Ve yâ kâdiye'l-hâcât, ve yâ mucîbe'd-da'avât, ve yâ râfia'd-derecât. Rabbî lâ tüâhiznî bimâ nesîtü ve lâ türhiknî min emrî usrâ. Ve sallallâhu alâ seyyidinâ Muhammedin ve âlihî ve sahbihî ecmaîn, ve'l-hamdü lillâhi rabbi'l-âlemîn.",
-    tr:"Rahmân ve Rahîm olan Allah'ın adıyla. Allah'ım! Ey evvellerin evveli, ey sonların sonu! “Şüphesiz biz sana apaçık bir fetih verdik” âyetinin hakkı için… Ey yerleri yaratan! Bu âyetin hakkı için… “Allah sana şanlı bir zaferle yardım etsin” — bu âyetin hakkı için… Allah'ım! Ey yardım dileyenlerin yardımcısı, bana yardım et! Ey sığınanları koruyan! Fetih âyetinin hakkı için murâdımı ve maksadımı hâsıl eyle; fetih âyetinin hakkı için beni koru. Ey korkanların emanı, ey temizlenenlerin rehberi! Muhammed (s.a.v.) ve bütün âli hürmetine… Ey hâcetleri yerine getiren, ey duaları kabul eden, ey dereceleri yükselten! Rabbim! Unuttuğum şeyden dolayı beni sorumlu tutma, işimde bana zorluk çıkarma. Allah, Efendimiz Muhammed'e, âline ve bütün ashâbına salât etsin. Hamd, âlemlerin Rabbi Allah'adır.",
+  parts:[{ar:"بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. اللَّهُمَّ يَا أَوَّلَ الْأَوَّلِينَ، وَيَا آخِرَ الْآخِرِينَ، بِحَقِّ <span class='ay'>﴿إِنَّا فَتَحْنَا لَكَ فَتْحًا مُبِينًا﴾</span>، وَيَا خَالِقَ الْأَرَضِينَ، بِحَقِّ <span class='ay'>﴿إِنَّا فَتَحْنَا لَكَ فَتْحًا مُبِينًا﴾</span>، <span class='ay'>﴿وَيَنْصُرَكَ اللَّهُ نَصْرًا عَزِيزًا﴾</span> بِحَقِّ <span class='ay'>﴿إِنَّا فَتَحْنَا لَكَ فَتْحًا مُبِينًا﴾</span>. اللَّهُمَّ يَا مُغِيثَ الْمُسْتَغِيثِينَ أَغِثْنِي، وَيَا مُجِيرَ الْمُسْتَجِيرِينَ، بِحَقِّ <span class='ay'>﴿إِنَّا فَتَحْنَا لَكَ فَتْحًا مُبِينًا﴾</span> حَصِّلْ مُرَادِي وَمَقْصُودِي، بِحَقِّ <span class='ay'>﴿إِنَّا فَتَحْنَا لَكَ فَتْحًا مُبِينًا﴾</span> أَجِرْنِي، يَا أَمَانَ الْخَائِفِينَ، وَيَا دَلِيلَ الْمُطَهَّرِينَ، بِحَقِّ مُحَمَّدٍ وَآلِهِ أَجْمَعِينَ، وَيَا قَاضِيَ الْحَاجَاتِ، وَيَا مُجِيبَ الدَّعَوَاتِ، وَيَا رَافِعَ الدَّرَجَاتِ، رَبِّي <span class='ay'>﴿لَا تُؤَاخِذْنِي بِمَا نَسِيتُ وَلَا تُرْهِقْنِي مِنْ أَمْرِي عُسْرًا﴾</span>، وَصَلَّى اللَّهُ عَلَىٰ سَيِّدِنَا مُحَمَّدٍ وَآلِهِ وَصَحْبِهِ أَجْمَعِينَ، وَالْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+    ok:"Bismillâhirrahmânirrahîm. Allâhümme yâ evvele'l-evvelîn, ve yâ âhire'l-âhirîn, bi-hakkı innâ fetahnâ leke fethan mübînâ. Ve yâ hâlika'l-aradîn, bi-hakkı innâ fetahnâ leke fethan mübînâ. Ve yensurakellâhu nasran azîzâ, bi-hakkı innâ fetahnâ leke fethan mübînâ. Allâhümme yâ muğîse'l-müsteğîsîn ağisnî, ve yâ mucîre'l-müstecîrîn, bi-hakkı innâ fetahnâ leke fethan mübînâ, hassıl murâdî ve maksûdî, bi-hakkı innâ fetahnâ leke fethan mübînâ, ecirnî. Yâ emâne'l-hâifîn, ve yâ delîle'l-mutahherîn, bi-hakkı Muhammedin ve âlihî ecmaîn. Ve yâ kâdiye'l-hâcât, ve yâ mucîbe'd-da'avât, ve yâ râfia'd-derecât. Rabbî lâ tüâhiznî bimâ nesîtü ve lâ türhiknî min emrî usrâ. Ve sallallâhu alâ seyyidinâ Muhammedin ve âlihî ve sahbihî ecmaîn, ve'l-hamdü lillâhi rabbi'l-âlemîn.",
+    tr:"Rahmân ve Rahîm olan Allah'ın adıyla. Allah'ım! Ey evvellerin evveli, ey sonların sonu! “Şüphesiz biz sana apaçık bir fetih verdik” âyetinin hakkı için… Ey yerleri yaratan! Bu âyetin hakkı için… “Allah sana şanlı bir zaferle yardım etsin” — bu âyetin hakkı için… Allah'ım! Ey yardım dileyenlerin yardımcısı, bana yardım et! Ey sığınanları koruyan! Fetih âyetinin hakkı için murâdımı ve maksadımı hâsıl eyle; fetih âyetinin hakkı için beni koru. Ey korkanların emanı, ey tertemiz kılınmışların rehberi! Muhammed (s.a.v.) ve bütün âli hürmetine… Ey hâcetleri yerine getiren, ey duaları kabul eden, ey dereceleri yükselten! Rabbim! Unuttuğum şeyden dolayı beni sorumlu tutma, işimde bana zorluk çıkarma. Allah, Efendimiz Muhammed'e, âline ve bütün ashâbına salât etsin. Hamd, âlemlerin Rabbi Allah'adır.",
     ref:"Âyetler: Fetih 48/1, 48/3 · Kehf 18/73"}],
   kaynak:"Dua mecmuası (s.25). 40 günlük okuma usulü halk arasında yaygın bir uygulamadır; sahih bir hadis kaynağı tespit edilemedi."},
 
@@ -647,10 +728,10 @@ const DUAS = [
    {label:"İstiğâse", ar:"يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ",
     ok:"Yâ Hayyü yâ Kayyûmü bi-rahmetike esteğîs.",
     tr:"Ey diri olan, ey her şeyi ayakta tutan! Rahmetinle yardım dilerim.", ref:"Tirmizî, Daavât 91"},
-   {label:"Ferahlık Kelimeleri", ar:"لَا إِلَٰهَ إِلَّا اللَّهُ الْحَلِيمُ الْكَرِيمُ، سُبْحَانَ اللَّهِ وَتَبَارَكَ اللَّهُ رَبُّ الْعَرْشِ الْعَظِيمِ، وَالْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
-    ok:"Lâ ilâhe illallâhu'l-Halîmü'l-Kerîm, sübhânallâhi ve tebârekallâhu rabbü'l-arşi'l-azîm, ve'l-hamdü lillâhi rabbi'l-âlemîn.",
-    tr:"Halîm ve Kerîm olan Allah'tan başka ilâh yoktur. Büyük Arş'ın Rabbi olan Allah her türlü noksandan münezzehtir, O'nun şanı yücedir. Hamd âlemlerin Rabbi Allah'adır.", ref:"Ahmed b. Hanbel, Müsned 1/91 (Hz. Ali r.a.)"}],
-  kaynak:"Buhârî, Müslim, Tirmizî ve Müsned rivayetleri. Ses kaydındaki okuyuşa göre derlendi."},
+   {label:"Ferahlık Kelimeleri", ar:"لَا إِلَٰهَ إِلَّا اللَّهُ الْكَرِيمُ الْعَظِيمُ، سُبْحَانَكَ، تَبَارَكَ اللَّهُ رَبُّ الْعَرْشِ الْعَظِيمِ، وَالْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+    ok:"Lâ ilâhe illallâhu'l-Kerîmü'l-Azîm, sübhâneke, tebârekallâhu rabbü'l-arşi'l-azîm, ve'l-hamdü lillâhi rabbi'l-âlemîn.",
+    tr:"Kerîm ve Azîm olan Allah'tan başka ilâh yoktur. (Allah'ım!) Seni her türlü noksandan tenzih ederim. Büyük Arş'ın Rabbi olan Allah'ın şanı ne yücedir. Hamd âlemlerin Rabbi Allah'adır.", ref:"Ses kaydındaki okuyuş. Hz. Ali (r.a.) rivayetindeki lafız: “Lâ ilâhe illallâhu'l-Halîmü'l-Kerîm, sübhânallâhi ve tebârekallâhu rabbü'l-arşi'l-azîm…” (Ahmed b. Hanbel, Müsned 1/91)"}],
+  kaynak:"Buhârî, Müslim, Tirmizî ve Müsned rivayetleri. Metin, ses kaydındaki okuyuşla birebir karşılaştırılarak yazıldı; kayıtta cümleler ikişer kez tekrar edilir."},
 
  {id:"hicab", t:"İç Daralması ve Bunalma Duası", sub:"Hicâb · göğüs darlığı için", cats:["sikinti","koruma"], count:null, when:"İç daralması, bunalma ve korku anında",
   fazilet:"Kitapta “insin, cinnin, hastalıkların ve göğüs darlığının defi için hicâb” olarak geçer. Asıl metinde “bu yazıyı taşıyan” ifadesi vardır; dua hem okunur hem de muhafaza için yazılıp taşınır.",
@@ -680,12 +761,12 @@ const DUAS = [
  {id:"muhafaza", t:"Muhafaza (Koruma) Duası", sub:"Fetih ve Selâm âyetleri", cats:["koruma"], count:null, when:"Sabah ve akşam · evden çıkarken",
   fazilet:"Kişiyi, evi ve aileyi her türlü şerden, kötülükten ve tehlikeden muhafaza için okunur. Fetih ve selâm âyetleriyle “Kapımız Bismillâh, duvarlarımız Tebâreke, tavanımız Yâsîn…” sözlerinden oluşur.",
   parts:[
-   {label:"Fecr Sûresi 1-5", ar:"بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ <span class='ay'>﴿وَالْفَجْرِ ۝ وَلَيَالٍ عَشْرٍ ۝ وَالشَّفْعِ وَالْوَتْرِ ۝ وَاللَّيْلِ إِذَا يَسْرِ ۝ هَلْ فِي ذَٰلِكَ قَسَمٌ لِذِي حِجْرٍ﴾</span>",
+   {label:"Fecr Sûresi 1-5", ay:["1:1","89:1","89:2","89:3","89:4","89:5"], ar:"بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ <span class='ay'>﴿وَالْفَجْرِ ۝ وَلَيَالٍ عَشْرٍ ۝ وَالشَّفْعِ وَالْوَتْرِ ۝ وَاللَّيْلِ إِذَا يَسْرِ ۝ هَلْ فِي ذَٰلِكَ قَسَمٌ لِذِي حِجْرٍ﴾</span>",
     ok:"Bismillâhirrahmânirrahîm. Ve'l-fecr. Ve leyâlin aşr. Ve'ş-şef'i ve'l-vetr. Ve'l-leyli izâ yesr. Hel fî zâlike kasemün li-zî hicr.",
     tr:"Rahmân ve Rahîm olan Allah'ın adıyla. Fecre andolsun; on geceye; çifte ve teke; geçip giden geceye andolsun. Bunda akıl sahibi için bir yemin var mı?", ref:"Fecr 89/1-5"},
-   {label:"Fetih Âyetleri", ar:"<span class='ay'>﴿وَجَعَلْنَا مِنْ بَيْنِ أَيْدِيهِمْ سَدًّا وَمِنْ خَلْفِهِمْ سَدًّا فَأَغْشَيْنَاهُمْ فَهُمْ لَا يُبْصِرُونَ﴾ ﴿إِنَّا فَتَحْنَا لَكَ فَتْحًا مُبِينًا﴾ ﴿وَفُتِحَتِ السَّمَاءُ فَكَانَتْ أَبْوَابًا﴾ ﴿فَانْفَلَقَ فَكَانَ كُلُّ فِرْقٍ كَالطَّوْدِ الْعَظِيمِ﴾ ﴿رَبَّنَا افْتَحْ بَيْنَنَا وَبَيْنَ قَوْمِنَا بِالْحَقِّ وَأَنْتَ خَيْرُ الْفَاتِحِينَ﴾ ﴿نَصْرٌ مِنَ اللَّهِ وَفَتْحٌ قَرِيبٌ﴾</span>",
-    ok:"Ve cealnâ min beyni eydîhim sedden ve min halfihim sedden fe-ağşeynâhüm fehüm lâ yubsırûn. İnnâ fetahnâ leke fethan mübînâ. Ve fütihati's-semâü fe-kânet ebvâbâ. Fenfeleka fe-kâne küllü fırkın ke't-tavdi'l-azîm. Rabbene'ftah beynenâ ve beyne kavminâ bi'l-hakkı ve ente hayru'l-fâtihîn. Nasrun minallâhi ve fethun karîb.",
-    tr:"“Önlerine bir set, arkalarına bir set çektik; gözlerini perdeledik, artık göremezler.” “Şüphesiz biz sana apaçık bir fetih verdik.” “Gök açılmış, kapı kapı olmuştur.” “(Deniz) yarılmış, her parça büyük bir dağ gibi olmuştu.” “Rabbimiz! Bizimle kavmimiz arasında hak ile hüküm ver; Sen hüküm verenlerin en hayırlısısın.” “Allah'tan bir yardım ve yakın bir fetih.”", ref:"Yâsîn 36/9 · Fetih 48/1 · Nebe 78/19 · Şuarâ 26/63 · A'râf 7/89 · Saff 61/13"},
+   {label:"Fetih Âyetleri", ar:"<span class='ay'>﴿وَجَعَلْنَا مِنْ بَيْنِ أَيْدِيهِمْ سَدًّا وَمِنْ خَلْفِهِمْ سَدًّا فَأَغْشَيْنَاهُمْ فَهُمْ لَا يُبْصِرُونَ﴾ ﴿إِنَّا فَتَحْنَا لَكَ فَتْحًا مُبِينًا﴾ ﴿وَفُتِحَتِ السَّمَاءُ فَكَانَتْ أَبْوَابًا﴾ ﴿فَانْفَلَقَ فَكَانَ كُلُّ فِرْقٍ كَالطَّوْدِ الْعَظِيمِ﴾ ﴿وَافْتَحْ بَيْنَنَا وَبَيْنَ قَوْمِنَا بِالْحَقِّ وَأَنْتَ خَيْرُ الْفَاتِحِينَ﴾ ﴿نَصْرٌ مِنَ اللَّهِ وَفَتْحٌ قَرِيبٌ﴾</span>",
+    ok:"Ve cealnâ min beyni eydîhim sedden ve min halfihim sedden fe-ağşeynâhüm fehüm lâ yubsırûn. İnnâ fetahnâ leke fethan mübînâ. Ve fütihati's-semâü fe-kânet ebvâbâ. Fenfeleka fe-kâne küllü fırkın ke't-tavdi'l-azîm. Ve'ftah beynenâ ve beyne kavminâ bi'l-hakkı ve ente hayru'l-fâtihîn. Nasrun minallâhi ve fethun karîb.",
+    tr:"“Önlerine bir set, arkalarına bir set çektik; gözlerini perdeledik, artık göremezler.” “Şüphesiz biz sana apaçık bir fetih verdik.” “Gök açılmış, kapı kapı olmuştur.” “(Deniz) yarılmış, her parça büyük bir dağ gibi olmuştu.” “Bizimle kavmimiz arasında hak ile hüküm ver; Sen hüküm verenlerin en hayırlısısın.” “Allah'tan bir yardım ve yakın bir fetih.”", ref:"Yâsîn 36/9 · Fetih 48/1 · Nebe 78/19 · Şuarâ 26/63 · A'râf 7/89 (duada “وَافْتَحْ” şeklinde) · Saff 61/13"},
    {label:"Selâm Âyetleri", ar:"<span class='ay'>﴿سَلَامٌ قَوْلًا مِنْ رَبٍّ رَحِيمٍ﴾ ﴿سَلَامٌ عَلَىٰ نُوحٍ فِي الْعَالَمِينَ﴾ ﴿سَلَامٌ عَلَىٰ إِلْ يَاسِينَ﴾ ﴿سَلَامٌ عَلَيْكُمْ طِبْتُمْ فَادْخُلُوهَا خَالِدِينَ﴾ ﴿سَلَامٌ هِيَ حَتَّىٰ مَطْلَعِ الْفَجْرِ﴾ ﴿إِذَا جَاءَ نَصْرُ اللَّهِ وَالْفَتْحُ﴾</span>",
     ok:"Selâmün kavlen min rabbin rahîm. Selâmün alâ Nûhin fi'l-âlemîn. Selâmün alâ İl-yâsîn. Selâmün aleyküm tıbtüm fedhulûhâ hâlidîn. Selâmün hiye hattâ matlai'l-fecr. İzâ câe nasrullâhi ve'l-feth.",
     tr:"“Çok merhametli Rab'den bir söz olarak selâm vardır.” “Âlemler içinde Nûh'a selâm olsun.” “İlyâs'a selâm olsun.” “Selâm size! Temiz oldunuz; ebedî kalmak üzere girin oraya.” “O gece tan yeri ağarıncaya kadar bir esenliktir.” “Allah'ın yardımı ve fetih geldiğinde…”", ref:"Yâsîn 36/58 · Sâffât 37/79, 130 · Zümer 39/73 · Kadr 97/5 · Nasr 110/1"},
@@ -709,11 +790,11 @@ const DUAS = [
   kaynak:"Buhârî, Daavât 6; Müslim, Zikir 56 (Berâ b. Âzib r.a.)."},
 
  {id:"uyku", t:"Uykusuzluk ve Gece Korkusu Duası", cats:["gece","sesli","koruma"], count:null, audio:"uykusuzluk-duasi", when:"Uyku tutmadığında · gece korkusunda",
-  fazilet:"Zeyd b. Sâbit (r.a.) uykusuzluktan şikâyet edince Peygamberimiz (s.a.v.) ona birinci duayı öğretti; okuyunca Allah uykusuzluğunu giderdi. İkinci dua uykuda korkan ve kâbus gören kimse için öğretilmiştir. Ses kaydında “Bunu da çokça dua et” tavsiyesi vardır.",
+  fazilet:"Zeyd b. Sâbit (r.a.) uykusuzluktan şikâyet edince Peygamberimiz (s.a.v.) ona birinci duayı öğretti; okuyunca Allah uykusuzluğunu giderdi. İkinci dua uykuda korkan ve kâbus gören kimse için öğretilmiştir. Ses kaydında birinci duadan sonra “Bir de şunu oku”, sonunda da “Buna da çokça dua et, biiznillâh” denir.",
   parts:[
-   {label:"Uykusuzluk için", ar:"اللَّهُمَّ غَارَتِ النُّجُومُ، وَهَدَأَتِ الْعُيُونُ، وَأَنْتَ حَيٌّ قَيُّومٌ، لَا تَأْخُذُكَ سِنَةٌ وَلَا نَوْمٌ، يَا حَيُّ يَا قَيُّومُ، أَهْدِئْ لَيْلِي، وَأَنِمْ عَيْنِي",
-    ok:"Allâhümme ğârati'n-nücûm, ve hedeeti'l-uyûn, ve ente Hayyun Kayyûm, lâ te'huzüke sinetün ve lâ nevm. Yâ Hayyü yâ Kayyûm, ehdi' leylî ve enim aynî.",
-    tr:"Allah'ım! Yıldızlar battı, gözler sükûna erdi. Sen ise diri ve her şeyi ayakta tutansın; Seni ne uyuklama tutar ne uyku. Ey Hayy, ey Kayyûm! Gecemi huzurlu kıl, gözümü uyut.", ref:"Taberânî, el-Mu'cemü'l-Kebîr; İbnü's-Sünnî, Amelü'l-Yevm ve'l-Leyle"},
+   {label:"Uykusuzluk için", ar:"بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. اللَّهُمَّ غَارَتِ النُّجُومُ، وَهَدَأَتِ الْعُيُونُ، وَأَنْتَ حَيٌّ قَيُّومٌ، لَا تَأْخُذُكَ سِنَةٌ وَلَا نَوْمٌ، يَا حَيُّ يَا قَيُّومُ، أَهْدِئْ لَيْلِي، وَأَنِمْ عَيْنِي",
+    ok:"Bismillâhirrahmânirrahîm. Allâhümme ğârati'n-nücûm, ve hedeeti'l-uyûn, ve ente Hayyun Kayyûm, lâ te'huzüke sinetün ve lâ nevm. Yâ Hayyü yâ Kayyûm, ehdi' leylî ve enim aynî.",
+    tr:"Rahmân ve Rahîm olan Allah'ın adıyla. Allah'ım! Yıldızlar battı, gözler sükûna erdi. Sen ise diri ve her şeyi ayakta tutansın; Seni ne uyuklama tutar ne uyku. Ey Hayy, ey Kayyûm! Gecemi huzurlu kıl, gözümü uyut.", ref:"Taberânî, el-Mu'cemü'l-Kebîr; İbnü's-Sünnî, Amelü'l-Yevm ve'l-Leyle"},
    {label:"Gece korkusu için", ar:"أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ غَضَبِهِ وَعِقَابِهِ، وَشَرِّ عِبَادِهِ، وَمِنْ هَمَزَاتِ الشَّيَاطِينِ وَأَنْ يَحْضُرُونِ",
     ok:"E'ûzü bi-kelimâtillâhi't-tâmmâti min ğadabihî ve ıkâbih, ve şerri ıbâdih, ve min hemezâti'ş-şeyâtîni ve en yahdurûn.",
     tr:"Allah'ın gazabından, azabından, kullarının şerrinden, şeytanların vesveselerinden ve onların yanımda bulunmalarından Allah'ın eksiksiz kelimelerine sığınırım.", ref:"Ebû Dâvûd, Tıb 19; Tirmizî, Daavât 93"}],
@@ -721,10 +802,10 @@ const DUAS = [
 
  {id:"vesvese", t:"Vesvese Duası", cats:["koruma","sesli"], count:3, audio:"vesvese-duasi", when:"Vesvese ve şüphe geldiğinde · 3 defa",
   fazilet:"Şeytan insana vesvese verip imanla ilgili şüpheler düşürdüğünde Allah'a sığınması ve “Âmentü billâhi ve rusulih” demesi tavsiye edilmiştir. Ses kaydında 3 defa okunduğu belirtilir.",
-  parts:[{ar:"أَعُوذُ بِاللَّهِ السَّمِيعِ الْعَلِيمِ مِنَ الشَّيْطَانِ الرَّجِيمِ، آمَنْتُ بِاللَّهِ وَرُسُلِهِ",
-    ok:"E'ûzü billâhi's-semîi'l-alîmi mine'ş-şeytâni'r-racîm. Âmentü billâhi ve rusulih.",
-    tr:"Her şeyi işiten ve bilen Allah'a, kovulmuş şeytandan sığınırım. Allah'a ve peygamberlerine iman ettim."}],
-  kaynak:"Müslim, Îmân 212-214; istiâze lafzı: Ebû Dâvûd, Salât 121; Tirmizî, Salât 179. Ses kaydındaki okuyuşa göre."}
+  parts:[{ar:"أَعُوذُ بِاللَّهِ السَّمِيعِ الْعَلِيمِ مِنَ الشَّيْطَانِ الرَّجِيمِ، آمَنْتُ بِاللَّهِ وَرَسُولِهِ، آمَنَّا بِاللَّهِ وَبِرَسُولِهِ",
+    ok:"E'ûzü billâhi's-semîi'l-alîmi mine'ş-şeytâni'r-racîm. Âmentü billâhi ve rasûlih. Âmennâ billâhi ve bi-rasûlih.",
+    tr:"Her şeyi işiten ve bilen Allah'a, kovulmuş şeytandan sığınırım. Allah'a ve Rasûlü'ne iman ettim. Allah'a ve Rasûlü'ne iman ettik."}],
+  kaynak:"Ses kaydındaki okuyuşa göre (3 defa). Hadisteki lafız: “Âmentü billâhi ve rusulih — Allah'a ve peygamberlerine iman ettim” (Müslim, Îmân 212-214); istiâze lafzı: Ebû Dâvûd, Salât 121; Tirmizî, Salât 179."}
 ];
 
 /* =====================================================================
@@ -771,12 +852,12 @@ const SURELER = [
  {id:"hadid", t:"Hadîd Sûresi · İlk 6 Âyet", ar:"الحديد", no:57, ayet:"1–6", when:"Akşam namazından sonra", link:"https://quran.com/57/1-6",
   fazilet:"Allah'ın isim ve sıfatlarını özlü biçimde anlatan bu âyetler, Vâkıa ile birlikte akşamları okunur.",
   parts:[
-   {label:"1", ar:"<span class='ay'>سَبَّحَ لِلَّهِ مَا فِي السَّمَاوَاتِ وَالْأَرْضِ وَهُوَ الْعَزِيزُ الْحَكِيمُ</span>", ok:"Sebbeha lillâhi mâ fi's-semâvâti ve'l-ard, ve hüve'l-azîzü'l-hakîm.", tr:"Göklerde ve yerde ne varsa hepsi Allah'ı tesbih etmektedir. O mutlak güç sahibidir, hüküm ve hikmet sahibidir."},
-   {label:"2", ar:"<span class='ay'>لَهُ مُلْكُ السَّمَاوَاتِ وَالْأَرْضِ يُحْيِي وَيُمِيتُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ</span>", ok:"Lehû mülkü's-semâvâti ve'l-ard, yuhyî ve yümît, ve hüve alâ külli şey'in kadîr.", tr:"Göklerin ve yerin hükümranlığı O'nundur. Diriltir ve öldürür. O her şeye hakkıyla gücü yetendir."},
-   {label:"3", ar:"<span class='ay'>هُوَ الْأَوَّلُ وَالْآخِرُ وَالظَّاهِرُ وَالْبَاطِنُ وَهُوَ بِكُلِّ شَيْءٍ عَلِيمٌ</span>", ok:"Hüve'l-evvelü ve'l-âhiru ve'z-zâhiru ve'l-bâtın, ve hüve bi-külli şey'in alîm.", tr:"O, ilk ve sondur; görünen ve görünmeyendir. O her şeyi hakkıyla bilendir."},
-   {label:"4", ar:"<span class='ay'>هُوَ الَّذِي خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ فِي سِتَّةِ أَيَّامٍ ثُمَّ اسْتَوَىٰ عَلَى الْعَرْشِ يَعْلَمُ مَا يَلِجُ فِي الْأَرْضِ وَمَا يَخْرُجُ مِنْهَا وَمَا يَنْزِلُ مِنَ السَّمَاءِ وَمَا يَعْرُجُ فِيهَا وَهُوَ مَعَكُمْ أَيْنَ مَا كُنْتُمْ وَاللَّهُ بِمَا تَعْمَلُونَ بَصِيرٌ</span>", ok:"Hüvellezî halaka's-semâvâti ve'l-arda fî sitteti eyyâmin sümme'stevâ ale'l-arş. Ya'lemü mâ yelicü fi'l-ardı ve mâ yahrucü minhâ ve mâ yenzilü mine's-semâi ve mâ ya'rucü fîhâ, ve hüve meaküm eyne mâ küntüm, vallâhu bimâ ta'melûne basîr.", tr:"O, gökleri ve yeri altı günde yaratan, sonra Arş'a hükmeden'dir. Yere gireni ve ondan çıkanı, gökten ineni ve oraya yükseleni bilir. Nerede olursanız olun, O sizinle beraberdir. Allah yaptıklarınızı hakkıyla görendir."},
-   {label:"5", ar:"<span class='ay'>لَهُ مُلْكُ السَّمَاوَاتِ وَالْأَرْضِ وَإِلَى اللَّهِ تُرْجَعُ الْأُمُورُ</span>", ok:"Lehû mülkü's-semâvâti ve'l-ard, ve ilallâhi turce'u'l-umûr.", tr:"Göklerin ve yerin hükümranlığı O'nundur. Bütün işler ancak Allah'a döndürülür."},
-   {label:"6", ar:"<span class='ay'>يُولِجُ اللَّيْلَ فِي النَّهَارِ وَيُولِجُ النَّهَارَ فِي اللَّيْلِ وَهُوَ عَلِيمٌ بِذَاتِ الصُّدُورِ</span>", ok:"Yûlicü'l-leyle fi'n-nehâri ve yûlicü'n-nehâra fi'l-leyl, ve hüve alîmün bi-zâti's-sudûr.", tr:"Geceyi gündüze katar, gündüzü geceye katar. O göğüslerin özünü (kalplerde olanı) hakkıyla bilendir."}]},
+   {label:"1", ay:["57:1"], ar:"<span class='ay'>سَبَّحَ لِلَّهِ مَا فِي السَّمَاوَاتِ وَالْأَرْضِ وَهُوَ الْعَزِيزُ الْحَكِيمُ</span>", ok:"Sebbeha lillâhi mâ fi's-semâvâti ve'l-ard, ve hüve'l-azîzü'l-hakîm.", tr:"Göklerde ve yerde ne varsa hepsi Allah'ı tesbih etmektedir. O mutlak güç sahibidir, hüküm ve hikmet sahibidir."},
+   {label:"2", ay:["57:2"], ar:"<span class='ay'>لَهُ مُلْكُ السَّمَاوَاتِ وَالْأَرْضِ يُحْيِي وَيُمِيتُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ</span>", ok:"Lehû mülkü's-semâvâti ve'l-ard, yuhyî ve yümît, ve hüve alâ külli şey'in kadîr.", tr:"Göklerin ve yerin hükümranlığı O'nundur. Diriltir ve öldürür. O her şeye hakkıyla gücü yetendir."},
+   {label:"3", ay:["57:3"], ar:"<span class='ay'>هُوَ الْأَوَّلُ وَالْآخِرُ وَالظَّاهِرُ وَالْبَاطِنُ وَهُوَ بِكُلِّ شَيْءٍ عَلِيمٌ</span>", ok:"Hüve'l-evvelü ve'l-âhiru ve'z-zâhiru ve'l-bâtın, ve hüve bi-külli şey'in alîm.", tr:"O, ilk ve sondur; görünen ve görünmeyendir. O her şeyi hakkıyla bilendir."},
+   {label:"4", ay:["57:4"], ar:"<span class='ay'>هُوَ الَّذِي خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ فِي سِتَّةِ أَيَّامٍ ثُمَّ اسْتَوَىٰ عَلَى الْعَرْشِ يَعْلَمُ مَا يَلِجُ فِي الْأَرْضِ وَمَا يَخْرُجُ مِنْهَا وَمَا يَنْزِلُ مِنَ السَّمَاءِ وَمَا يَعْرُجُ فِيهَا وَهُوَ مَعَكُمْ أَيْنَ مَا كُنْتُمْ وَاللَّهُ بِمَا تَعْمَلُونَ بَصِيرٌ</span>", ok:"Hüvellezî halaka's-semâvâti ve'l-arda fî sitteti eyyâmin sümme'stevâ ale'l-arş. Ya'lemü mâ yelicü fi'l-ardı ve mâ yahrucü minhâ ve mâ yenzilü mine's-semâi ve mâ ya'rucü fîhâ, ve hüve meaküm eyne mâ küntüm, vallâhu bimâ ta'melûne basîr.", tr:"O, gökleri ve yeri altı günde yaratan, sonra Arş'a hükmeden'dir. Yere gireni ve ondan çıkanı, gökten ineni ve oraya yükseleni bilir. Nerede olursanız olun, O sizinle beraberdir. Allah yaptıklarınızı hakkıyla görendir."},
+   {label:"5", ay:["57:5"], ar:"<span class='ay'>لَهُ مُلْكُ السَّمَاوَاتِ وَالْأَرْضِ وَإِلَى اللَّهِ تُرْجَعُ الْأُمُورُ</span>", ok:"Lehû mülkü's-semâvâti ve'l-ard, ve ilallâhi turce'u'l-umûr.", tr:"Göklerin ve yerin hükümranlığı O'nundur. Bütün işler ancak Allah'a döndürülür."},
+   {label:"6", ay:["57:6"], ar:"<span class='ay'>يُولِجُ اللَّيْلَ فِي النَّهَارِ وَيُولِجُ النَّهَارَ فِي اللَّيْلِ وَهُوَ عَلِيمٌ بِذَاتِ الصُّدُورِ</span>", ok:"Yûlicü'l-leyle fi'n-nehâri ve yûlicü'n-nehâra fi'l-leyl, ve hüve alîmün bi-zâti's-sudûr.", tr:"Geceyi gündüze katar, gündüzü geceye katar. O göğüslerin özünü (kalplerde olanı) hakkıyla bilendir."}]},
  {id:"mulk", t:"Mülk Sûresi", ar:"الملك", no:67, ayet:30, when:"Yatmadan önce", link:"https://quran.com/67",
   fazilet:"“Kur'an'da otuz âyetlik bir sûre vardır ki, sahibine bağışlanıncaya kadar şefaat eder. O, Tebârekellezî bi-yedihi'l-mülk sûresidir.” (Tirmizî, Fezâilü'l-Kur'ân 9; Ebû Dâvûd, Ramazân 10)"}
 ];
@@ -787,7 +868,7 @@ const DK = {}; DUAS.forEach(d=>DK[d.id]=d);
    DURUM
    ===================================================================== */
 const LS="tesbihat.v1";
-function defaults(){return {z:{}, zr:{}, day:{}, dc:{}, fetih:null, cuz:{n:1,done:null}, set:{theme:"auto", ar:28, ok:true, tr:true, vib:true, tj:true}};}
+function defaults(){return {z:{}, zr:{}, day:{}, dc:{}, fetih:null, cuz:{n:1,done:null}, set:{theme:"auto", ar:28, ok:true, tr:true, vib:true, tj:true, rc:"abdulbasit_m", rate:1}};}
 let S=defaults();
 try{const raw=localStorage.getItem(LS); if(raw){const p=JSON.parse(raw); S=Object.assign(defaults(),p); S.set=Object.assign(defaults().set,p.set||{}); S.cuz=Object.assign({n:1,done:null},p.cuz||{});}}catch(e){}
 function save(){try{localStorage.setItem(LS,JSON.stringify(S))}catch(e){}}
@@ -988,9 +1069,10 @@ function openQuran(spec){
   qState={...spec, mode:(qState&&qState.mode)||"mushaf"};
   const h=`<div class="r-kick">${spec.kick||""}</div><h1 class="r-title">${spec.title}</h1>
     <div class="qtabs"><div class="seg" id="qseg"><button data-qm="mushaf">Mushaf</button><button data-qm="meal">Mealli</button></div></div>
+    ${listenBtnHTML("Tilaveti dinle","data-qplay")}<div class="note" style="margin-top:8px;text-align:center">İpucu: Bir âyete dokunursanız tilavet oradan başlar.</div>
     ${legendHTML()}<div id="qbody"><div class="qload"><i></i><i style="width:85%"></i><i></i><i style="width:70%"></i><i></i><i style="width:90%"></i></div></div>`;
   $("#shTtl").textContent=spec.title; $("#shIn").innerHTML=h; $("#shBody").scrollTop=0;
-  const sh=$("#sheet"); sh.classList.add("open"); sh.setAttribute("aria-hidden","false"); setupDock(null);
+  const sh=$("#sheet"); sh.classList.add("open"); sh.setAttribute("aria-hidden","false"); document.body.classList.add("sheet-open"); setupDock(null);
   if(!history.state||history.state.s!=="sheet") history.pushState({s:"sheet"},"");
   qSeg(); loadQuran();
 }
@@ -1024,14 +1106,14 @@ function renderQuran(){
       if(!cur||cur.page!==v.page_number){ if(open){buf+=`</div>`;open=false} flush(); cur={page:v.page_number,juz:v.juz_number,ch}; }
       if(v.verse_number===1&&ch!==lastCh){ if(open){buf+=`</div>`;open=false} buf+=surahHead(chs[ch]); }
       if(!open){buf+=`<div class="mtext">`;open=true}
-      buf+=qAyahHTML(v.text_uthmani_tajweed)+" "; lastCh=ch;
+      buf+=`<span class="ayah" data-ak="${v.verse_key}">${qAyahHTML(v.text_uthmani_tajweed)}</span> `; lastCh=ch;
     });
     if(open) buf+=`</div>`; flush();
   } else {
     let lastCh=null;
     verses.forEach(v=>{ const ch=chOf(v);
       if(v.verse_number===1&&ch!==lastCh) h+=surahHead(chs[ch]);
-      h+=`<div class="mv"><div class="mtext">${qAyahHTML(v.text_uthmani_tajweed)}</div><div class="vtr"><span class="vno">${v.verse_key}</span>${qTr(v.translations&&v.translations[0]&&v.translations[0].text)}</div></div>`;
+      h+=`<div class="mv ayah" data-ak="${v.verse_key}"><div class="mtext">${qAyahHTML(v.text_uthmani_tajweed)}</div><div class="vtr"><span class="vno">${v.verse_key}</span>${qTr(v.translations&&v.translations[0]&&v.translations[0].text)}</div></div>`;
       lastCh=ch; });
   }
   if(st.mark){ const d=isDone(st.mark);
@@ -1039,10 +1121,124 @@ function renderQuran(){
   if(st.dua){ const d=DK[st.dua]; h+=`<button class="linkdua" data-go="dua:${d.id}"><div class="cuz-n" style="width:46px;height:46px;font-size:22px;border-radius:14px">🤲</div><div class="r-main"><div class="r-t">${d.t}</div><div class="r-s">Sûreden sonra okunacak dua</div></div>${ICON.chev}</button>`; }
   h+=`<div class="note" style="text-align:center">Metin: Quran.com · Uthmânî hat · Meal: Diyanet İşleri</div>`;
   $("#qbody").innerHTML=h;
+  tpHL();
 }
 function openSureReader(id){ const s=SK[id]; const r=s.id==="hadid"?{from:1,to:6}:{};
   openQuran({kind:"chapter", n:s.no, ...r, title:s.t, kick:`${s.no}. Sûre · ${s.ayet} Âyet`, mark:"p-"+s.id, dua:s.dua}); }
 function openJuzReader(){ const n=todayCuz(); openQuran({kind:"juz", n, title:`${n}. Cüz`, kick:"Günlük Cüz", mark:"p-cuz"}); }
+
+/* =====================================================================
+   TİLAVET — âyet âyet kurra sesleri (everyayah.com)
+   ===================================================================== */
+const RECITERS=[
+ {id:"abdulbasit_m", f:"Abdul_Basit_Mujawwad_128kbps",   n:"Abdülbâsıt Abdüssamed",       d:"Mısır · uzun nefes, zengin makam geçişleri", s:"Mücevved", ab:"AB"},
+ {id:"minshawi_m",   f:"Minshawy_Mujawwad_192kbps",      n:"Muhammed Sıddîk el-Minşâvî",  d:"Mısır · hüzünlü, derin makamlar",            s:"Mücevved", ab:"MM"},
+ {id:"alafasy",      f:"Alafasy_128kbps",                n:"Mişârî Râşid el-Afâsî",       d:"Kuveyt · berrak ve melodik",                 s:"Murattal", ab:"MA"},
+ {id:"husary",       f:"Husary_128kbps",                 n:"Mahmûd Halîl el-Husarî",      d:"Mısır · tecvid öğrenmek için ideal",         s:"Murattal", ab:"MH"},
+ {id:"abdulbasit",   f:"Abdul_Basit_Murattal_192kbps",   n:"Abdülbâsıt Abdüssamed",       d:"Mısır · sade okuyuş",                        s:"Murattal", ab:"AB"},
+ {id:"minshawi",     f:"Minshawy_Murattal_128kbps",      n:"Muhammed Sıddîk el-Minşâvî",  d:"Mısır · sade okuyuş",                        s:"Murattal", ab:"MM"},
+ {id:"maher",        f:"MaherAlMuaiqly128kbps",          n:"Mâhir el-Muaykılî",           d:"Mescid-i Harâm imamı",                       s:"Murattal", ab:"MM"},
+ {id:"sudais",       f:"Abdurrahmaan_As-Sudais_192kbps", n:"Abdurrahman es-Südeys",       d:"Mescid-i Harâm imamı",                       s:"Murattal", ab:"AS"},
+ {id:"dossary",      f:"Yasser_Ad-Dussary_128kbps",      n:"Yâsir ed-Devserî",            d:"Suudi Arabistan · duygulu",                  s:"Murattal", ab:"YD"},
+ {id:"qatami",       f:"Nasser_Alqatami_128kbps",        n:"Nâsır el-Katâmî",             d:"Suudi Arabistan · yumuşak, akıcı",           s:"Murattal", ab:"NK"},
+ {id:"rifai",        f:"Hani_Rifai_192kbps",             n:"Hânî er-Rifâî",               d:"Suudi Arabistan · duygulu",                  s:"Murattal", ab:"HR"}
+];
+const SNAME="Fâtiha|Bakara|Âl-i İmrân|Nisâ|Mâide|En'âm|A'râf|Enfâl|Tevbe|Yûnus|Hûd|Yûsuf|Ra'd|İbrâhîm|Hicr|Nahl|İsrâ|Kehf|Meryem|Tâhâ|Enbiyâ|Hac|Mü'minûn|Nûr|Furkân|Şuarâ|Neml|Kasas|Ankebût|Rûm|Lokmân|Secde|Ahzâb|Sebe'|Fâtır|Yâsîn|Sâffât|Sâd|Zümer|Mü'min|Fussilet|Şûrâ|Zuhruf|Duhân|Câsiye|Ahkâf|Muhammed|Fetih|Hucurât|Kâf|Zâriyât|Tûr|Necm|Kamer|Rahmân|Vâkıa|Hadîd|Mücâdele|Haşr|Mümtehine|Saff|Cuma|Münâfikûn|Teğâbün|Talâk|Tahrîm|Mülk|Kalem|Hâkka|Meâric|Nûh|Cin|Müzzemmil|Müddessir|Kıyâme|İnsân|Mürselât|Nebe'|Nâziât|Abese|Tekvîr|İnfitâr|Mutaffifîn|İnşikâk|Bürûc|Târık|A'lâ|Gâşiye|Fecr|Beled|Şems|Leyl|Duhâ|İnşirâh|Tîn|Alak|Kadr|Beyyine|Zilzâl|Âdiyât|Kâria|Tekâsür|Asr|Hümeze|Fîl|Kureyş|Mâûn|Kevser|Kâfirûn|Nasr|Tebbet|İhlâs|Felak|Nâs".split("|");
+const REPS=[1,3,7,Infinity], REP_L=["Tekrar yok","3× tekrar","7× tekrar","Sürekli tekrar"], RATES=[1,0.85,1.15];
+const rec=()=>RECITERS.find(r=>r.id===S.set.rc)||RECITERS[0];
+const p3=n=>String(n).padStart(3,"0");
+function ayahUrl(k,r){ const [a,b]=k.split(":").map(Number); return `https://everyayah.com/data/${(r||rec()).f}/${p3(a)}${p3(b)}.mp3`; }
+function ayLabel(k){ const [a,b]=k.split(":").map(Number); return `${SNAME[a-1]} Sûresi · ${b}. âyet`; }
+function listenBtnHTML(t,attr){ const r=rec(); return `<button class="lbtn" ${attr}><span class="ic2">${ICON.play}</span><span><b>${t}</b><small data-rcname>${esc(r.n)} · ${r.s}</small></span><span class="chg" data-rpick>Kurra</span></button>`; }
+
+const TP={q:[],i:0,title:"",repLeft:1,on:false,a:new Audio(),pre:new Audio()};
+TP.a.preload="auto"; TP.pre.preload="auto";
+function tpPlay(q,start,title){
+  if(!q||!q.length) return;
+  TP.q=q; TP.i=Math.min(Math.max(0,start||0),q.length-1); TP.title=title||""; TP.repLeft=REPS[S.set.rep||0]; TP.on=true;
+  document.body.classList.add("tp-on"); $("#tp").classList.add("on"); tpLoad(true);
+}
+function tpLoad(play){
+  const it=TP.q[TP.i]; if(!it) return;
+  TP.a.src=ayahUrl(it.k); TP.a.playbackRate=S.set.rate||1; $("#tpBar").style.width="0%";
+  if(play){ $("#tp").classList.add("load"); const pr=TP.a.play(); if(pr) pr.catch(()=>{ $("#tp").classList.remove("load"); tpUI(); }); }
+  const nx=TP.q[TP.i+1]; if(nx && nx.k!==it.k){ TP.pre.src=ayahUrl(nx.k); try{TP.pre.load()}catch(e){} }
+  tpHL(true); tpUI(); tpMeta();
+}
+function tpNext(){
+  if(TP.i<TP.q.length-1){ TP.i++; tpLoad(true); return true; }
+  if(TP.repLeft>1){ TP.repLeft--; TP.i=0; tpLoad(true); return true; }
+  return false;
+}
+function tpPrev(){ if(TP.a.currentTime>3||TP.i===0){ TP.a.currentTime=0; if(TP.a.paused) TP.a.play().catch(()=>{}); return; } TP.i--; tpLoad(true); }
+function tpToggle(){ if(!TP.on) return; if(TP.a.paused) TP.a.play().catch(()=>{}); else TP.a.pause(); }
+function tpClose(){ TP.a.pause(); TP.on=false; $("#tp").classList.remove("on","playing","load"); document.body.classList.remove("tp-on"); tpHL(); }
+function tpHL(scroll){
+  document.querySelectorAll(".playing-hl").forEach(e=>e.classList.remove("playing-hl"));
+  if(!TP.on) return; const it=TP.q[TP.i]; if(!it||!it.hl) return;
+  const el=document.querySelector(it.hl); if(!el) return; el.classList.add("playing-hl");
+  if(scroll && $("#sheet").classList.contains("open") && $("#sheet").contains(el)) el.scrollIntoView({behavior:"smooth",block:"center"});
+}
+function tpUI(){
+  const it=TP.q[TP.i]||{}, r=rec(), playing=TP.on&&!TP.a.paused;
+  $("#tpT").textContent=it.t||"Tilavet";
+  $("#tpS").textContent=r.n+(TP.title?" · "+TP.title:"")+(TP.q.length>1?` · ${TP.i+1}/${TP.q.length}`:"");
+  $("#tpPlay").innerHTML=playing?ICON.pause:ICON.play;
+  $("#tp").classList.toggle("playing",playing);
+  $("#tpRc").textContent="Kurra: "+r.n.split(" ").slice(-1)[0];
+  const ri=S.set.rep||0; $("#tpRep").textContent=REP_L[ri]; $("#tpRep").classList.toggle("act",ri>0);
+  const rt=S.set.rate||1; $("#tpRate").textContent=`${rt}× hız`; $("#tpRate").classList.toggle("act",rt!==1);
+}
+function tpMeta(){
+  if(!("mediaSession" in navigator)) return; const it=TP.q[TP.i]; if(!it) return;
+  try{ navigator.mediaSession.metadata=new MediaMetadata({title:it.t, artist:rec().n, album:TP.title||"Tesbihat",
+    artwork:[{src:"icons/icon-192.png",sizes:"192x192",type:"image/png"},{src:"icons/icon-512.png",sizes:"512x512",type:"image/png"}]}); }catch(e){}
+}
+if("mediaSession" in navigator){ try{
+  navigator.mediaSession.setActionHandler("play",()=>TP.a.play().catch(()=>{}));
+  navigator.mediaSession.setActionHandler("pause",()=>TP.a.pause());
+  navigator.mediaSession.setActionHandler("previoustrack",()=>tpPrev());
+  navigator.mediaSession.setActionHandler("nexttrack",()=>{ if(!tpNext()) TP.a.pause(); });
+}catch(e){} }
+TP.a.addEventListener("playing",()=>{ $("#tp").classList.remove("load"); tpUI(); });
+TP.a.addEventListener("pause",tpUI);
+TP.a.addEventListener("waiting",()=>$("#tp").classList.add("load"));
+TP.a.addEventListener("timeupdate",()=>{ const d=TP.a.duration; $("#tpBar").style.width=(d?TP.a.currentTime/d*100:0)+"%"; });
+TP.a.addEventListener("ended",()=>{ if(!tpNext()){ tpUI(); toast("Tilavet tamamlandı · Sadakallâhu'l-azîm"); } });
+TP.a.addEventListener("error",()=>{ if(!TP.on) return; $("#tp").classList.remove("load"); tpUI(); toast("Ses yüklenemedi · internet bağlantısını kontrol edin"); });
+$("#tpPlay").addEventListener("click",tpToggle);
+$("#tpPrev").addEventListener("click",tpPrev);
+$("#tpNext").addEventListener("click",()=>{ if(!tpNext()) toast("Son âyet"); });
+$("#tpClose").addEventListener("click",tpClose);
+$("#tpRep").addEventListener("click",()=>{ S.set.rep=((S.set.rep||0)+1)%REPS.length; save(); TP.repLeft=REPS[S.set.rep]; tpUI(); });
+$("#tpRate").addEventListener("click",()=>{ const i=RATES.indexOf(S.set.rate||1); S.set.rate=RATES[(i+1)%RATES.length]; save(); TP.a.playbackRate=S.set.rate; tpUI(); });
+$("#tpBarW").addEventListener("click",e=>{ const r=e.currentTarget.getBoundingClientRect(); if(TP.a.duration) TP.a.currentTime=(e.clientX-r.left)/r.width*TP.a.duration; });
+
+function partsQueue(parts,only){
+  const q=[]; (parts||[]).forEach((p,i)=>{ if(only!=null&&i!==only) return; const ay=partAy(p); if(!ay) return;
+    ay.forEach((k,j)=>q.push({k, t:(k==="1:1"&&j===0&&ay.length>1)?"Besmele-i Şerîfe":ayLabel(k), hl:`#shIn .part[data-pk="${i}"]`})); });
+  return q;
+}
+function quranQueue(){
+  const q=[]; ((qState&&qState.data&&qState.data.verses)||[]).forEach(v=>{ const [c,a]=v.verse_key.split(":").map(Number);
+    if(a===1&&c!==1&&c!==9) q.push({k:"1:1",t:`Besmele · ${SNAME[c-1]} Sûresi`,hl:null});
+    q.push({k:v.verse_key,t:ayLabel(v.verse_key),hl:`#qbody [data-ak="${v.verse_key}"]`}); });
+  return q;
+}
+const prevAudio=new Audio();
+function renderReciters(){
+  $("#rcList").innerHTML=RECITERS.map(r=>`<button class="rc ${r.id===rec().id?"on":""}" data-rc="${r.id}"><span class="rc-av">${r.ab}</span><span style="min-width:0"><span class="n">${esc(r.n)}</span><span class="d">${esc(r.d)}</span></span><span class="tag ${r.s==="Murattal"?"m":""}">${r.s}</span></button>`).join("");
+}
+function openReciters(){ renderReciters(); $("#modal").classList.remove("open"); $("#rmodal").classList.add("open"); }
+$("#rmodal").addEventListener("click",e=>{
+  if(e.target.id==="rmodal"){ $("#rmodal").classList.remove("open"); prevAudio.pause(); return; }
+  const b=e.target.closest("[data-rc]"); if(!b) return;
+  S.set.rc=b.dataset.rc; save(); renderReciters();
+  document.querySelectorAll("[data-rcname]").forEach(x=>x.textContent=`${rec().n} · ${rec().s}`);
+  $("#setRc").textContent=rec().n;
+  if(TP.on){ const was=!TP.a.paused; tpLoad(was); } else { prevAudio.src=ayahUrl("1:1"); prevAudio.play().catch(()=>{}); }
+  toast(`Kurra: ${rec().n}`);
+});
 
 function applyTajweed(scope){ (scope||document).querySelectorAll(".ar, .arp, .zar").forEach(tajweed); }
 function legendHTML(){
@@ -1223,9 +1419,13 @@ function renderKuran(){
    OKUYUCU (sheet)
    ===================================================================== */
 let curDua=null;
+let SHEET_PARTS=[];
+function partAy(p){ return p.sur?SUR[p.sur].ay:p.ay; }
 function partHTML(p,i){
+  const ay=partAy(p);
   if(p.sur){const s=SUR[p.sur]; p={label:s.label, ar:`<span class='ay'>${s.ar}</span>`, ok:s.ok, tr:s.tr, ref:s.ref};}
-  return `<div class="part">${p.label?`<div class="part-l">${p.label}</div>`:""}
+  const lb=ay?`<button class="listen" data-pplay="${i}" aria-label="Dinle">${ICON.play}<span>${p.ayNote||"Dinle"}</span></button>`:"";
+  return `<div class="part" data-pk="${i}">${(p.label||lb)?`<div class="part-l"><span>${p.label||"Âyet"}</span>${lb}</div>`:""}
     <div class="ar">${p.ar}</div>${p.ok?`<div class="ok">${p.ok}</div>`:""}${p.tr?`<div class="tr">${p.tr}</div>`:""}${p.ref?`<div class="ref">${p.ref}</div>`:""}</div>`;
 }
 function playerHTML(name){
@@ -1236,13 +1436,13 @@ function openSheet(title,html,dockCfg){
   $("#shTtl").textContent=title; $("#shIn").innerHTML=html; $("#shBody").scrollTop=0;
   const firstPart=$("#shIn .part"); if(firstPart) firstPart.insertAdjacentHTML("beforebegin",legendHTML());
   applyTajweed($("#shIn"));
-  const sh=$("#sheet"); sh.classList.add("open"); sh.setAttribute("aria-hidden","false");
-  bindPlayers(); setupDock(dockCfg);
+  const sh=$("#sheet"); sh.classList.add("open"); sh.setAttribute("aria-hidden","false"); document.body.classList.add("sheet-open");
+  bindPlayers(); setupDock(dockCfg); tpHL();
   if(!history.state||history.state.s!=="sheet") history.pushState({s:"sheet"},"");
 }
 function closeSheet(fromPop){
   const sh=$("#sheet"); if(!sh.classList.contains("open")) return;
-  sh.classList.remove("open"); sh.setAttribute("aria-hidden","true");
+  sh.classList.remove("open"); sh.setAttribute("aria-hidden","true"); document.body.classList.remove("sheet-open","dock-on"); SHEET_PARTS=[];
   sh.querySelectorAll("audio").forEach(a=>a.pause());
   curDua=null; refresh();
   if(!fromPop && history.state&&history.state.s==="sheet") history.back();
@@ -1252,6 +1452,8 @@ function duaHTML(d){
     <div class="callout">${ICON.info}<div>${d.fazilet}</div></div>
     <div class="how"><span class="bdg e">${ICON.clock} ${d.when}</span>${d.count?`<span class="bdg g">${ICON.count} ${d.count} defa</span>`:""}</div>`;
   if(d.audio) h+=playerHTML(d.audio);
+  SHEET_PARTS=d.parts;
+  if(d.parts.some(partAy)) h+=listenBtnHTML("Âyetleri dinle","data-plall");
   h+=d.parts.map(partHTML).join("");
   h+=`<div class="src"><b>Kaynak:</b> ${d.kaynak}</div>`;
   if(d.forty) h+=`<button class="linkdua" data-go="sure:fetih"><div class="cuz-n" style="width:46px;height:46px;font-size:20px;border-radius:14px">48</div><div class="r-main"><div class="r-t">Fetih Sûresi'ni oku</div><div class="r-s">Önce sûre, ardından bu dua</div></div>${ICON.chev}</button>`;
@@ -1267,6 +1469,7 @@ function openCollection(kind){
     const ids=["gina","einni","afiyet"];
     let h=`<div class="r-kick">Her Farz Namazdan Sonra</div><h1 class="r-title">Namaz Tesbihatı Duaları</h1>
       <div class="callout">${ICON.info}<div>Farz namazlardan sonra okunacak dualar sırasıyla aşağıdadır. Ardından Yâ Latîf zikrini 129 defa çekmeyi unutmayın.</div></div>`;
+    SHEET_PARTS=[];
     ids.forEach(id=>{const d=DK[id]; h+=`<div class="sec-h"><div class="ic">${ICON.mosque}</div><h3>${d.t}</h3></div><div style="font-size:13px;color:var(--ink2)">${d.fazilet}</div>`+d.parts.map(partHTML).join("")+`<div class="ref" style="margin-top:8px">Kaynak: ${d.kaynak}</div>`;});
     h+=`<button class="linkdua" data-z="latif"><div class="cuz-n" style="width:46px;height:46px;font-size:18px;border-radius:14px">129</div><div class="r-main"><div class="r-t">Yâ Latîf zikrine geç</div><div class="r-s">Zikirmatik ile say</div></div>${ICON.chev}</button>`;
     openSheet("Namaz Sonrası", h, null);
@@ -1278,7 +1481,8 @@ function openSure(id){
     <div class="prev-ar" style="font-size:44px;color:var(--gold);margin:-4px 0 8px">سُورَةُ ${s.ar}</div>
     <div class="callout">${ICON.info}<div>${s.fazilet}</div></div>
     <div class="how"><span class="bdg e">${ICON.clock} ${s.when}</span></div>`;
-  if(s.parts) h+=s.parts.map(partHTML).join("");
+  SHEET_PARTS=s.parts||[];
+  if(s.parts){ h+=listenBtnHTML("Âyetleri dinle","data-plall"); h+=s.parts.map(partHTML).join(""); }
   h+=`<button class="ext" style="width:100%;border:0" data-qsure="${s.id}">${ICON.book} ${s.parts?"Mushaf sayfasında oku":"Sûreyi oku · tecvidli"}</button>`;
   h+=`<button class="linkdua" data-chk="p-${s.id}" data-reopen="sure:${s.id}"><span class="chk" style="${isDone("p-"+s.id)?"background:var(--em);border-color:var(--em)":""}"><span style="opacity:${isDone("p-"+s.id)?1:0}">${ICON.check}</span></span><div class="r-main"><div class="r-t">${isDone("p-"+s.id)?"Bugün okundu":"Bugün okudum olarak işaretle"}</div><div class="r-s">Günlük programa işlenir</div></div></button>`;
   if(s.dua){const d=DK[s.dua]; h+=`<button class="linkdua" data-go="dua:${d.id}"><div class="cuz-n" style="width:46px;height:46px;font-size:22px;border-radius:14px">🤲</div><div class="r-main"><div class="r-t">${d.t}</div><div class="r-s">Sûreden sonra okunacak dua</div></div>${ICON.chev}</button>`;}
@@ -1291,6 +1495,7 @@ function dcGet(k){return ((S.dc[today()]||{})[k])||0}
 function dcSet(k,v){(S.dc[today()] ||= {})[k]=v; save();}
 function setupDock(cfg){
   dockCfg=cfg; const dock=$("#dock");
+  document.body.classList.toggle("dock-on",!!cfg);
   if(!cfg){dock.classList.remove("on");return}
   dock.classList.add("on"); updDock();
 }
@@ -1374,7 +1579,7 @@ function applySettings(){
   document.body.classList.toggle("hide-ok",!S.set.ok); document.body.classList.toggle("hide-tr",!S.set.tr);
   document.querySelectorAll("#segTheme button").forEach(b=>b.classList.toggle("on",b.dataset.t===S.set.theme));
   $("#arRange").value=S.set.ar; $("#arVal").textContent=S.set.ar+" px";
-  $("#swOk").classList.toggle("on",S.set.ok); $("#swTr").classList.toggle("on",S.set.tr); $("#swVib").classList.toggle("on",S.set.vib); $("#swTj").classList.toggle("on",S.set.tj); document.body.classList.toggle("tj-off",!S.set.tj);
+  $("#swOk").classList.toggle("on",S.set.ok); $("#swTr").classList.toggle("on",S.set.tr); $("#swVib").classList.toggle("on",S.set.vib); $("#setRc").textContent=rec().n; $("#swTj").classList.toggle("on",S.set.tj); document.body.classList.toggle("tj-off",!S.set.tj);
   $("#ctrVib").style.opacity=S.set.vib?1:.45;
 }
 function openModal(){$("#modal").classList.add("open")}
@@ -1404,6 +1609,12 @@ function go(spec){
   else if(type==="cuz") openJuzReader();
 }
 document.addEventListener("click",e=>{
+  if(e.target.closest("[data-rpick]")){ openReciters(); return; }
+  if(e.target.closest("[data-plall]")){ tpPlay(partsQueue(SHEET_PARTS),0,$("#shTtl").textContent); return; }
+  const pp=e.target.closest("[data-pplay]"); if(pp){ tpPlay(partsQueue(SHEET_PARTS,Number(pp.dataset.pplay)),0,$("#shTtl").textContent); return; }
+  if(e.target.closest("[data-qplay]")){ tpPlay(quranQueue(),0,$("#shTtl").textContent); return; }
+  const ak=e.target.closest("#qbody [data-ak]");
+  if(ak && !e.target.closest("button")){ const q=quranQueue(); let i=q.findIndex(x=>x.k===ak.dataset.ak&&x.hl); if(i>0&&q[i-1].k==="1:1"&&!q[i-1].hl) i--; tpPlay(q,i,$("#shTtl").textContent); return; }
   const chk=e.target.closest("[data-chk]");
   if(chk){ const id=chk.dataset.chk; const v=!isDone(id); setDone(id,v); vib(v?[15]:5);
     if(v){ if(id==="p-cuz") toast("Bugünkü cüz tamam · Allah kabul etsin"); }
@@ -1451,7 +1662,7 @@ if("serviceWorker" in navigator && location.protocol!=="file:"){
   window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
 }
 
-applySettings();
+applySettings(); tpUI();
 let startView="bugun"; try{startView=sessionStorage.getItem("tb.view")||"bugun"}catch(e){}
 try{const v=new URLSearchParams(location.search).get("v"); if(["bugun","dualar","zikir","kuran"].includes(v)) startView=v;}catch(e){}
 show(startView);

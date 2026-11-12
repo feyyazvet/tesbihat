@@ -16,6 +16,8 @@ Günlük virdler, dualar, zikirmatik ve okunacak sûreler. Tek sayfalık, telefo
 
 **Kur'an sayfaları:** Cüz ve sûreler uygulama içinde, Quran.com API'sinden gelen Uthmânî hat + tecvid işaretleri ve Diyanet meali ile gösterilir. İlk açılışta internet gerekir; açılan sayfalar `tesbihat-quran` önbelleğinde saklanır ve sonra internetsiz okunur.
 
+**Tilavet (kurra sesleri):** Kur'an sayfalarında ve tam âyetlerden oluşan dua bölümlerinde âyet âyet tilavet dinlenir (everyayah.com). Kurra seçimi (Abdülbâsıt ve Minşâvî mücevved/makamlı dahil 11 kurra), tekrar (3×, 7×, sürekli), hız ve kilit ekranı kontrolleri vardır. Dinlenen âyetler `tesbihat-tilavet` önbelleğinde saklanır (en fazla 600 âyet) ve sonra internetsiz çalar.
+
 **Tecvid renkleri:** Dualardaki Arapça metinler `index.html` içindeki `tajweed()` fonksiyonuyla otomatik renklendirilir (gunne, ihfâ, idgâm, iklâb, kalkale, med, okunmayan harf). Ayarlar'dan kapatılabilir.
 
 ## ⚠️ Güncelleme yaparken (önemli)

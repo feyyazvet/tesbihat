@@ -9,9 +9,11 @@
    ║  Böylece telefonlardaki eski kopya silinir ve yeni sürüm iner.   ║
    ║  Yeni ses/simge dosyası eklediyseniz PRECACHE listesine de ekleyin║
    ╚══════════════════════════════════════════════════════════════════╝ */
-const VERSION = "tesbihat-v2";
+const VERSION = "tesbihat-v4";
 const FONT_CACHE = "tesbihat-fonts";
 const QURAN_CACHE = "tesbihat-quran"; // okunan Kur'an sayfaları (sürümden bağımsız saklanır)
+const AUDIO_CACHE = "tesbihat-tilavet"; // dinlenen âyet sesleri (sürümden bağımsız saklanır)
+const AUDIO_MAX = 600; // en fazla bu kadar âyet sesi saklanır; eskiler silinir
 
 const PRECACHE = [
   "./",
@@ -34,10 +36,15 @@ self.addEventListener("install", (e) => {
 self.addEventListener("activate", (e) => {
   e.waitUntil(
     caches.keys()
-      .then((keys) => Promise.all(keys.filter((k) => k !== VERSION && k !== FONT_CACHE && k !== QURAN_CACHE).map((k) => caches.delete(k))))
+      .then((keys) => Promise.all(keys.filter((k) => k !== VERSION && k !== FONT_CACHE && k !== QURAN_CACHE && k !== AUDIO_CACHE).map((k) => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
+
+async function trimAudio(c) {
+  const keys = await c.keys();
+  if (keys.length > AUDIO_MAX) await Promise.all(keys.slice(0, keys.length - AUDIO_MAX).map((k) => c.delete(k)));
+}
 
 /* Ses dosyaları "Range" isteğiyle gelir (özellikle iOS). Önbellekteki tam dosyadan 206 yanıtı üretir. */
 async function rangeResponse(req, cached) {
@@ -73,6 +80,25 @@ self.addEventListener("fetch", (e) => {
         return hit || net;
       })
     );
+    return;
+  }
+
+  // Tilavet sesleri (everyayah.com): bir kez dinlenen âyet telefona kaydedilir, sonra internetsiz çalar
+  if (url.hostname === "everyayah.com") {
+    e.respondWith((async () => {
+      const c = await caches.open(AUDIO_CACHE);
+      const key = url.origin + url.pathname;
+      let hit = await c.match(key);
+      if (!hit) {
+        let r;
+        try { r = await fetch(key, { mode: "cors" }); } catch (err) { return Response.error(); }
+        if (!r.ok || r.status !== 200) return r;
+        await c.put(key, r.clone());
+        trimAudio(c);
+        hit = r;
+      }
+      return req.headers.has("range") ? rangeResponse(req, hit) : hit;
+    })());
     return;
   }
 
