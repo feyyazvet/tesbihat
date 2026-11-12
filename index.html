@@ -234,7 +234,7 @@ a{color:inherit}
 .part-l{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--gold);letter-spacing:.4px;margin-bottom:10px}
 .part-l::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
 .ar{font-family:"Amiri",serif;direction:rtl;text-align:right;font-size:var(--ar);line-height:2.15;color:var(--ink);word-spacing:2px}
-.ar .ay{color:var(--em)}
+.ar .ay{color:var(--em);border-radius:8px;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background .35s ease}
 body:not(.tj-off) .ar .ay{color:inherit}
 
 /* ---------- Tecvid renkleri ---------- */
@@ -597,7 +597,7 @@ const DUAS = [
 
  {id:"gunluk", t:"Günlük Dua", sub:"Mekhûl (rh.) rivayeti", cats:["sabah","koruma"], count:1, when:"Her gün · 1 defa",
   fazilet:"Mekhûl (rahimehullah) nakleder: Bunu söyleyen kimseyi Allah dost edinir, işlerini üzerine alır ve onu muhafaza eder.",
-  parts:[{label:"Dua ve âyet", ay:["9:51"], ayNote:"Yalnızca âyet kısmı", ar:"اللَّهُمَّ لَا شَيْءَ إِلَّا أَنْتَ، وَلَا شَيْءَ إِلَّا مَا شِئْتَ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِكَ، <span class='ay'>﴿قُلْ لَنْ يُصِيبَنَا إِلَّا مَا كَتَبَ اللَّهُ لَنَا هُوَ مَوْلَانَا وَعَلَى اللَّهِ فَلْيَتَوَكَّلِ الْمُؤْمِنُونَ﴾</span>",
+  parts:[{label:"Dua ve âyet", ay:["9:51"], ayOnly:true, ar:"اللَّهُمَّ لَا شَيْءَ إِلَّا أَنْتَ، وَلَا شَيْءَ إِلَّا مَا شِئْتَ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِكَ، <span class='ay'>﴿قُلْ لَنْ يُصِيبَنَا إِلَّا مَا كَتَبَ اللَّهُ لَنَا هُوَ مَوْلَانَا وَعَلَى اللَّهِ فَلْيَتَوَكَّلِ الْمُؤْمِنُونَ﴾</span>",
     ok:"Allâhümme lâ şey'e illâ ent, ve lâ şey'e illâ mâ şi't, ve lâ havle ve lâ kuvvete illâ bik. Kul len yusîbenâ illâ mâ ketebellâhu lenâ, hüve mevlânâ, ve alallâhi felyetevekkeli'l-mü'minûn.",
     tr:"Allah'ım! Senden başka (gerçek) hiçbir şey yoktur; Senin dilediğinden başka hiçbir şey olmaz; güç ve kuvvet ancak Seninledir. De ki: Allah'ın bizim için yazdığından başkası bize asla erişmez. O bizim Mevlâmızdır. Mü'minler yalnız Allah'a tevekkül etsinler.",
     ref:"Âyet: Tevbe 9/51"}],
@@ -1216,7 +1216,8 @@ $("#tpBarW").addEventListener("click",e=>{ const r=e.currentTarget.getBoundingCl
 
 function partsQueue(parts,only){
   const q=[]; (parts||[]).forEach((p,i)=>{ if(only!=null&&i!==only) return; const ay=partAy(p); if(!ay) return;
-    ay.forEach((k,j)=>q.push({k, t:(k==="1:1"&&j===0&&ay.length>1)?"Besmele-i Şerîfe":ayLabel(k), hl:`#shIn .part[data-pk="${i}"]`})); });
+    const hl=p.ayOnly?`#shIn .part[data-pk="${i}"] .ar .ay`:`#shIn .part[data-pk="${i}"]`;
+    ay.forEach((k,j)=>q.push({k, t:(k==="1:1"&&j===0&&ay.length>1)?"Besmele-i Şerîfe":ayLabel(k), hl})); });
   return q;
 }
 function quranQueue(){
@@ -1424,7 +1425,8 @@ function partAy(p){ return p.sur?SUR[p.sur].ay:p.ay; }
 function partHTML(p,i){
   const ay=partAy(p);
   if(p.sur){const s=SUR[p.sur]; p={label:s.label, ar:`<span class='ay'>${s.ar}</span>`, ok:s.ok, tr:s.tr, ref:s.ref};}
-  const lb=ay?`<button class="listen" data-pplay="${i}" aria-label="Dinle">${ICON.play}<span>${p.ayNote||"Dinle"}</span></button>`:"";
+  const ayRef=ay&&p.ayOnly?ay.map(k=>{const [a,b]=k.split(":").map(Number);return `${SNAME[a-1]} ${b}`}).join(", "):"";
+  const lb=ay?`<button class="listen" data-pplay="${i}" aria-label="Dinle">${ICON.play}<span>${p.ayOnly?"Âyeti dinle · "+ayRef:"Dinle"}</span></button>`:"";
   return `<div class="part" data-pk="${i}">${(p.label||lb)?`<div class="part-l"><span>${p.label||"Âyet"}</span>${lb}</div>`:""}
     <div class="ar">${p.ar}</div>${p.ok?`<div class="ok">${p.ok}</div>`:""}${p.tr?`<div class="tr">${p.tr}</div>`:""}${p.ref?`<div class="ref">${p.ref}</div>`:""}</div>`;
 }
@@ -1610,8 +1612,10 @@ function go(spec){
 }
 document.addEventListener("click",e=>{
   if(e.target.closest("[data-rpick]")){ openReciters(); return; }
-  if(e.target.closest("[data-plall]")){ tpPlay(partsQueue(SHEET_PARTS),0,$("#shTtl").textContent); return; }
-  const pp=e.target.closest("[data-pplay]"); if(pp){ tpPlay(partsQueue(SHEET_PARTS,Number(pp.dataset.pplay)),0,$("#shTtl").textContent); return; }
+  if(e.target.closest("[data-plall]")){ tpPlay(partsQueue(SHEET_PARTS),0,$("#shTtl").textContent);
+    if(SHEET_PARTS.some(p=>p.ayOnly)) toast("Duanın âyet olmayan kısımları kurra kaydında yoktur; yalnızca âyetler okunur."); return; }
+  const pp=e.target.closest("[data-pplay]"); if(pp){ const pi=Number(pp.dataset.pplay); tpPlay(partsQueue(SHEET_PARTS,pi),0,$("#shTtl").textContent);
+    if(SHEET_PARTS[pi]&&SHEET_PARTS[pi].ayOnly) toast("Duanın baş kısmı âyet değildir; kurra yalnızca âyeti okur."); return; }
   if(e.target.closest("[data-qplay]")){ tpPlay(quranQueue(),0,$("#shTtl").textContent); return; }
   const ak=e.target.closest("#qbody [data-ak]");
   if(ak && !e.target.closest("button")){ const q=quranQueue(); let i=q.findIndex(x=>x.k===ak.dataset.ak&&x.hl); if(i>0&&q[i-1].k==="1:1"&&!q[i-1].hl) i--; tpPlay(q,i,$("#shTtl").textContent); return; }

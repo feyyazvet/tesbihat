@@ -9,7 +9,7 @@
    ║  Böylece telefonlardaki eski kopya silinir ve yeni sürüm iner.   ║
    ║  Yeni ses/simge dosyası eklediyseniz PRECACHE listesine de ekleyin║
    ╚══════════════════════════════════════════════════════════════════╝ */
-const VERSION = "tesbihat-v4";
+const VERSION = "tesbihat-v5";
 const FONT_CACHE = "tesbihat-fonts";
 const QURAN_CACHE = "tesbihat-quran"; // okunan Kur'an sayfaları (sürümden bağımsız saklanır)
 const AUDIO_CACHE = "tesbihat-tilavet"; // dinlenen âyet sesleri (sürümden bağımsız saklanır)
