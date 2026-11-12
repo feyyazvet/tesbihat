@@ -407,8 +407,9 @@ body.hide-ok .ok,body.hide-tr .tr{display:none}
 /* ---------- Settings sheet ---------- */
 .modal{position:fixed;inset:0;z-index:70;display:flex;align-items:flex-end;justify-content:center;background:rgba(5,10,8,.45);opacity:0;visibility:hidden;transition:.25s}
 .modal.open{opacity:1;visibility:visible}
-.modal-c{width:100%;max-width:560px;background:var(--surface);border-radius:26px 26px 0 0;padding:10px 18px calc(22px + env(safe-area-inset-bottom));transform:translateY(30px);transition:.3s;box-shadow:var(--shadow2)}
+.modal-c{max-height:calc(100dvh - 24px);overflow-y:auto;overscroll-behavior:contain;width:100%;max-width:560px;background:var(--surface);border-radius:26px 26px 0 0;padding:10px 18px calc(22px + env(safe-area-inset-bottom));transform:translateY(30px);transition:.3s;box-shadow:var(--shadow2)}
 .modal.open .modal-c{transform:none}
+.set-g{font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--gold);margin:14px 2px 0}
 .grab{width:42px;height:5px;border-radius:5px;background:var(--line);margin:0 auto 12px}
 .set-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid var(--line2)}
 .set-row:last-child{border-bottom:0}
@@ -427,6 +428,53 @@ input[type=range]{width:100%;accent-color:var(--em)}
 .toast{position:fixed;left:50%;top:calc(16px + env(safe-area-inset-top));transform:translate(-50%,-30px);z-index:90;opacity:0;transition:.35s cubic-bezier(.2,.9,.25,1);
   padding:12px 18px;border-radius:16px;background:var(--ink);color:var(--bg);font-weight:600;font-size:14px;box-shadow:var(--shadow2);pointer-events:none;max-width:calc(100% - 32px);text-align:center}
 .toast.on{opacity:1;transform:translate(-50%,0)}
+/* ---------- Akıllı özellikler ---------- */
+.vstrip{position:relative;z-index:1;display:grid;grid-template-columns:repeat(6,1fr);gap:3px;margin-top:16px;padding:6px;border-radius:16px;background:rgba(0,0,0,.18);border:1px solid rgba(235,207,143,.14)}
+.vs{text-align:center;padding:6px 0 5px;border-radius:11px;line-height:1.2}
+.vs small{display:block;font-size:10.5px;opacity:.68}
+.vs b{font-size:13.5px;font-weight:700;font-variant-numeric:tabular-nums}
+.vs.on{background:rgba(235,207,143,.2);color:#EBCF8F}
+.vs.on small{opacity:1}
+.locline{display:inline-flex;align-items:center;gap:5px;margin-top:6px;font-size:12px;opacity:.85;color:var(--heroInk)}
+.locline svg{flex:none}
+.hero-foot .now{display:flex;flex-direction:column;gap:6px;flex:1;min-width:0;text-align:left}
+.hero-foot .now b{color:#EBCF8F;font-weight:700}
+.nowbtn{display:flex;align-items:center;gap:6px;text-align:left;font-size:13px;color:var(--heroInk);padding:8px 12px;border-radius:12px;background:rgba(243,235,216,.08);border:1px solid rgba(243,235,216,.12)}
+.nowbtn span{flex:1;min-width:0}
+.locbtn{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#EBCF8F;text-align:left}
+.sec-h{scroll-margin-top:72px}
+.nowpill{font-size:10px;font-weight:800;letter-spacing:.6px;padding:3px 8px;border-radius:999px;background:var(--em);color:#fff;text-transform:uppercase}
+:root[data-theme="dark"] .nowpill{color:#06201A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .nowpill{color:#06201A}}
+.vk small{font-size:10.5px;font-weight:600;opacity:.75;font-variant-numeric:tabular-nums;margin-top:-3px}
+.vk.due{border-color:var(--gold2);box-shadow:inset 0 0 0 1px var(--gold2);color:var(--gold)}
+.vk.due .dot{border-color:var(--gold2)}
+.vk.now{position:relative}
+.vk.now::after{content:"";position:absolute;top:6px;right:6px;width:6px;height:6px;border-radius:50%;background:var(--gold2);box-shadow:0 0 0 3px var(--goldSoft)}
+.week{padding:14px}
+.wstats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.wst{padding:10px 12px;border-radius:14px;background:var(--surface2)}
+.wst b{display:block;font-family:"Cormorant Garamond",serif;font-size:26px;line-height:1.05;font-variant-numeric:lining-nums}
+.wst small{font-size:11px;color:var(--muted);line-height:1.3;display:block}
+.wbars{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;align-items:end;height:118px;margin-top:14px}
+.wb{display:flex;flex-direction:column;align-items:center;gap:6px;height:100%}
+.wb i{flex:1;width:100%;max-width:28px;border-radius:9px;background:var(--surface2);display:flex;align-items:flex-end;overflow:hidden}
+.wb i span{display:block;width:100%;border-radius:9px;background:linear-gradient(180deg,var(--gold2),var(--gold));transition:height .6s ease}
+.wb.today i span{background:linear-gradient(180deg,var(--em),var(--em2))}
+.wb small{font-size:10.5px;color:var(--muted);font-weight:600;white-space:nowrap}
+.wb.today small{color:var(--em);font-weight:800}
+.fl{display:block;font-weight:600;font-size:13px;margin:10px 2px}
+.fl select{display:block;width:100%;margin-top:6px;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--surface2);color:var(--ink);font:inherit;font-size:15px}
+.upd{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));transform:translate(-50%,30px);z-index:80;opacity:0;visibility:hidden;transition:.35s;
+  display:flex;align-items:center;gap:12px;padding:10px 10px 10px 16px;border-radius:16px;background:var(--ink);color:var(--bg);font-weight:600;font-size:13.5px;box-shadow:var(--shadow2);max-width:calc(100% - 32px)}
+.upd.on{opacity:1;visibility:visible;transform:translate(-50%,0)}
+#act{z-index:85;width:calc(100% - 32px);max-width:420px}
+#act span{flex:1;min-width:0}
+.upd button{white-space:nowrap;flex:none}
+#upd{bottom:auto;top:calc(14px + env(safe-area-inset-top));transform:translate(-50%,-30px)}
+#upd.on{transform:translate(-50%,0)}
+.upd button{padding:8px 14px;border-radius:11px;background:var(--gold2);color:#2A1E07;font-weight:800}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 .foot{text-align:center;color:var(--muted);font-size:12px;margin:34px 0 0;line-height:1.6}
 @media (min-width:600px){ .app{padding-top:8px} }
 </style>
@@ -502,6 +550,7 @@ input[type=range]{width:100%;accent-color:var(--em)}
     <button class="pill-btn pri" id="btnInstall" style="flex:none;padding:9px 16px">Yükle</button></div>
   <div id="iosHelp" style="display:none;font-size:13.5px;line-height:1.6;color:var(--ink2);background:var(--surface2);border-radius:14px;padding:12px 14px;margin:4px 0 8px">
     iPhone'da: Safari'nin altındaki <b>Paylaş</b> düğmesine <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="vertical-align:-2px"><path d="M12 15V3M8 7l4-4 4 4M5 11v9h14v-9"/></svg> dokunun, ardından <b>Ana Ekrana Ekle</b>'yi seçin.</div>
+  <div class="set-g">Görünüm</div>
   <div class="set-row"><div class="l">Tema</div>
     <div class="seg" id="segTheme"><button data-t="auto">Otomatik</button><button data-t="light">Açık</button><button data-t="dark">Koyu</button></div></div>
   <div class="set-row" style="display:block"><div class="l" style="display:flex;justify-content:space-between"><span>Arapça yazı boyutu</span><span id="arVal" style="color:var(--muted);font-weight:500"></span></div>
@@ -509,9 +558,15 @@ input[type=range]{width:100%;accent-color:var(--em)}
     <input type="range" id="arRange" min="20" max="44" step="1"></div>
   <div class="set-row"><div class="l">Okunuşu göster<small>Latin harfli okunuş</small></div><button class="sw" id="swOk" aria-label="Okunuş"></button></div>
   <div class="set-row"><div class="l">Anlamı göster<small>Türkçe meal</small></div><button class="sw" id="swTr" aria-label="Anlam"></button></div>
+  <div class="set-g">Vakit ve tilavet</div>
+  <div class="set-row"><div class="l">Namaz vakitleri<small id="setLoc">Şehir seçilmedi</small></div><button class="pill-btn" data-loc style="flex:none;padding:9px 14px">Seç</button></div>
   <div class="set-row"><div class="l">Kurra<small id="setRc"></small></div><button class="pill-btn" data-rpick style="flex:none;padding:9px 14px">Değiştir</button></div>
   <div class="set-row"><div class="l">Tecvid renkleri<small>Gunne, ihfâ, idgâm, med, kalkale…</small></div><button class="sw" id="swTj" aria-label="Tecvid renkleri"></button></div>
+  <div class="set-g">Uygulama</div>
   <div class="set-row"><div class="l">Titreşim<small>Zikir sayarken</small></div><button class="sw" id="swVib" aria-label="Titreşim"></button></div>
+  <div class="set-row"><div class="l">Ekranı açık tut<small>Zikir, tilavet ve Kur'an okurken</small></div><button class="sw" id="swAwake" aria-label="Ekranı açık tut"></button></div>
+  <div class="set-row"><div class="l">Yedekleme<small>İlerlemeyi dosyaya kaydet / geri yükle</small></div><div style="display:flex;gap:6px;flex:none"><button class="pill-btn" id="bkSave" style="flex:none;padding:9px 12px">Yedekle</button><button class="pill-btn" id="bkLoad" style="flex:none;padding:9px 12px">Yükle</button></div></div>
+  <input type="file" id="bkFile" accept="application/json,.json" hidden>
 </div></div>
 
 <!-- Tilavet oynatıcı -->
@@ -527,6 +582,24 @@ input[type=range]{width:100%;accent-color:var(--em)}
   <div class="tp-x"><button class="tp-chip" data-rpick id="tpRc"></button><button class="tp-chip" id="tpRep"></button><button class="tp-chip" id="tpRate"></button></div>
   <button class="tp-close" id="tpClose" aria-label="Oynatıcıyı kapat"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
 </div>
+
+<!-- Konum (namaz vakitleri) -->
+<div class="modal" id="lmodal"><div class="modal-c">
+  <div class="grab"></div>
+  <div class="rc-h"><b>Namaz vakitleri</b><small>Diyanet İşleri verisi</small></div>
+  <label class="fl">İl<select id="selIl"><option>Yükleniyor…</option></select></label>
+  <label class="fl">İlçe<select id="selIlce" disabled><option>—</option></select></label>
+  <div class="vk-foot" style="padding:12px 0 0"><button class="pill-btn" id="locClear">Kaldır</button><button class="pill-btn pri" id="locSave">Kaydet</button></div>
+  <div class="note" style="text-align:center">Seçtiğiniz il ve ilçe yalnızca vakitleri almak için kullanılır; konumunuz alınmaz.</div>
+</div></div>
+
+<div class="upd" id="act"><span></span><button></button></div>
+<div class="modal" id="ask"><div class="modal-c" style="padding-bottom:calc(18px + env(safe-area-inset-bottom))">
+  <div class="grab"></div>
+  <div id="askMsg" style="font-size:15.5px;font-weight:600;line-height:1.5;padding:4px 4px 16px;text-align:center"></div>
+  <div class="vk-foot" style="padding:0"><button class="pill-btn" id="askNo">Vazgeç</button><button class="pill-btn pri" id="askOk">Evet</button></div>
+</div></div>
+<div class="upd" id="upd"><span>Yeni sürüm yüklendi</span><button id="updBtn">Yenile</button></div>
 
 <!-- Kurra seçici -->
 <div class="modal" id="rmodal"><div class="modal-c">
@@ -868,7 +941,7 @@ const DK = {}; DUAS.forEach(d=>DK[d.id]=d);
    DURUM
    ===================================================================== */
 const LS="tesbihat.v1";
-function defaults(){return {z:{}, zr:{}, day:{}, dc:{}, fetih:null, cuz:{n:1,done:null}, set:{theme:"auto", ar:28, ok:true, tr:true, vib:true, tj:true, rc:"abdulbasit_m", rate:1}};}
+function defaults(){return {z:{}, zr:{}, zd:{}, day:{}, dc:{}, fetih:null, cuz:{n:1,done:null}, loc:null, vk:null, set:{theme:"auto", ar:28, ok:true, tr:true, vib:true, tj:true, rc:"abdulbasit_m", rate:1, awake:true}};}
 let S=defaults();
 try{const raw=localStorage.getItem(LS); if(raw){const p=JSON.parse(raw); S=Object.assign(defaults(),p); S.set=Object.assign(defaults().set,p.set||{}); S.cuz=Object.assign({n:1,done:null},p.cuz||{});}}catch(e){}
 function save(){try{localStorage.setItem(LS,JSON.stringify(S))}catch(e){}}
@@ -905,9 +978,23 @@ const ICON={
  ext:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
  audio:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M11 5L6 9H3v6h3l5 4zM16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"/></svg>',
  count:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l2.5 2.5" stroke-linecap="round"/></svg>',
+ chart:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>',
  clock:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 7v5l3 2"/><circle cx="12" cy="12" r="9"/></svg>',
  hex:'<svg viewBox="0 0 46 46" fill="none"><path d="M23 2l6 6h9v9l6 6-6 6v9h-9l-6 6-6-6H8v-9l-6-6 6-6V8h9z" stroke="currentColor" stroke-opacity=".45" stroke-width="1.3"/></svg>'
 };
+let actT=null;
+function actionToast(msg,label,fn){
+  const el=$("#act"); el.querySelector("span").textContent=msg; const b=el.querySelector("button"); b.textContent=label;
+  b.onclick=()=>{ el.classList.remove("on"); clearTimeout(actT); fn(); };
+  el.classList.add("on"); clearTimeout(actT); actT=setTimeout(()=>el.classList.remove("on"),5000);
+}
+function ask(msg,ok){
+  return new Promise(res=>{
+    const m=$("#ask"); $("#askMsg").textContent=msg; $("#askOk").textContent=ok||"Evet"; m.classList.add("open");
+    const done=v=>{ m.classList.remove("open"); $("#askOk").onclick=null; $("#askNo").onclick=null; m.onclick=null; res(v); };
+    $("#askOk").onclick=()=>done(true); $("#askNo").onclick=()=>done(false); m.onclick=e=>{ if(e.target===m) done(false); };
+  });
+}
 function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("on");clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove("on"),2200)}
 function vib(p){ if(S.set.vib && navigator.vibrate) try{navigator.vibrate(p)}catch(e){} }
 const norm=s=>(s||"").toLocaleLowerCase("tr").normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/ı/g,"i").replace(/[^a-z0-9 ]/g," ");
@@ -1074,7 +1161,7 @@ function openQuran(spec){
   $("#shTtl").textContent=spec.title; $("#shIn").innerHTML=h; $("#shBody").scrollTop=0;
   const sh=$("#sheet"); sh.classList.add("open"); sh.setAttribute("aria-hidden","false"); document.body.classList.add("sheet-open"); setupDock(null);
   if(!history.state||history.state.s!=="sheet") history.pushState({s:"sheet"},"");
-  qSeg(); loadQuran();
+  qSeg(); loadQuran(); keepAwake(true);
 }
 function qSeg(){ document.querySelectorAll("#qseg button").forEach(b=>b.classList.toggle("on",b.dataset.qm===qState.mode)); }
 async function loadQuran(){
@@ -1200,7 +1287,7 @@ if("mediaSession" in navigator){ try{
   navigator.mediaSession.setActionHandler("previoustrack",()=>tpPrev());
   navigator.mediaSession.setActionHandler("nexttrack",()=>{ if(!tpNext()) TP.a.pause(); });
 }catch(e){} }
-TP.a.addEventListener("playing",()=>{ $("#tp").classList.remove("load"); tpUI(); });
+TP.a.addEventListener("playing",()=>{ $("#tp").classList.remove("load"); tpUI(); keepAwake(true); });
 TP.a.addEventListener("pause",tpUI);
 TP.a.addEventListener("waiting",()=>$("#tp").classList.add("load"));
 TP.a.addEventListener("timeupdate",()=>{ const d=TP.a.duration; $("#tpBar").style.width=(d?TP.a.currentTime/d*100:0)+"%"; });
@@ -1248,6 +1335,111 @@ function legendHTML(){
 }
 
 /* =====================================================================
+   NAMAZ VAKİTLERİ — Diyanet İşleri verisi (ezanvakti.emushaf.net)
+   ===================================================================== */
+const VKAPI="https://ezanvakti.emushaf.net";
+const VK_KEYS=[["Imsak","İmsak"],["Gunes","Güneş"],["Ogle","Öğle"],["Ikindi","İkindi"],["Aksam","Akşam"],["Yatsi","Yatsı"]];
+const CHIP_VK=[0,2,3,4,5]; // namaz çipleri → vakit sırası (Sabah=İmsak)
+const dmy=d=>pad(d.getDate())+"."+pad(d.getMonth()+1)+"."+d.getFullYear();
+const titleTr=s=>String(s||"").toLocaleLowerCase("tr").replace(/(^|[\s(-])(\p{L})/gu,(m,a,b)=>a+b.toLocaleUpperCase("tr"));
+function vkDay(date){ return (S.vk&&S.vk.days||[]).find(x=>x.d===dmy(date))||null; }
+function hm(day,str){ const [h,m]=String(str).split(":").map(Number); const x=new Date(day); x.setHours(h,m,0,0); return x; }
+function vkNow(){
+  const now=new Date(), d=vkDay(now); if(!d) return null;
+  const list=VK_KEYS.map(([k,l],i)=>({i,k,l,s:d[k],t:hm(now,d[k])}));
+  let cur=-1; list.forEach((x,i)=>{ if(now>=x.t) cur=i; });
+  let next=list.find(x=>x.t>now)||null;
+  if(!next){ const tm=new Date(now); tm.setDate(tm.getDate()+1); const d2=vkDay(tm); if(d2) next={i:0,k:"Imsak",l:"İmsak",s:d2.Imsak,t:hm(tm,d2.Imsak)}; }
+  return {d,list,cur,next,now};
+}
+function fmtLeft(ms){ const m=Math.max(0,Math.round(ms/60000)); if(m<1) return "1 dk'dan az"; const h=Math.floor(m/60), r=m%60; return h?`${h} sa ${r} dk`:`${r} dk`; }
+function nowSection(vn){
+  if(vn){ const t=i=>vn.list[i].t, n=vn.now;
+    if(n>=t(0)&&n<t(2)) return 0; if(n>=t(2)&&n<t(4)) return 1; if(n>=t(4)&&n<t(5)) return 3; return 4; }
+  const h=new Date().getHours(); if(h>=4&&h<11) return 0; if(h>=11&&h<17) return 1; if(h>=17&&h<20) return 3; return 4;
+}
+let vkTried="", lastNowKey="";
+async function vkFetch(force){
+  if(!S.loc) return;
+  const last=S.vk&&S.vk.days&&S.vk.days[S.vk.days.length-1];
+  const ahead=last?diffD(today(), last.d.split(".").reverse().join("-")):-1;
+  const need=force||!S.vk||S.vk.id!==S.loc.id||!vkDay(new Date())||ahead<5;
+  if(!need||(!force&&vkTried===today())) return;
+  vkTried=today();
+  try{
+    const r=await fetch(`${VKAPI}/vakitler/${S.loc.id}`); if(!r.ok) throw 0; const j=await r.json();
+    S.vk={id:S.loc.id, days:j.map(x=>({d:x.MiladiTarihKisa,Imsak:x.Imsak,Gunes:x.Gunes,Ogle:x.Ogle,Ikindi:x.Ikindi,Aksam:x.Aksam,Yatsi:x.Yatsi,h:x.HicriTarihUzun}))};
+    save(); if(curView==="bugun") renderToday();
+  }catch(e){ if(force) toast("Namaz vakitleri alınamadı · internet bağlantısını kontrol edin"); }
+}
+const locMem={};
+async function locGet(path){ if(locMem[path]) return locMem[path]; const r=await fetch(VKAPI+path); if(!r.ok) throw 0; return (locMem[path]=await r.json()); }
+async function openLoc(){
+  $("#modal").classList.remove("open"); $("#lmodal").classList.add("open");
+  const si=$("#selIl"), sc=$("#selIlce");
+  try{
+    const il=await locGet("/sehirler/2");
+    si.innerHTML=il.map(x=>`<option value="${x.SehirID}">${esc(titleTr(x.SehirAdi))}</option>`).join("");
+    si.value=(S.loc&&S.loc.sehirId)||"506"; await locIlce(S.loc&&S.loc.id);
+  }catch(e){ si.innerHTML=`<option>Liste yüklenemedi</option>`; toast("İl listesi alınamadı · internet bağlantısını kontrol edin"); }
+}
+async function locIlce(pre){
+  const si=$("#selIl"), sc=$("#selIlce"); sc.disabled=true; sc.innerHTML=`<option>Yükleniyor…</option>`;
+  const list=await locGet(`/ilceler/${si.value}`); const ilAdi=si.options[si.selectedIndex].text;
+  sc.innerHTML=list.map(x=>`<option value="${x.IlceID}">${esc(titleTr(x.IlceAdi))}</option>`).join(""); sc.disabled=false;
+  const merkez=list.find(x=>titleTr(x.IlceAdi)===ilAdi);
+  sc.value=pre&&list.some(x=>x.IlceID===pre)?pre:(merkez?merkez.IlceID:list[0].IlceID);
+}
+
+/* =====================================================================
+   HAFTALIK GİDİŞAT ve SERİ
+   ===================================================================== */
+function dayDone(ds){ return Object.keys(S.day[ds]||{}).filter(k=>k.startsWith("p-")||k.startsWith("v-")).length; }
+function streak(){ let n=0, d=today(); if(!dayDone(d)) d=addD(d,-1); while(dayDone(d)>0){ n++; d=addD(d,-1); } return n; }
+function weekCard(){
+  const tot=progress().tot; const fmt=new Intl.DateTimeFormat("tr-TR",{weekday:"short"});
+  let bars="", sum=0;
+  for(let i=6;i>=0;i--){ const ds=addD(today(),-i), dn=dayDone(ds); sum+=dn; const p=Math.min(1,dn/tot);
+    bars+=`<div class="wb ${i===0?"today":""}" title="${dn}/${tot}"><i><span style="height:${Math.max(p*100,dn?6:0)}%"></span></i><small>${i===0?"Bugün":fmt.format(parseD(ds)).replace(".","")}</small></div>`; }
+  const st=streak();
+  return `<div class="sec-h"><div class="ic">${ICON.chart}</div><h3>Haftalık Gidişat</h3><span class="meta">${st?`${st} gün seri`:""}</span></div>
+  <div class="card week"><div class="wstats"><div class="wst"><b>${st}</b><small>gün kesintisiz</small></div><div class="wst"><b>${sum}</b><small>vird · son 7 gün</small></div><div class="wst"><b>${Math.round(sum/(tot*7)*100)}%</b><small>haftalık oran</small></div></div>
+  <div class="wbars">${bars}</div></div>`;
+}
+
+/* =====================================================================
+   EKRANI AÇIK TUT (Wake Lock)
+   ===================================================================== */
+let wl=null;
+async function keepAwake(on){
+  try{
+    if(on && S.set.awake!==false && "wakeLock" in navigator && !document.hidden){ if(!wl){ wl=await navigator.wakeLock.request("screen"); wl.addEventListener("release",()=>{wl=null}); } }
+    else if(!on && wl){ const w=wl; wl=null; await w.release(); }
+  }catch(e){}
+}
+const needAwake=()=>!!curZ || (TP.on&&!TP.a.paused) || (!!qState && $("#sheet").classList.contains("open"));
+
+/* =====================================================================
+   YEDEKLEME
+   ===================================================================== */
+async function backupSave(){
+  const name=`tesbihat-yedek-${today()}.json`;
+  const file=new File([JSON.stringify({app:"tesbihat",surum:1,tarih:new Date().toISOString(),state:S})],name,{type:"application/json"});
+  if(navigator.canShare&&navigator.canShare({files:[file]})){ try{ await navigator.share({files:[file],title:"Tesbihat yedeği"}); return; }catch(e){ if(e&&e.name==="AbortError") return; } }
+  const a=document.createElement("a"); a.href=URL.createObjectURL(file); a.download=name; document.body.appendChild(a); a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },1500); toast("Yedek dosyası indirildi");
+}
+async function backupLoad(f){
+  try{
+    const j=JSON.parse(await f.text()); const st=j&&j.state?j.state:j;
+    if(!st||typeof st!=="object"||typeof st.day!=="object") throw 0;
+    if(!(await ask("Yedekteki veriler şu anki ilerlemenizin yerine geçecek. Devam edilsin mi?","Geri yükle"))) return;
+    S=Object.assign(defaults(),st); S.set=Object.assign(defaults().set,st.set||{}); S.cuz=Object.assign({n:1,done:null},st.cuz||{});
+    save(); applySettings(); refresh(); toast("Yedek geri yüklendi"); vkFetch();
+  }catch(e){ toast("Geçersiz yedek dosyası"); }
+}
+
+/* =====================================================================
    PROGRAM (Bugün)
    ===================================================================== */
 const VAKITLER=["Sabah","Öğle","İkindi","Akşam","Yatsı"];
@@ -1280,41 +1472,53 @@ function progress(){
   program().forEach(s=>{ if(s.vakit){ VAKITLER.forEach((v,i)=>{tot++; if(isDone("v-"+i)) done++;}); } else s.items.forEach(it=>{tot++; if(isDone(it.id)) done++;}); });
   return {tot,done};
 }
-function greeting(){const h=new Date().getHours(); if(h<5) return "Hayırlı geceler"; if(h<11) return "Hayırlı sabahlar"; if(h<17) return "Hayırlı günler"; if(h<21) return "Hayırlı akşamlar"; return "Hayırlı geceler";}
-function hijri(){try{const p=new Intl.DateTimeFormat("tr-TR-u-ca-islamic-umalqura",{day:"numeric",month:"long",year:"numeric"}).formatToParts(new Date());
+function greeting(){ const vn=vkNow(); if(vn){ const c=vn.cur; if(c<0||c>=5) return "Hayırlı geceler"; if(c<=1) return "Hayırlı sabahlar"; if(c<=3) return "Hayırlı günler"; return "Hayırlı akşamlar"; }
+  const h=new Date().getHours(); if(h<5) return "Hayırlı geceler"; if(h<11) return "Hayırlı sabahlar"; if(h<17) return "Hayırlı günler"; if(h<21) return "Hayırlı akşamlar"; return "Hayırlı geceler";}
+function hijri(){ const vd=vkDay(new Date()); if(vd&&vd.h) return vd.h; try{const p=new Intl.DateTimeFormat("tr-TR-u-ca-islamic-umalqura",{day:"numeric",month:"long",year:"numeric"}).formatToParts(new Date());
   const g=t=>(p.find(x=>x.type===t)||{}).value||""; const d=parseInt(g("day"),10); return d?`${d} ${g("month")} ${g("year").replace(/\D/g,"")}`:""}catch(e){return ""}}
 
 function renderToday(){
   const {tot,done}=progress(); const pct=tot?done/tot:0; const C=2*Math.PI*40;
   const miladi=new Intl.DateTimeFormat("tr-TR",{weekday:"long",day:"numeric",month:"long"}).format(new Date());
   const h=hijri();
+  const vn=vkNow(), sIdx=nowSection(vn), secs=program();
+  const nowLeft=secs[sIdx].vakit?VAKITLER.filter((v,i)=>!isDone("v-"+i)).length:secs[sIdx].items.filter(it=>!isDone(it.id)).length;
+  lastNowKey=(vn?vn.cur:"x")+"|"+sIdx+"|"+today();
   let html=`<div class="hero">
     <div class="bism">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
     <div class="hero-row"><div class="hero-txt"><div class="greet">${greeting()}</div>
-      <div class="date">${miladi}${h?` · <b>${h}</b>`:""}</div></div>
+      <div class="date">${miladi}${h?` · <b>${h}</b>`:""}</div>
+      ${S.loc?`<button class="locline" data-loc><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 21s-7-6.3-7-12a7 7 0 0 1 14 0c0 5.7-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>${esc(S.loc.ilce)}${S.loc.ilce!==S.loc.sehir?", "+esc(S.loc.sehir):""}</button>`:""}</div>
       <div class="ring-wrap"><svg width="96" height="96" viewBox="0 0 96 96"><circle cx="48" cy="48" r="40" fill="none" stroke="rgba(243,235,216,.14)" stroke-width="7"/><circle cx="48" cy="48" r="40" fill="none" stroke="#EBCF8F" stroke-width="7" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-pct)}" style="transition:stroke-dashoffset .6s ease"/></svg>
         <div class="ring-c"><div><b>${done}</b><small>/ ${tot} VİRD</small></div></div></div></div>
+    ${vn?`<div class="vstrip">${vn.list.map(x=>`<div class="vs ${x.i===(vn.cur<0?5:vn.cur)?"on":""}"><small>${x.l}</small><b>${x.s}</b></div>`).join("")}</div>`:""}
     <div class="hero-foot"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EBCF8F" stroke-width="2" stroke-linecap="round"><path d="M12 3l2.6 6.2L21 10l-5 4.2 1.4 6.8L12 17.6 6.6 21 8 14.2 3 10l6.4-.8z"/></svg>
-      <span>${pct>=1?"Bugünkü virdlerinizin hepsi tamam. Allah kabul etsin.":pct>0?"Güzel gidiyorsunuz. Kalan virdleriniz aşağıda.":"Günün virdlerine besmele ile başlayın."}</span></div>
+      <div class="now">
+        ${vn&&vn.next?`<span><b>${vn.next.l}</b> vaktine <b id="vkLeft">${fmtLeft(vn.next.t-vn.now)}</b> kaldı</span>`:S.loc?`<span>Namaz vakitleri yükleniyor…</span>`:`<button class="locbtn" data-loc>Namaz vakitleri için il ve ilçe seçin ›</button>`}
+        ${pct>=1?`<span>Bugünkü virdlerinizin hepsi tamam. Allah kabul etsin.</span>`:`<button class="nowbtn" data-scroll="${sIdx}"><span>Şimdi: <b>${secs[sIdx].sec}</b> · ${nowLeft?nowLeft+" vird kaldı":"bu bölüm tamam"}</span>›</button>`}
+      </div></div>
   </div>`;
-  program().forEach(sec=>{
+  secs.forEach((sec,si)=>{
+    const pill=si===sIdx?`<span class="nowpill">Şimdi</span>`:"";
     if(sec.vakit){
       const dn=VAKITLER.filter((v,i)=>isDone("v-"+i)).length;
       const lr=((S.zr[today()]||{}).latif)||0;
-      html+=`<div class="sec-h"><div class="ic">${ICON[sec.ic]}</div><h3>${sec.sec}</h3><span class="meta">${dn}/5</span></div>
-      <div class="card"><div class="vakit">${VAKITLER.map((v,i)=>`<button class="vk ${isDone("v-"+i)?"done":""}" data-vk="${i}"><span class="dot">${ICON.check}</span>${v}</button>`).join("")}</div>
+      const vkSt=i=>{ if(!vn) return ""; const vi=CHIP_VK[i], entered=vn.now>=vn.list[vi].t; const curChip=CHIP_VK.reduce((a,x,j)=>vn.now>=vn.list[x].t?j:a,-1);
+        return (entered&&!isDone("v-"+i)?" due":"")+(i===curChip?" now":""); };
+      html+=`<div class="sec-h" id="sec-${si}"><div class="ic">${ICON[sec.ic]}</div><h3>${sec.sec}</h3>${pill}<span class="meta">${dn}/5</span></div>
+      <div class="card"><div class="vakit">${VAKITLER.map((v,i)=>`<button class="vk ${isDone("v-"+i)?"done":""}${vkSt(i)}" data-vk="${i}"><span class="dot">${ICON.check}</span>${v}${vn?`<small>${vn.list[CHIP_VK[i]].s}</small>`:""}</button>`).join("")}</div>
       <div class="vk-foot"><button class="pill-btn" data-open="namaz">${ICON.book} Namaz duaları</button><button class="pill-btn pri" data-z="latif">Yâ Latîf · ${lr}/5</button></div></div>`;
       return;
     }
     const dn=sec.items.filter(it=>isDone(it.id)).length;
-    html+=`<div class="sec-h"><div class="ic">${ICON[sec.ic]}</div><h3>${sec.sec}</h3><span class="meta">${dn}/${sec.items.length}</span></div><div class="card list">`;
+    html+=`<div class="sec-h" id="sec-${si}"><div class="ic">${ICON[sec.ic]}</div><h3>${sec.sec}</h3>${pill}<span class="meta">${dn}/${sec.items.length}</span></div><div class="card list">`;
     sec.items.forEach(it=>{
       html+=`<div class="row ${isDone(it.id)?"done":""}"><button class="chk" data-chk="${it.id}" aria-label="Tamamlandı">${ICON.check}</button>
         <button class="r-main" data-go="${it.o.join(":")}"><div class="r-t">${it.t}</div><div class="r-s">${it.s}</div></button>${ICON.chev}</div>`;
     });
     html+=`</div>`;
   });
-  html+=fetihCard()+cuzCard();
+  html+=weekCard()+fetihCard()+cuzCard();
   html+=`<div class="foot">Dualar kaynakları ile birlikte derlenmiştir.<br>Rabbim kabul eylesin. 🤲</div>`;
   $("#v-bugun").innerHTML=html;
 }
@@ -1380,12 +1584,13 @@ function renderDList(){
 /* =====================================================================
    ZİKİR
    ===================================================================== */
+function zFresh(z){ if(z&&z.vakit&&S.zd[z.id]!==today()){ S.z[z.id]=0; S.zd[z.id]=today(); save(); } }
 function renderZikir(){
   let h="";
   ZIKIR_GROUPS.forEach(g=>{
     h+=`<div class="sec-h" ${g===ZIKIR_GROUPS[0]?'style="margin-top:8px"':""}><div class="ic">${ICON.star}</div><h3>${g.t}</h3></div><div class="zgrid">`;
     g.items.forEach(z=>{
-      const c=S.z[z.id]||0; const t=z.target;
+      zFresh(z); const c=S.z[z.id]||0; const t=z.target;
       const pct=t?Math.min(100,c/t*100):(c%100);
       const full=t&&c>=t;
       let right=t?`<span>/ ${t}</span>`:`<span>sınırsız</span>`;
@@ -1446,7 +1651,7 @@ function closeSheet(fromPop){
   const sh=$("#sheet"); if(!sh.classList.contains("open")) return;
   sh.classList.remove("open"); sh.setAttribute("aria-hidden","true"); document.body.classList.remove("sheet-open","dock-on"); SHEET_PARTS=[];
   sh.querySelectorAll("audio").forEach(a=>a.pause());
-  curDua=null; refresh();
+  curDua=null; qState=null; refresh(); if(!needAwake()) keepAwake(false);
   if(!fromPop && history.state&&history.state.s==="sheet") history.back();
 }
 function duaHTML(d){
@@ -1509,7 +1714,12 @@ function updDock(){
 }
 $("#dockTap").addEventListener("click",()=>{ if(!dockCfg) return; const c=dcGet(dockCfg.key)+1; dcSet(dockCfg.key,c); vib(12);
   if(dockCfg.target&&c===dockCfg.target){vib([60,50,90]);toast("Tamamlandı · Allah kabul etsin");} updDock(); });
-$("#dockReset").addEventListener("click",()=>{ if(!dockCfg) return; dcSet(dockCfg.key,0); updDock(); });
+$("#dockReset").addEventListener("click",()=>{
+  if(!dockCfg) return; const k=dockCfg.key, prev=dcGet(k);
+  if(!prev){ toast("Sayaç zaten sıfır"); return; }
+  dcSet(k,0); updDock(); vib(20);
+  actionToast("Okuma sayacı sıfırlandı","Geri getir",()=>{ dcSet(k,prev); if(dockCfg&&dockCfg.key===k) updDock(); toast("Geri alındı"); });
+});
 
 /* audio */
 function fmt(t){t=Math.max(0,Math.floor(t||0));return Math.floor(t/60)+":"+pad(t%60)}
@@ -1530,7 +1740,7 @@ function bindPlayers(){
    ===================================================================== */
 let curZ=null; const RC=2*Math.PI*118;
 function openZikir(id){
-  curZ=ZK[id]; if(!curZ) return;
+  curZ=ZK[id]; if(!curZ) return; zFresh(curZ); keepAwake(true);
   $("#ctrTitle").textContent=curZ.n; $("#ctrAr").textContent=curZ.ar; $("#ctrMean").textContent=curZ.m+(curZ.src?" — "+curZ.src:"");
   const c=$("#ctr"); c.classList.add("open"); c.setAttribute("aria-hidden","false");
   updZ(false);
@@ -1538,7 +1748,7 @@ function openZikir(id){
 }
 function closeZikir(fromPop){
   const c=$("#ctr"); if(!c.classList.contains("open")) return;
-  c.classList.remove("open"); c.setAttribute("aria-hidden","true"); curZ=null; refresh();
+  c.classList.remove("open"); c.setAttribute("aria-hidden","true"); curZ=null; refresh(); if(!needAwake()) keepAwake(false);
   if(!fromPop && history.state&&history.state.s==="ctr") history.back();
 }
 function zRounds(){return ((S.zr[today()]||{})[curZ.id])||0}
@@ -1566,7 +1776,14 @@ function zInc(){
 }
 $("#ctrMain").addEventListener("pointerdown",e=>{e.preventDefault();zInc()});
 $("#ctrUndo").addEventListener("click",()=>{if(!curZ)return; S.z[curZ.id]=Math.max(0,(S.z[curZ.id]||0)-1); save(); updZ(false)});
-$("#ctrReset").addEventListener("click",()=>{if(!curZ)return; if((S.z[curZ.id]||0)===0) return; if(confirm("Sayaç sıfırlansın mı?")){S.z[curZ.id]=0; save(); updZ(false)}});
+$("#ctrReset").addEventListener("click",()=>{
+  if(!curZ) return; const id=curZ.id, vk=!!curZ.vakit, t=today();
+  const prevC=S.z[id]||0, prevR=((S.zr[t]||{})[id])||0;
+  if(!prevC && !(vk&&prevR)){ toast("Sayaç zaten sıfır"); return; }
+  S.z[id]=0; if(vk&&S.zr[t]) delete S.zr[t][id]; save(); updZ(false); vib(20);
+  actionToast(vk&&prevR?"Sayaç ve bugünkü vakitler sıfırlandı":"Sayaç sıfırlandı","Geri getir",()=>{
+    S.z[id]=prevC; if(prevR) (S.zr[t] ||= {})[id]=prevR; save(); if(curZ&&curZ.id===id) updZ(false); refresh(); toast("Geri alındı"); });
+});
 $("#ctrClose").addEventListener("click",()=>closeZikir());
 $("#ctrVib").addEventListener("click",()=>{S.set.vib=!S.set.vib;save();toast(S.set.vib?"Titreşim açık":"Titreşim kapalı");applySettings()});
 document.addEventListener("keydown",e=>{ if(curZ && (e.code==="Space"||e.code==="Enter")){e.preventDefault();zInc()} if(e.key==="Escape"){ if(curZ) closeZikir(); else closeSheet(); }});
@@ -1581,7 +1798,7 @@ function applySettings(){
   document.body.classList.toggle("hide-ok",!S.set.ok); document.body.classList.toggle("hide-tr",!S.set.tr);
   document.querySelectorAll("#segTheme button").forEach(b=>b.classList.toggle("on",b.dataset.t===S.set.theme));
   $("#arRange").value=S.set.ar; $("#arVal").textContent=S.set.ar+" px";
-  $("#swOk").classList.toggle("on",S.set.ok); $("#swTr").classList.toggle("on",S.set.tr); $("#swVib").classList.toggle("on",S.set.vib); $("#setRc").textContent=rec().n; $("#swTj").classList.toggle("on",S.set.tj); document.body.classList.toggle("tj-off",!S.set.tj);
+  $("#swOk").classList.toggle("on",S.set.ok); $("#swTr").classList.toggle("on",S.set.tr); $("#swVib").classList.toggle("on",S.set.vib); $("#setRc").textContent=rec().n; $("#swAwake").classList.toggle("on",S.set.awake!==false); $("#setLoc").textContent=S.loc?`${S.loc.ilce}${S.loc.ilce!==S.loc.sehir?", "+S.loc.sehir:""}`:"Şehir seçilmedi"; $("#swTj").classList.toggle("on",S.set.tj); document.body.classList.toggle("tj-off",!S.set.tj);
   $("#ctrVib").style.opacity=S.set.vib?1:.45;
 }
 function openModal(){$("#modal").classList.add("open")}
@@ -1592,6 +1809,16 @@ $("#arRange").addEventListener("input",e=>{S.set.ar=+e.target.value;save();apply
 $("#swOk").addEventListener("click",()=>{S.set.ok=!S.set.ok;save();applySettings()});
 $("#swTr").addEventListener("click",()=>{S.set.tr=!S.set.tr;save();applySettings()});
 $("#swVib").addEventListener("click",()=>{S.set.vib=!S.set.vib;save();applySettings()});
+$("#swAwake").addEventListener("click",()=>{S.set.awake=!(S.set.awake!==false);save();applySettings(); if(!S.set.awake) keepAwake(false);});
+$("#bkSave").addEventListener("click",backupSave);
+$("#bkLoad").addEventListener("click",()=>$("#bkFile").click());
+$("#bkFile").addEventListener("change",e=>{ const f=e.target.files[0]; if(f) backupLoad(f); e.target.value=""; });
+$("#selIl").addEventListener("change",()=>locIlce().catch(()=>toast("İlçe listesi alınamadı")));
+$("#locSave").addEventListener("click",()=>{ const si=$("#selIl"), sc=$("#selIlce"); if(sc.disabled||!sc.value) return;
+  S.loc={sehirId:si.value, sehir:si.options[si.selectedIndex].text, id:sc.value, ilce:sc.options[sc.selectedIndex].text}; S.vk=null; save();
+  $("#lmodal").classList.remove("open"); applySettings(); refresh(); vkFetch(true); });
+$("#locClear").addEventListener("click",()=>{ S.loc=null; S.vk=null; save(); $("#lmodal").classList.remove("open"); applySettings(); refresh(); });
+$("#lmodal").addEventListener("click",e=>{ if(e.target.id==="lmodal") $("#lmodal").classList.remove("open"); });
 $("#swTj").addEventListener("click",()=>{S.set.tj=!S.set.tj;save();applySettings()});
 
 /* =====================================================================
@@ -1612,6 +1839,8 @@ function go(spec){
 }
 document.addEventListener("click",e=>{
   if(e.target.closest("[data-rpick]")){ openReciters(); return; }
+  if(e.target.closest("[data-loc]")){ openLoc(); return; }
+  const sc=e.target.closest("[data-scroll]"); if(sc){ const el=document.getElementById("sec-"+sc.dataset.scroll); if(el) el.scrollIntoView({behavior:"smooth",block:"start"}); return; }
   if(e.target.closest("[data-plall]")){ tpPlay(partsQueue(SHEET_PARTS),0,$("#shTtl").textContent);
     if(SHEET_PARTS.some(p=>p.ayOnly)) toast("Duanın âyet olmayan kısımları kurra kaydında yoktur; yalnızca âyetler okunur."); return; }
   const pp=e.target.closest("[data-pplay]"); if(pp){ const pi=Number(pp.dataset.pplay); tpPlay(partsQueue(SHEET_PARTS,pi),0,$("#shTtl").textContent);
@@ -1636,7 +1865,7 @@ document.addEventListener("click",e=>{
   const c=e.target.closest("[data-cat]"); if(c){ curCat=c.dataset.cat; document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("on",x===c)); renderDList(); return; }
   const cz=e.target.closest("[data-cuz]"); if(cz){ let n=todayCuz()+Number(cz.dataset.cuz); n=(n+29)%30+1; S.cuz={n,done:null}; delete dayObj()["p-cuz"]; save(); refresh(); return; }
   if(e.target.id==="fetihStart"){ S.fetih={start:today(),days:{}}; save(); toast("Bismillah · 40 günlük okuma başladı"); refresh(); return; }
-  if(e.target.id==="fetihReset"){ if(confirm("40 günlük takip sıfırlansın ve bugünden yeniden başlansın mı?")){ S.fetih={start:today(),days:{}}; delete dayObj()["p-fetih"]; save(); refresh(); } return; }
+  if(e.target.id==="fetihReset"){ ask("40 günlük takip sıfırlansın ve bugünden yeniden başlansın mı?","Yeniden başla").then(ok=>{ if(ok){ S.fetih={start:today(),days:{}}; delete dayObj()["p-fetih"]; save(); refresh(); } }); return; }
 });
 $("#shBack").addEventListener("click",()=>closeSheet());
 window.addEventListener("popstate",()=>{ if($("#ctr").classList.contains("open")) closeZikir(true); else if($("#sheet").classList.contains("open")) closeSheet(true); });
@@ -1663,6 +1892,8 @@ $("#btnInstall").addEventListener("click",async()=>{
 });
 updInstallUI();
 if("serviceWorker" in navigator && location.protocol!=="file:"){
+  const hadSW=!!navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener("controllerchange",()=>{ if(hadSW) $("#upd").classList.add("on"); });
   window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
 }
 
@@ -1670,7 +1901,11 @@ applySettings(); tpUI();
 let startView="bugun"; try{startView=sessionStorage.getItem("tb.view")||"bugun"}catch(e){}
 try{const v=new URLSearchParams(location.search).get("v"); if(["bugun","dualar","zikir","kuran"].includes(v)) startView=v;}catch(e){}
 show(startView);
-document.addEventListener("visibilitychange",()=>{ if(!document.hidden) refresh(); });
+$("#updBtn").addEventListener("click",()=>location.reload());
+document.addEventListener("visibilitychange",()=>{ if(!document.hidden){ refresh(); vkFetch(); if(needAwake()) keepAwake(true); } });
+setInterval(()=>{ if(document.hidden||curView!=="bugun") return; const vn=vkNow(); const key=(vn?vn.cur:"x")+"|"+nowSection(vn)+"|"+today();
+  if(key!==lastNowKey) renderToday(); else if(vn&&vn.next){ const el=$("#vkLeft"); if(el) el.textContent=fmtLeft(vn.next.t-new Date()); } },20000);
+vkFetch();
 </script>
 </body>
 </html>

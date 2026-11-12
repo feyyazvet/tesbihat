@@ -18,6 +18,10 @@ Günlük virdler, dualar, zikirmatik ve okunacak sûreler. Tek sayfalık, telefo
 
 **Tilavet (kurra sesleri):** Kur'an sayfalarında ve tam âyetlerden oluşan dua bölümlerinde âyet âyet tilavet dinlenir (everyayah.com). Kurra seçimi (Abdülbâsıt ve Minşâvî mücevved/makamlı dahil 11 kurra), tekrar (3×, 7×, sürekli), hız ve kilit ekranı kontrolleri vardır. Dinlenen âyetler `tesbihat-tilavet` önbelleğinde saklanır (en fazla 600 âyet) ve sonra internetsiz çalar.
 
+**Namaz vakitleri:** Ayarlar → Namaz vakitleri'nden il/ilçe seçilir. Diyanet İşleri verisi (ezanvakti.emushaf.net üzerinden) 30 günlük alınır ve telefonda saklanır; hicrî tarih de buradan gelir. Bugün ekranında sıradaki vakte geri sayım, vakti giren namaz çipinin vurgulanması ve saate göre "Şimdi" bölümü önerisi vardır.
+
+**İlerleme ve yedek:** Bugün ekranında son 7 günün grafiği ve kesintisiz gün serisi görünür. Ayarlar → Yedekleme ile tüm ilerleme JSON dosyasına alınır/geri yüklenir (veriler sunucuya gönderilmez).
+
 **Tecvid renkleri:** Dualardaki Arapça metinler `index.html` içindeki `tajweed()` fonksiyonuyla otomatik renklendirilir (gunne, ihfâ, idgâm, iklâb, kalkale, med, okunmayan harf). Ayarlar'dan kapatılabilir.
 
 ## ⚠️ Güncelleme yaparken (önemli)

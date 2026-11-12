@@ -19,6 +19,8 @@ Bu projede Claude üç şapkayı birlikte taşır:
 - Kullanıcı verileri (`localStorage` anahtarı `tesbihat.v1`) geriye dönük uyumlu kalır; alan silinmez, yalnızca eklenir.
 - Tecvid renkleri: dualarda `tajweed()` motoru, Kur'an sayfalarında Quran.com tecvid işaretleri (`QTJ` eşlemesi). Renk paleti CSS'teki `--tj-*` değişkenlerindedir.
 - Tilavet sesleri everyayah.com'dan âyet âyet gelir (`RECITERS` listesi). Ses yalnızca metni **tam âyet** olan parçalara bağlanır; kısmi âyetlere ses bağlanmaz.
+- Namaz vakitleri yalnızca Diyanet İşleri verisinden alınır (ezanvakti.emushaf.net, `VKAPI`); hesaplama tabanlı kaynaklar (AlAdhan vb.) kullanılmaz. Kullanıcının konumu (GPS) alınmaz, yalnızca seçtiği il/ilçe kullanılır.
+- Kullanıcı verisi sunucuya gönderilmez; yedekleme cihazdaki dosya ile yapılır.
 - Commit ve yayın (GitHub → Vercel) kullanıcı tarafından yapılır; Claude commit atmaz, push etmez.
 - Arayüz dili Türkçe; dini terimler Türkçe imlâ ile (âyet, sûre, Rasûlullah, hadîs-i şerîf…).
 
